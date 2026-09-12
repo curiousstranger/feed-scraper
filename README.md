@@ -84,6 +84,8 @@ updated feeds back to the repo.
    | `date_selector` | *(optional)* selector for a `<time>` (uses its `datetime` attribute if present, else its text) |
    | `date_format` | *(optional)* `strptime` format if automatic date parsing gets it wrong |
    | `category_selector` | *(optional)* selector for a category/tag |
+   | `featured_item_selector` | *(optional)* like `item_selector`, but for a separate "featured/promoted" block some sites show outside their main chronological listing — see `sites/anthropic-news.yaml` |
+   | `featured_title_selector`, `featured_date_selector`, `featured_date_format`, `featured_category_selector` | *(optional)* counterparts to the fields above, evaluated inside each featured item |
    | `fetch_detail` | If true (default), fetch each *new* article's own page once to pull a description from its OpenGraph meta tags |
    | `max_items` | How many recent items to retain in the feed/state |
 

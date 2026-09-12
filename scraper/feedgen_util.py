@@ -28,7 +28,8 @@ def build_feed(site_config: dict, items: list[dict]) -> FeedGenerator:
     fg.link(href=site_config["listing_url"], rel="alternate")
     fg.description(site_config.get("description") or f"Unofficial feed for {site_config['listing_url']}")
     fg.language("en")
-    fg.lastBuildDate(dt.datetime.now(dt.timezone.utc))
+    if items:
+        fg.lastBuildDate(max(_sort_key(item) for item in items))
 
     for item in sorted(items, key=_sort_key, reverse=True):
         fe = fg.add_entry()

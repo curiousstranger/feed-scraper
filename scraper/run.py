@@ -43,7 +43,7 @@ def process_site(cfg: dict) -> dict:
     site_id = cfg["id"]
     log.info("Scraping %s (%s)", site_id, cfg["listing_url"])
     html = extract.fetch(cfg["listing_url"], cfg.get("user_agent"))
-    scraped = extract.extract_listing(html, cfg)
+    scraped = extract.extract_items(html, cfg)
     log.info("  found %d item(s) on the listing page", len(scraped))
     if not scraped:
         log.warning(
