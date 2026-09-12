@@ -1,0 +1,33 @@
+# Unofficial feed config for Anthropic's newsroom (anthropic.com has no RSS feed).
+#
+# The site is a Next.js app whose CSS class names carry a build-specific hash,
+# e.g. "PublicationList-module-scss-module__KxYrHG__listItem". The hash
+# (KxYrHG) can change whenever Anthropic redeploys the site, so selectors
+# below use CSS "contains" matching ([class*="..."]) on the stable parts of
+# the class name instead of matching the full hashed string. If Anthropic
+# reworks the page layout entirely, these selectors will need to be
+# re-derived (view-source the listing page and look for repeated <li>/<a>
+# structures around each article).
+
+id: anthropic-news
+name: "Anthropic Newsroom (unofficial)"
+description: "Unofficial RSS feed scraped from anthropic.com/news — Anthropic does not publish an official feed."
+listing_url: "https://www.anthropic.com/news"
+base_url: "https://www.anthropic.com"
+
+# Each matched element must itself be the <a href="..."> for one article.
+item_selector: 'a[class*="PublicationList"][class*="listItem"]'
+
+# Selectors below are evaluated *inside* each matched item element.
+title_selector: 'span[class*="title"]'
+date_selector: 'time'
+category_selector: 'span[class*="subject"]'
+
+# Fetch each new article's own page once (via OpenGraph meta tags) to get a
+# description for the feed. Only runs for items not already in data/*.json.
+fetch_detail: true
+
+# Keep at most this many of the most recent items in the feed/state file.
+max_items: 75
+
+user_agent: "Mozilla/5.0 (compatible; PersonalSiteRSSBot/1.0; run by a single subscriber for personal use)"

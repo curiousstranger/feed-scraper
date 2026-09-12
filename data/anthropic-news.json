@@ -1,0 +1,84 @@
+{
+  "items": {
+    "https://www.anthropic.com/news/claude-text-watermark": {
+      "category": "Announcements",
+      "first_seen": "2026-09-12T20:12:32.717000+00:00",
+      "published": "2026-08-14T00:00:00+00:00",
+      "summary": "Future Claude models will generate text that contains a watermark to comply with the EU AI Act. We answer questions about how it works and whether it affects outputs.",
+      "title": "How Claude\u2019s text watermark works",
+      "url": "https://www.anthropic.com/news/claude-text-watermark"
+    },
+    "https://www.anthropic.com/news/enterprise-frontier-safeguards": {
+      "category": "Announcements",
+      "first_seen": "2026-09-12T20:12:32.717000+00:00",
+      "published": "2026-09-01T00:00:00+00:00",
+      "summary": "Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems.",
+      "title": "Developing Enterprise Frontier Safeguards with our customers",
+      "url": "https://www.anthropic.com/news/enterprise-frontier-safeguards"
+    },
+    "https://www.anthropic.com/news/expanding-support-for-scientists": {
+      "category": "Announcements",
+      "first_seen": "2026-09-12T20:12:32.717000+00:00",
+      "published": "2026-08-27T00:00:00+00:00",
+      "summary": "Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems.",
+      "title": "Expanding our support for scientists",
+      "url": "https://www.anthropic.com/news/expanding-support-for-scientists"
+    },
+    "https://www.anthropic.com/news/improving-alignment-security-efforts": {
+      "category": "Announcements",
+      "first_seen": "2026-09-12T20:12:32.717000+00:00",
+      "published": "2026-08-31T00:00:00+00:00",
+      "summary": "On July 30, we reported three incidents in which Claude models gained unauthorized access to real computer systems. We are conducting an in-depth analysis of both incidents, and planning to work with METR for an independent review. In the meantime, we\u2019re sharing some of the changes we\u2019ve made over the past month.",
+      "title": "Improving our alignment and security efforts",
+      "url": "https://www.anthropic.com/news/improving-alignment-security-efforts"
+    },
+    "https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards": {
+      "category": "Product",
+      "first_seen": "2026-09-12T20:12:32.717000+00:00",
+      "published": "2026-08-07T00:00:00+00:00",
+      "summary": "We\u2019re making updates to Claude Fable 5\u2019s biology safeguards in a way that substantially reduces fallbacks.",
+      "title": "Improving Fable 5's biology safeguards",
+      "url": "https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards"
+    },
+    "https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals": {
+      "category": "Announcements",
+      "first_seen": "2026-09-12T20:12:32.717000+00:00",
+      "published": "2026-07-30T00:00:00+00:00",
+      "summary": "We found three cases where a Claude model reached the internet from an evaluation environment and accessed real systems. We share what happened and what we're changing.",
+      "title": "Investigating three real-world incidents in our cybersecurity evaluations",
+      "url": "https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals"
+    },
+    "https://www.anthropic.com/news/model-hardware-standard-research-preview": {
+      "category": "Announcements",
+      "first_seen": "2026-09-12T20:12:32.717000+00:00",
+      "published": "2026-08-27T00:00:00+00:00",
+      "summary": "Anthropic is opening a research preview of the Model Hardware Standard (MHS), a shared specification for AI agents to safely operate physical devices, to a first group of scientific research labs and advanced manufacturers.",
+      "title": "Previewing the Model Hardware Standard",
+      "url": "https://www.anthropic.com/news/model-hardware-standard-research-preview"
+    },
+    "https://www.anthropic.com/news/position-open-weights-models": {
+      "category": "Announcements",
+      "first_seen": "2026-09-12T20:12:32.717000+00:00",
+      "published": "2026-07-27T00:00:00+00:00",
+      "summary": "Anthropic CEO Dario Amodei on open-weights models",
+      "title": "Our position on open-weights models",
+      "url": "https://www.anthropic.com/news/position-open-weights-models"
+    },
+    "https://www.anthropic.com/news/tino-cuellar": {
+      "category": "Announcements",
+      "first_seen": "2026-09-12T20:12:32.717000+00:00",
+      "published": "2026-08-04T00:00:00+00:00",
+      "summary": "Former California Supreme Court Justice Tino Cu\u00e9llar joins Anthropic to lead policy, international engagement, and government relations worldwide.",
+      "title": "Mariano-Florentino (Tino) Cu\u00e9llar to join Anthropic as Chief Global Affairs Officer",
+      "url": "https://www.anthropic.com/news/tino-cuellar"
+    },
+    "https://www.anthropic.com/news/wellbeing-research-grants": {
+      "category": "Announcements",
+      "first_seen": "2026-09-12T20:12:32.717000+00:00",
+      "published": "2026-08-25T00:00:00+00:00",
+      "summary": "Anthropic is launching a $5 million grant program to fund independent research into how AI impacts users\u2019 wellbeing.",
+      "title": "Funding better evaluations of AI\u2019s impact on wellbeing",
+      "url": "https://www.anthropic.com/news/wellbeing-research-grants"
+    }
+  }
+}
