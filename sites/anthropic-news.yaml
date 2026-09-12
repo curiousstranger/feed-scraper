@@ -23,6 +23,18 @@ title_selector: 'span[class*="title"]'
 date_selector: 'time'
 category_selector: 'span[class*="subject"]'
 
+# The page also has a separate "FeaturedGrid" promo block (top of the page)
+# that highlights a handful of articles independent of the chronological
+# PublicationList below it. Some announcements (e.g. threat-intel reports)
+# only ever appear there, never in PublicationList, so they'd be silently
+# missing from the feed without scraping this block too. We only scrape its
+# "side" links, not the single big hero item, which links outside /news/
+# without a clean per-item date in the markup.
+featured_item_selector: 'a[class*="FeaturedGrid"][class*="sideLink"]'
+featured_title_selector: 'h4[class*="title"]'
+featured_date_selector: 'time'
+featured_category_selector: 'span[class*="caption"]'
+
 # Fetch each new article's own page once (via OpenGraph meta tags) to get a
 # description for the feed. Only runs for items not already in data/*.json.
 fetch_detail: true

@@ -24,12 +24,15 @@ uv run python -m scraper.run anthropic-news
 
 # check whether a candidate site already has a feed before writing a scraper config
 uv run python check_feed.py https://example.com/blog
+
+# run the test suite
+uv run pytest
 ```
 
-There is no lint or test tooling configured in this repo (no test suite, no
-linter config). Both local dev and CI use `uv` against `pyproject.toml` /
-`uv.lock` — there's no separate `requirements.txt` to keep in sync; `uv lock`
-after changing a dependency is the only step needed.
+There is no linter config in this repo. Both local dev and CI use `uv`
+against `pyproject.toml` / `uv.lock` — there's no separate `requirements.txt`
+to keep in sync; `uv lock` after changing a dependency is the only step
+needed.
 
 ## Architecture
 

@@ -44,6 +44,37 @@ def parse_date(text: str | None, date_format: str | None = None) -> dt.datetime 
 def extract_listing(html: str, config: dict) -> list[dict]:
     """Return a list of {url, title, category, published} dicts found on a listing page."""
     soup = BeautifulSoup(html, "html.parser")
+    return _extract_items(soup, config)
+
+
+def extract_items(html: str, config: dict) -> list[dict]:
+    """Like extract_listing, but also scrapes a site's optional "featured" promo
+    section (declared via featured_item_selector and friends) and merges it in.
+    Some sites (e.g. anthropic.com/news) promote certain articles in a separate
+    block that isn't part of the main chronological listing, so item_selector
+    alone misses them."""
+    soup = BeautifulSoup(html, "html.parser")
+    items = _extract_items(soup, config)
+
+    if config.get("featured_item_selector"):
+        featured_config = {
+            "base_url": config["base_url"],
+            "item_selector": config["featured_item_selector"],
+            "title_selector": config.get("featured_title_selector"),
+            "date_selector": config.get("featured_date_selector"),
+            "date_format": config.get("featured_date_format"),
+            "category_selector": config.get("featured_category_selector"),
+        }
+        seen_urls = {item["url"] for item in items}
+        for item in _extract_items(soup, featured_config):
+            if item["url"] not in seen_urls:
+                items.append(item)
+                seen_urls.add(item["url"])
+
+    return items
+
+
+def _extract_items(soup: BeautifulSoup, config: dict) -> list[dict]:
     items = []
     for el in soup.select(config["item_selector"]):
         href = el.get("href")
