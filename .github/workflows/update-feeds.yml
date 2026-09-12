@@ -26,15 +26,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v3
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: uv sync
 
       - name: Run scraper
-        run: python -m scraper.run
+        run: uv run python -m scraper.run
 
       - name: Commit updated data & feeds
         run: |

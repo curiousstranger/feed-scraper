@@ -1,6 +1,0 @@
-requests>=2.31
-beautifulsoup4>=4.12
-soupsieve>=2.5
-python-dateutil>=2.9
-PyYAML>=6.0
-feedgen>=1.0

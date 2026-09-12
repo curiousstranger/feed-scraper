@@ -50,7 +50,7 @@ updated feeds back to the repo.
    most blogs (WordPress, Ghost, Substack, Medium...) do:
 
    ```
-   python check_feed.py https://example.com/blog
+   uv run python check_feed.py https://example.com/blog
    ```
 
    If it finds one, just subscribe to that URL directly — no need for
@@ -90,8 +90,8 @@ updated feeds back to the repo.
 4. Test locally before committing:
 
    ```
-   pip install -r requirements.txt
-   python -m scraper.run <your-site-id>
+   uv sync
+   uv run python -m scraper.run <your-site-id>
    cat docs/feeds/<your-site-id>.xml
    ```
 
