@@ -1,5 +1,13 @@
 {
   "items": {
+    "https://www.anthropic.com/institute/measuring-pace-of-ai-development": {
+      "category": null,
+      "first_seen": "2026-09-17T22:52:06.870064+00:00",
+      "published": "2026-09-17T00:00:00+00:00",
+      "summary": "Today, the world can\u2019t see what\u2019s going on inside AI labs. Anthropic is proposing new metrics that would give the public visibility into frontier AI development.",
+      "title": "Measurements for understanding the pace of AI development inside frontier labs",
+      "url": "https://www.anthropic.com/institute/measuring-pace-of-ai-development"
+    },
     "https://www.anthropic.com/news/claude-opus-5": {
       "category": "Product",
       "first_seen": "2026-09-12T22:02:37.996156+00:00",
