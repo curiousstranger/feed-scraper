@@ -225,3 +225,51 @@ test('toggle: second invocation closes the tool', () => {
   assert.equal(window.document.querySelector('[data-feed-scraper-picker]'), null);
   assert.ok(toggle(window, { today: '2026-09-18' })); // can reopen
 });
+
+// --- plain-language guidance: generic, step-by-step, no site-specific wording ---
+
+const statusText = (picker) => picker.root.querySelector('.status').textContent;
+
+test('guidance walks through numbered steps in plain words, each field saying what to do if it is missing', () => {
+  const { doc, picker, click, button } = setup();
+  assert.match(statusText(picker), /Step 1.*main list of articles/s);
+  assert.match(statusText(picker), /not a menu, sidebar or "featured" box/);
+
+  click(doc.querySelector('.post-card__excerpt'));
+  assert.match(statusText(picker), /Step 2.*headline.*orange box.*No headline\? Click Skip/s);
+  assert.match(statusText(picker), /orange box around every article/);
+
+  button('skip').click();
+  assert.match(statusText(picker), /Step 3.*date.*published.*No date\? Click Skip/s);
+
+  button('skip').click();
+  assert.match(statusText(picker), /Step 4.*topic or section label.*No label\? Click Skip/s);
+
+  button('skip').click();
+  assert.match(statusText(picker), /Done.*table below.*Copy YAML/s);
+});
+
+test('clicking outside the orange boxes says so in plain words', () => {
+  const { doc, picker, click } = setup();
+  click(doc.querySelector('.post-card__excerpt'));
+  click(doc.querySelector('footer a'));
+  assert.match(statusText(picker), /outside the orange boxes/);
+});
+
+test('each picked part shows the value it found on this page; skipped parts say Skipped', () => {
+  const { doc, picker, click, button } = setup();
+  click(doc.querySelector('.post-card__excerpt'));
+  click(doc.querySelectorAll('.post-card__title')[1]);
+  const example = (f) => picker.root.querySelector(`[data-example="${f}"]`)?.textContent;
+  assert.equal(example('title'), '“First post”');
+  assert.equal(example('link'), '“https://blog.example.com/2026/09/first-post/”');
+  button('skip').click(); // date
+  assert.equal(example('date'), 'Skipped');
+});
+
+test('field rows use plain labels', () => {
+  const { doc, picker, click } = setup();
+  click(doc.querySelector('.post-card__excerpt'));
+  const labels = [...picker.root.querySelectorAll('.fields .row > span:first-child')].map((s) => s.textContent);
+  assert.deepEqual(labels, ['article link', 'headline', 'date', 'topic/section']);
+});

@@ -6,13 +6,26 @@ import { toYaml, slugForUrl, githubNewFileUrl } from './yaml.js';
 
 const FIELDS = ['link', 'title', 'date', 'category'];
 const NEXT_ARMED = { item: 'title', title: 'date', date: 'category', category: null, link: null };
+// Plain-language guidance. Deliberately generic: sites differ in which parts
+// they show, so every optional part says what to do when it's missing.
 const PROMPTS = {
-  item: 'Click one article in the list.',
-  link: 'Click the link inside an item that points to the article.',
-  title: 'Click the title inside any highlighted item (or Skip).',
-  date: 'Click the date inside any highlighted item (or Skip).',
-  category: 'Click the category/tag inside any highlighted item (or Skip).',
+  item:
+    'Step 1 — Click one article in the page\'s main list of articles ' +
+    '(not a menu, sidebar or "featured" box). An orange box will appear around every article found.',
+  link: 'Click the link, inside any orange box, that opens the article.',
+  title: 'Step 2 — Click the article\'s headline, inside any orange box. No headline? Click Skip.',
+  date: 'Step 3 — Click the date the article was published, inside any orange box. No date? Click Skip.',
+  category:
+    'Step 4 — Click the article\'s topic or section label, inside any orange box. No label? Click Skip.',
 };
+const DONE_PROMPT =
+  'Done — check the table below shows the right headlines, dates and links, then click Copy YAML.';
+const LEVEL_HINT =
+  'Is there an orange box around every article in the list, and nothing else? ' +
+  'If not, click ↑ wider or ↓ narrower, or Re-pick.';
+const LABELS = { link: 'article link', title: 'headline', date: 'date', category: 'topic/section' };
+// Which preview column shows the value a field's selector extracts.
+const EXAMPLE_COLUMN = { link: 'url', title: 'title', date: 'date_text', category: 'category' };
 const OUTLINES = { item: '2px solid #e8590c', field: '2px solid #1c7ed6', hover: '2px dashed #e8590c' };
 const BLOCKED_EVENTS = ['mousedown', 'mouseup', 'pointerdown', 'pointerup'];
 const PREVIEW_ROWS = 5;
@@ -34,8 +47,9 @@ const CSS = `
   textarea { width: 100%; height: 120px; }
   button { font: inherit; margin: 2px 2px 2px 0; }
   .row { display: flex; gap: 6px; align-items: center; }
-  .row span { width: 64px; }
+  .row span { width: 84px; flex: none; }
   .row code { flex: 1; overflow-wrap: anywhere; }
+  .row small { max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #495057; }
   .warn { color: #c92a2a; }
   .ok { color: #2b8a3e; }
   [hidden] { display: none !important; }
@@ -162,7 +176,7 @@ export function createPicker(doc, options = {}) {
       const item = itemContaining(lv.items, target);
       const field = state.armed === 'link' ? target.closest('a[href]') : target;
       if (!item || !field || field === item || !item.contains(field)) {
-        state.message = 'Click inside one of the highlighted items.';
+        state.message = 'That was outside the orange boxes — click inside one of them.';
         render();
         return;
       }
@@ -255,7 +269,7 @@ export function createPicker(doc, options = {}) {
 
   function renderStatus() {
     const lv = level();
-    const parts = [`<p>${escapeHtml(state.armed ? PROMPTS[state.armed] : 'Done — review, then copy.')}</p>`];
+    const parts = [`<p>${escapeHtml(state.armed ? PROMPTS[state.armed] : DONE_PROMPT)}</p>`];
     if (lv) {
       const total = doc.querySelectorAll(state.itemSelector).length;
       parts.push(
@@ -263,7 +277,8 @@ export function createPicker(doc, options = {}) {
           <button data-action="up" ${state.index + 1 >= state.levels.length ? 'disabled' : ''}>↑ wider</button>
           <button data-action="down" ${state.index <= 0 ? 'disabled' : ''}>↓ narrower</button></p>
          <div class="row"><span>item</span><code>${escapeHtml(state.itemSelector)}</code>
-           <button data-action="arm:item">Re-pick</button></div>`,
+           <button data-action="arm:item">Re-pick</button></div>
+         <p class="hint">${escapeHtml(LEVEL_HINT)}</p>`,
       );
       if (total !== lv.items.length) {
         parts.push(`<p class="warn">Selector matches ${total} elements, not ${lv.items.length}.</p>`);
@@ -280,10 +295,19 @@ export function createPicker(doc, options = {}) {
       return;
     }
     const itemIsLink = lv.el.matches('a[href]');
+    const first = extractPreview(doc, config())[0] ?? {};
+    const example = (f) => {
+      if (state.selectors[f]) {
+        const value = first[EXAMPLE_COLUMN[f]];
+        return value ? `“${value}”` : '(nothing found in the first article)';
+      }
+      return state.skipped.has(f) ? 'Skipped' : '';
+    };
     $('.fields').innerHTML = FIELDS.filter((f) => !(f === 'link' && itemIsLink))
       .map(
-        (f) => `<div class="row"><span>${f}</span>
+        (f) => `<div class="row"><span>${LABELS[f]}</span>
           <code data-field="${f}">${escapeHtml(state.selectors[f] ?? '—')}</code>
+          <small data-example="${f}" title="${escapeHtml(example(f))}">${escapeHtml(example(f))}</small>
           <button data-action="arm:${f}">${state.armed === f ? 'Picking…' : 'Pick'}</button>
           ${state.armed === f && f !== 'link' ? `<button data-action="skip">Skip</button>` : ''}
           ${f !== 'link' ? `<button data-action="clear:${f}">Clear</button>` : ''}</div>`,

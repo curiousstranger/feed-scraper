@@ -17,3 +17,11 @@ test('installPage embeds the href HTML-escaped in a draggable link', () => {
   const page = installPage('javascript:a&b"c');
   assert.match(page, /<a href="javascript:a&amp;b&quot;c">Feed selector picker<\/a>/);
 });
+
+test('installPage explains the clicks in plain words', () => {
+  const page = installPage('javascript:x');
+  assert.match(page, /main list of articles/);
+  assert.match(page, /headline/);
+  assert.match(page, /Skip/);
+  assert.match(page, /orange/);
+});

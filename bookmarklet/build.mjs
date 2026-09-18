@@ -33,11 +33,24 @@ export function installPage(href) {
 <p>Drag this link to your bookmarks bar:
   <a href="${escapeHtml(href)}">Feed selector picker</a></p>
 <ol>
-  <li>Open the listing page of a site with no RSS feed (run <code>check_feed.py</code> first).</li>
-  <li>Click the bookmark, then click one article in the list. Use ↑/↓ until every article is highlighted.</li>
-  <li>Click the title, date and category inside any highlighted article, or Skip them.</li>
-  <li>Check the preview and the raw-HTML check, adjust the id/name, then <b>Copy YAML</b> into
-    <code>sites/&lt;id&gt;.yaml</code> (or <b>Open in GitHub</b>).</li>
+  <li>Open the page on the site that lists its articles (newest first). Run <code>check_feed.py</code>
+    on it first: if the site already has a feed, you don't need this.</li>
+  <li>Click the bookmark. A panel opens in the top-right corner.</li>
+  <li><b>Click one article in the page's main list of articles</b> — not a menu, sidebar or
+    "featured" box. An orange box appears around every article it found. If the boxes miss some
+    articles or cover the wrong things, click ↑ wider / ↓ narrower, or Re-pick.</li>
+  <li>The panel then asks for each part of an article in turn. Click it inside <i>any</i> orange box:
+    <ul>
+      <li><b>headline</b> — the article's title</li>
+      <li><b>date</b> — when it was published</li>
+      <li><b>topic/section</b> — a short label saying what kind of article it is</li>
+    </ul>
+    If the site doesn't show one of these, click <b>Skip</b>. That's fine: the scraper gets
+    missing headlines and dates from each article's own page.</li>
+  <li>Check the table in the panel shows the right headlines, dates and links. Next to each part the
+    panel shows what it found in the first article, so a wrong click is easy to spot (click Pick to redo it).</li>
+  <li>Adjust the id/name if you like, then <b>Copy YAML</b> and save it as
+    <code>sites/&lt;id&gt;.yaml</code> (or use <b>Open in GitHub</b>).</li>
   <li>Test it: <code>uv run python -m scraper.run &lt;id&gt;</code></li>
 </ol>
 <p>Esc, ✕ or clicking the bookmark again closes the tool. The bookmark contains the
