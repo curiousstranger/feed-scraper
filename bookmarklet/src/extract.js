@@ -38,7 +38,7 @@ export function extractPreview(root, config) {
 
     let title = fieldText(el, config.title_selector);
     if (!title) title = getText(el, ' ');
-    title = title ? title.replaceAll(' ', ' ').trim() : null;
+    title = title ? title.replaceAll('\u00A0', ' ').trim() : null;
 
     let dateText = null;
     if (config.date_selector) {
@@ -46,8 +46,15 @@ export function extractPreview(root, config) {
       if (d) dateText = d.getAttribute('datetime') || getText(d, '');
     }
 
+    let url = href;
+    try {
+      url = new URL(href, config.base_url).href;
+    } catch {
+      // Invalid base_url or href; fall back to raw href
+    }
+
     rows.push({
-      url: new URL(href, config.base_url).href,
+      url,
       title,
       category: fieldText(el, config.category_selector),
       date_text: dateText,

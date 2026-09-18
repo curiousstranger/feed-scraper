@@ -85,3 +85,15 @@ test('rawCheckVerdict flags missing or much lower raw counts', () => {
   assert.equal(rawCheckVerdict(12, 5), 'js-rendered');
   assert.equal(rawCheckVerdict(12, 0), 'js-rendered');
 });
+
+test('extractPreview: invalid base_url falls back to raw href', () => {
+  const doc = htmlDoc('<div class="c"><a href="/a">A</a></div>');
+  const rows = extractPreview(doc, {
+    base_url: 'not a url',
+    item_selector: 'div.c',
+    link_selector: 'a',
+  });
+  assert.deepEqual(rows, [
+    { url: '/a', title: 'A', category: null, date_text: null },
+  ]);
+});
