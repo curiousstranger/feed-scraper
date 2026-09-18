@@ -103,6 +103,7 @@ export function createPicker(doc, options = {}) {
   let hovered = null;
   const savedOutlines = new Map();
   let checkGeneration = 0;
+  let autoCollapsed = false; // shrunk by a Pick button, not by the user
 
   const FIELD_ORDER = ['title', 'date', 'category'];
 
@@ -178,6 +179,7 @@ export function createPicker(doc, options = {}) {
       state.levels = levels;
       setIndex(Math.max(index, 0));
       state.armed = NEXT_ARMED.item;
+      regrow();
     } else if (state.armed) {
       const lv = level();
       const item = itemContaining(lv.items, target);
@@ -192,6 +194,7 @@ export function createPicker(doc, options = {}) {
       if (sel) {
         state.selectors[state.armed] = sel;
         state.armed = state.armed === 'link' ? nextUnfinishedField() : NEXT_ARMED[state.armed];
+        regrow();
       }
     }
     render();
@@ -276,7 +279,11 @@ export function createPicker(doc, options = {}) {
 
   function renderStatus() {
     const lv = level();
-    const parts = [`<p class="prompt">${escapeHtml(state.armed ? PROMPTS[state.armed] : DONE_PROMPT)}</p>`];
+    const optional = FIELD_ORDER.includes(state.armed);
+    const parts = [
+      `<p class="prompt">${escapeHtml(state.armed ? PROMPTS[state.armed] : DONE_PROMPT)}
+        ${optional ? '<button data-action="skip">Skip</button>' : ''}</p>`,
+    ];
     if (lv) {
       const total = doc.querySelectorAll(state.itemSelector).length;
       parts.push(
@@ -316,7 +323,6 @@ export function createPicker(doc, options = {}) {
           <code data-field="${f}">${escapeHtml(state.selectors[f] ?? '—')}</code>
           <small data-example="${f}" title="${escapeHtml(example(f))}">${escapeHtml(example(f))}</small>
           <button data-action="arm:${f}">${state.armed === f ? 'Picking…' : 'Pick'}</button>
-          ${state.armed === f && f !== 'link' ? `<button data-action="skip">Skip</button>` : ''}
           ${f !== 'link' ? `<button data-action="clear:${f}">Clear</button>` : ''}</div>`,
       )
       .join('');
@@ -410,7 +416,14 @@ export function createPicker(doc, options = {}) {
     if (verb === 'side') return switchSide();
     if (verb === 'up' && state.index + 1 < state.levels.length) setIndex(state.index + 1);
     if (verb === 'down' && state.index > 0) setIndex(state.index - 1);
-    if (verb === 'arm') state.armed = arg;
+    if (verb === 'arm') {
+      state.armed = arg;
+      // Get out of the way while the user clicks on the page; pick() grows it back.
+      if (!$('.panel').classList.contains('collapsed')) {
+        setCollapsed(true);
+        autoCollapsed = true;
+      }
+    }
     if (verb === 'skip') {
       state.skipped.add(state.armed);
       state.armed = NEXT_ARMED[state.armed];
@@ -424,11 +437,23 @@ export function createPicker(doc, options = {}) {
   }
 
   // Minimised: only the header and the current instruction stay visible (see CSS).
-  function toggleCollapsed() {
-    const collapsed = $('.panel').classList.toggle('collapsed');
+  function setCollapsed(collapsed) {
+    $('.panel').classList.toggle('collapsed', collapsed);
     const btn = $('[data-action="collapse"]');
     btn.textContent = collapsed ? '+' : '–';
     btn.title = collapsed ? 'Expand' : 'Minimise';
+  }
+
+  function toggleCollapsed() {
+    autoCollapsed = false;
+    setCollapsed(!$('.panel').classList.contains('collapsed'));
+  }
+
+  /** Undo a Pick button's automatic shrink; a user's own minimise is left alone. */
+  function regrow() {
+    if (!autoCollapsed) return;
+    autoCollapsed = false;
+    setCollapsed(false);
   }
 
   function switchSide() {

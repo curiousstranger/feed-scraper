@@ -311,3 +311,51 @@ test('Move to other side flips the panel between the right and left corners', ()
   assert.equal(picker.host.style.right, '12px');
   assert.equal(picker.host.style.left, '');
 });
+
+test('Pick shrinks the panel while you click on the page, and it grows back after a successful pick', () => {
+  const { doc, picker, click, button } = setup();
+  const panel = picker.root.querySelector('.panel');
+  click(doc.querySelector('.post-card__excerpt'));
+  click(doc.querySelectorAll('.post-card__title')[0]);
+  button('arm:title').click(); // redo the headline
+  assert.ok(panel.classList.contains('collapsed'));
+
+  click(doc.querySelector('footer a')); // outside the boxes: stays shrunk, message visible
+  assert.ok(panel.classList.contains('collapsed'));
+  assert.match(picker.root.querySelector('.status .message').textContent, /outside the orange boxes/);
+
+  click(doc.querySelectorAll('.post-card__title')[2]);
+  assert.ok(!panel.classList.contains('collapsed'));
+  assert.equal(button('collapse').textContent, '–');
+});
+
+test('Re-pick of the item also shrinks and re-grows', () => {
+  const { doc, picker, click, button } = setup();
+  const panel = picker.root.querySelector('.panel');
+  click(doc.querySelector('.post-card__excerpt'));
+  button('arm:item').click();
+  assert.ok(panel.classList.contains('collapsed'));
+  click(doc.querySelectorAll('.post-card__excerpt')[1]);
+  assert.ok(!panel.classList.contains('collapsed'));
+});
+
+test('a panel you minimised yourself stays minimised after a pick', () => {
+  const { doc, picker, click, button } = setup();
+  const panel = picker.root.querySelector('.panel');
+  click(doc.querySelector('.post-card__excerpt'));
+  button('collapse').click();
+  button('arm:title').click();
+  click(doc.querySelectorAll('.post-card__title')[0]);
+  assert.ok(panel.classList.contains('collapsed'));
+});
+
+test('Skip sits in the instruction line, so it stays reachable while the panel is shrunk', () => {
+  const { doc, picker, click, button } = setup();
+  click(doc.querySelector('.post-card__excerpt'));
+  button('arm:date').click(); // shrinks
+  const skips = picker.root.querySelectorAll('[data-action="skip"]');
+  assert.equal(skips.length, 1);
+  assert.ok(skips[0].closest('.status .prompt'));
+  skips[0].click();
+  assert.equal(picker.state.armed, 'category');
+});
