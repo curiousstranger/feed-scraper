@@ -6,6 +6,7 @@ Usage:
 """
 from __future__ import annotations
 
+import datetime as dt
 import glob
 import logging
 import os
@@ -77,14 +78,23 @@ def process_site(cfg: dict) -> dict:
         "listing_url": cfg["listing_url"],
         "count": len(state["items"]),
         "new": len(new_urls),
+        "last_updated": state_mod.last_updated(state),
     }
+
+
+def _format_updated(iso: str | None) -> str:
+    if not iso:
+        return "never updated"
+    when = dt.datetime.fromisoformat(iso).astimezone(dt.timezone.utc)
+    return f"updated {when:%Y-%m-%d %H:%M} UTC"
 
 
 def write_index(results: list[dict]) -> None:
     os.makedirs(DOCS_DIR, exist_ok=True)
     rows = "\n".join(
         f'    <li><a href="feeds/{r["id"]}.xml">{r["name"]}</a> '
-        f'— {r["count"]} items — <a href="{r["listing_url"]}">source</a></li>'
+        f'— {r["count"]} items — {_format_updated(r.get("last_updated"))} '
+        f'— <a href="{r["listing_url"]}">source</a></li>'
         for r in results
     )
     html = f"""<!doctype html>
@@ -135,6 +145,7 @@ def main() -> None:
                     "listing_url": cfg["listing_url"],
                     "count": len(state.get("items", {})),
                     "new": 0,
+                    "last_updated": state_mod.last_updated(state),
                 }
             )
 
