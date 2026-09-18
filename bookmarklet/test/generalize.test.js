@@ -49,3 +49,16 @@ test('itemContaining finds the item that holds a node', () => {
   assert.equal(itemContaining(items, items[1].querySelector('time')), items[1]);
   assert.equal(itemContaining(items, doc.querySelector('footer a')), null);
 });
+
+test('clicking the list itself (e.g. the gap between rows) picks the repeating articles inside it', () => {
+  const doc = loadFixture('blog.html');
+  const { levels, index } = generalize(doc.querySelector('main.posts'));
+  assert.equal(levels[index].el.className, 'post-card');
+  assert.equal(levels[index].items.length, 3);
+});
+
+test('clicking a Tailwind list container picks its rows, not the nav', () => {
+  const doc = loadFixture('tailwind.html');
+  const { levels, index } = generalize(doc.querySelector('main ul'));
+  assert.deepEqual(levels[index].items, [...doc.querySelectorAll('main li')]);
+});

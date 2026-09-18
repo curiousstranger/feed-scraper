@@ -237,7 +237,7 @@ test('guidance walks through numbered steps in plain words, each field saying wh
 
   click(doc.querySelector('.post-card__excerpt'));
   assert.match(statusText(picker), /Step 2.*headline.*orange box.*No headline\? Click Skip/s);
-  assert.match(statusText(picker), /orange box around every article/);
+  assert.match(statusText(picker), /Each orange box should hold exactly one article/);
 
   button('skip').click();
   assert.match(statusText(picker), /Step 3.*date.*published.*No date\? Click Skip/s);
@@ -358,4 +358,37 @@ test('Skip sits in the instruction line, so it stays reachable while the panel i
   assert.ok(skips[0].closest('.status .prompt'));
   skips[0].click();
   assert.equal(picker.state.armed, 'category');
+});
+
+// --- steering away from "one box around the whole list" ---
+
+test('the level hint says what one orange box should hold and which arrow to press', () => {
+  const { doc, picker, click } = setup();
+  click(doc.querySelector('.post-card__excerpt'));
+  const hint = picker.root.querySelector('.hint').textContent;
+  assert.match(hint, /exactly one article/);
+  assert.match(hint, /several articles\? Click ↓ narrower/);
+  assert.match(hint, /only part of an article\? Click ↑ wider/);
+});
+
+test('with only one box outlined while a repeating level exists, Copy is disabled and the panel says ↓', () => {
+  const { doc, picker, click, button } = setup();
+  click(doc.querySelector('.post-card__excerpt'));
+  button('up').click(); // main.posts: one box around the whole list
+  assert.equal(button('copy').disabled, true);
+  assert.equal(button('github').disabled, true);
+  assert.match(picker.root.querySelector('.status .message').textContent, /whole list.*↓ narrower/);
+
+  button('down').click();
+  assert.equal(button('copy').disabled, false);
+  assert.equal(button('github').disabled, false);
+});
+
+test('a page with no repeating articles can still continue with the single one (spec)', () => {
+  const { window } = new JSDOM('<main><article><h1><a href="/only">Only</a></h1></article></main>', {
+    url: 'https://solo.example/',
+  });
+  const picker = createPicker(window.document, { repo: 'o/r', today: '2026-09-18' });
+  window.document.querySelector('h1').dispatchEvent(new window.MouseEvent('click', { bubbles: true, cancelable: true }));
+  assert.equal(picker.root.querySelector('[data-action="copy"]').disabled, false);
 });

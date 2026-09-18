@@ -5,6 +5,7 @@ import { elementSignals } from './selectors.js';
 export const MIN_ITEMS = 3;
 const MAX_LEVELS = 10;
 const SIGNATURE_DEPTH = 3;
+const DESCEND_DEPTH = 2;
 
 function signature(el, cache) {
   if (!cache) cache = new Map();
@@ -34,9 +35,25 @@ function yieldsLink(el) {
   return el.matches('a[href]') || el.querySelector('a[href]') !== null;
 }
 
+/** A child or grandchild of `el` that repeats (with a link) entirely inside `el`:
+ *  the articles of a list whose container was clicked, e.g. in the gap between rows. */
+function repeatingDescendant(el, cache) {
+  let frontier = [...el.children];
+  for (let depth = 0; depth < DESCEND_DEPTH && frontier.length; depth++) {
+    for (const d of frontier) {
+      const items = similarElements(d, cache);
+      if (items.length >= MIN_ITEMS && yieldsLink(d) && items.every((i) => el.contains(i))) return d;
+    }
+    frontier = frontier.flatMap((d) => [...d.children]);
+  }
+  return null;
+}
+
 /** levels: [{el, items}] from the clicked element up to (excluding) <body>.
  *  index: nearest level with >= MIN_ITEMS similar elements that is or contains
- *  a link (an item without a URL can't become a feed entry); -1 if none. */
+ *  a link (an item without a URL can't become a feed entry); -1 if none.
+ *  If the clicked element isn't itself an article but holds the repeating
+ *  articles (a list container), generalizes from the first of those instead. */
 export function generalize(clicked) {
   const levels = [];
   const body = clicked.ownerDocument.body;
@@ -45,6 +62,10 @@ export function generalize(clicked) {
     levels.push({ el, items: similarElements(el, cache) });
   }
   const index = levels.findIndex((l) => l.items.length >= MIN_ITEMS && yieldsLink(l.el));
+  if (index !== 0) {
+    const inner = repeatingDescendant(clicked, cache);
+    if (inner) return generalize(inner);
+  }
   return { levels, index };
 }
 

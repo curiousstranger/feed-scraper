@@ -21,8 +21,8 @@ const PROMPTS = {
 const DONE_PROMPT =
   'Done — check the table below shows the right headlines, dates and links, then click Copy YAML.';
 const LEVEL_HINT =
-  'Is there an orange box around every article in the list, and nothing else? ' +
-  'If not, click ↑ wider or ↓ narrower, or Re-pick.';
+  'Each orange box should hold exactly one article, and every article should have one. ' +
+  'Box holds several articles? Click ↓ narrower. Box holds only part of an article? Click ↑ wider.';
 const LABELS = { link: 'article link', title: 'headline', date: 'date', category: 'topic/section' };
 // Which preview column shows the value a field's selector extracts.
 const EXAMPLE_COLUMN = { link: 'url', title: 'title', date: 'date_text', category: 'category' };
@@ -96,6 +96,7 @@ export function createPicker(doc, options = {}) {
       base_url: win.location.origin,
     },
     message: '',
+    blocked: false, // too few boxes while a repeating level exists: no output
     rawCheck: null,
     note: '',
     skipped: new Set(),
@@ -165,11 +166,29 @@ export function createPicker(doc, options = {}) {
       date: null,
       category: null,
     };
-    state.message = lv.items.length < MIN_ITEMS ? 'No repeating items found — try ↑, or continue with this one.' : '';
+    levelMessage(lv);
     state.rawCheck = null;
     state.armed = 'title';
     state.skipped = new Set();
     checkGeneration++;
+  }
+
+  /** Too few boxes: point at the level that repeats, or allow continuing if none does. */
+  function levelMessage(lv) {
+    state.blocked = false;
+    state.message = '';
+    if (lv.items.length >= MIN_ITEMS) return;
+    const repeats = (l) => l.items.length >= MIN_ITEMS && (l.el.matches('a[href]') || l.el.querySelector('a[href]'));
+    const better = state.levels.findIndex(repeats);
+    if (better === -1) {
+      state.message = 'No repeating articles found — try ↑ wider, or continue with this one.';
+      return;
+    }
+    state.blocked = true;
+    state.message =
+      better < state.index
+        ? `Only ${lv.items.length} orange box — it's around the whole list, not one article. Click ↓ narrower.`
+        : `Only ${lv.items.length} orange box — it holds part of an article. Click ↑ wider.`;
   }
 
   function pick(target) {
@@ -368,7 +387,8 @@ export function createPicker(doc, options = {}) {
     $('.yaml').textContent = text;
     const github = $('[data-action="github"]');
     const { ok } = repo ? githubNewFileUrl(repo, state.meta.id, text) : { ok: false };
-    github.disabled = !ok;
+    $('[data-action="copy"]').disabled = state.blocked;
+    github.disabled = !ok || state.blocked;
     github.title = !repo ? 'Repository unknown' : ok ? '' : 'Too long for a URL — use Copy instead';
     $('.note').textContent = state.note || (repo && !ok ? 'Too long for GitHub — use Copy instead.' : '');
   }
