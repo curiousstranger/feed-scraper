@@ -269,8 +269,8 @@ export function createPicker(doc, options = {}) {
         (f) => `<div class="row"><span>${f}</span>
           <code data-field="${f}">${escapeHtml(state.selectors[f] ?? '—')}</code>
           <button data-action="arm:${f}">${state.armed === f ? 'Picking…' : 'Pick'}</button>
-          ${state.armed === f ? `<button data-action="skip">Skip</button>` : ''}
-          <button data-action="clear:${f}">Clear</button></div>`,
+          ${state.armed === f && f !== 'link' ? `<button data-action="skip">Skip</button>` : ''}
+          ${f !== 'link' ? `<button data-action="clear:${f}">Clear</button>` : ''}</div>`,
       )
       .join('');
   }

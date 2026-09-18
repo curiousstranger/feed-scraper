@@ -50,6 +50,15 @@ test('picking an item generalizes, auto-sets the link, and arms title', () => {
   assert.equal(doc.querySelector('.post-card').style.outline, '2px solid #e8590c');
 });
 
+test('link row has only a Pick button, no Skip or Clear', () => {
+  const { doc, click, button } = setup();
+  click(doc.querySelector('.post-card__excerpt'));
+  assert.equal(button('clear:link'), null);
+  button('arm:link').click();
+  assert.equal(button('skip'), null);
+  assert.ok(button('arm:link'));
+});
+
 test('↑ widens and ↓ narrows the item level', () => {
   const { doc, picker, click, button } = setup();
   click(doc.querySelector('.post-card__excerpt'));
