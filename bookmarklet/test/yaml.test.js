@@ -60,3 +60,17 @@ test('githubNewFileUrl is not ok past the length limit', () => {
   assert.ok(url.length > MAX_GITHUB_URL_LENGTH);
   assert.equal(ok, false);
 });
+
+test('toYaml: YAML keywords and numeric ids are always quoted', () => {
+  // IDs that would be parsed as non-strings by PyYAML must be quoted
+  const problematicIds = ['123', 'no', 'true', 'null', '2026-09-18'];
+  for (const id of problematicIds) {
+    const yaml = toYaml({ ...CFG, id }, { date: '2026-09-18' });
+    // Check the line starts with `id: "` (i.e., is quoted)
+    assert.match(yaml, /^id: ".+"$/m, `id '${id}' should be quoted but got: ${yaml.split('\n')[4]}`);
+  }
+
+  // Normal slugs should remain unquoted
+  const yaml = toYaml({ ...CFG, id: 'example-blog' }, { date: '2026-09-18' });
+  assert.match(yaml, /^id: example-blog$/m, 'example-blog should not be quoted');
+});
