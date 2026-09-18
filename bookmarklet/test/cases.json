@@ -1,0 +1,87 @@
+[
+  {
+    "fixture": "anthropic.html",
+    "base_url": "https://www.anthropic.com",
+    "clicks": {
+      "item": "a[href=\"/news/interpretability-update\"]",
+      "title": "a[href=\"/news/claude-5\"] span[class*=\"title\"]",
+      "date": "a[href=\"/news/claude-5\"] time",
+      "category": "a[href=\"/news/claude-5\"] span[class*=\"subject\"]"
+    },
+    "expected_selectors": {
+      "item_selector": "a[class*=\"PublicationList\"][class*=\"listItem\"]",
+      "title_selector": "span[class*=\"title\"]",
+      "date_selector": "time[class*=\"date\"]",
+      "category_selector": "span[class*=\"subject\"]"
+    },
+    "expected_items": [
+      {"url": "https://www.anthropic.com/news/claude-5", "title": "Introducing Claude 5", "category": "Announcements", "date_text": "2026-09-15T00:00:00Z"},
+      {"url": "https://www.anthropic.com/news/interpretability-update", "title": "An interpretability update", "category": "Research", "date_text": "2026-09-08T00:00:00Z"},
+      {"url": "https://www.anthropic.com/news/policy-brief", "title": "A policy brief", "category": "Policy", "date_text": "2026-09-01T00:00:00Z"}
+    ]
+  },
+  {
+    "fixture": "blog.html",
+    "base_url": "https://blog.example.com",
+    "clicks": {
+      "item": ".post-card__excerpt",
+      "title": ".post-card__title",
+      "date": "time",
+      "category": ".post-card__tag"
+    },
+    "expected_selectors": {
+      "item_selector": "div.post-card",
+      "link_selector": "a",
+      "title_selector": "h2.post-card__title",
+      "date_selector": "time",
+      "category_selector": "span.post-card__tag"
+    },
+    "expected_items": [
+      {"url": "https://blog.example.com/2026/09/first-post/", "title": "First post", "category": "Notes", "date_text": "2026-09-01"},
+      {"url": "https://blog.example.com/2026/08/second-post/", "title": "Second post", "category": "Travel", "date_text": "2026-08-20"},
+      {"url": "https://blog.example.com/2026/08/third-post/", "title": "Third post", "category": null, "date_text": "2026-08-02"}
+    ]
+  },
+  {
+    "fixture": "tailwind.html",
+    "base_url": "https://tw.example.com",
+    "clicks": {
+      "item": "main li",
+      "title": "main li a",
+      "date": "main li time"
+    },
+    "expected_selectors": {
+      "item_selector": "main li",
+      "link_selector": "a",
+      "title_selector": "a",
+      "date_selector": "time"
+    },
+    "expected_items": [
+      {"url": "https://tw.example.com/posts/one", "title": "Post one", "category": null, "date_text": "2026-08-01T12:00:00Z"},
+      {"url": "https://tw.example.com/posts/two", "title": "Post two", "category": null, "date_text": "2026-07-15T12:00:00Z"},
+      {"url": "https://tw.example.com/posts/three", "title": "Post three", "category": null, "date_text": "2026-07-01T12:00:00Z"}
+    ]
+  },
+  {
+    "fixture": "container.html",
+    "base_url": "https://news.example.org",
+    "clicks": {
+      "item": ".teaser__kicker",
+      "title": ".teaser__headline",
+      "date": ".teaser__date",
+      "category": ".teaser__kicker"
+    },
+    "expected_selectors": {
+      "item_selector": "article.teaser",
+      "link_selector": "a.teaser__link",
+      "title_selector": "h3.teaser__headline",
+      "date_selector": "span.teaser__date",
+      "category_selector": "span.teaser__kicker"
+    },
+    "expected_items": [
+      {"url": "https://news.example.org/stories/alpha", "title": "Alpha story", "category": "Policy", "date_text": "3 Sep 2026"},
+      {"url": "https://news.example.org/stories/beta", "title": "Beta story", "category": "Science", "date_text": "28 Aug 2026"},
+      {"url": "https://news.example.org/stories/gamma", "title": "Gamma story", "category": "Culture", "date_text": "20 Aug 2026"}
+    ]
+  }
+]
