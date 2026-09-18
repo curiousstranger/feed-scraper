@@ -1,0 +1,13 @@
+{
+  "name": "feed-scraper-bookmarklet",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test 'test/*.test.js'",
+    "build": "node build.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "jsdom": "^30.1.0"
+  }
+}
