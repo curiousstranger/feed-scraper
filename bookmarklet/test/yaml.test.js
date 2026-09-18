@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { toYaml, slugForUrl, githubNewFileUrl, MAX_GITHUB_URL_LENGTH } from '../src/yaml.js';
+import { toYaml, slugForUrl, githubNewFileUrl, isValidSiteId, MAX_GITHUB_URL_LENGTH } from '../src/yaml.js';
 
 const CFG = {
   id: 'example-blog',
@@ -73,4 +73,11 @@ test('toYaml: YAML keywords and numeric ids are always quoted', () => {
   // Normal slugs should remain unquoted
   const yaml = toYaml({ ...CFG, id: 'example-blog' }, { date: '2026-09-18' });
   assert.match(yaml, /^id: example-blog$/m, 'example-blog should not be quoted');
+});
+
+test('isValidSiteId: lowercase letters, digits and hyphens only, no leading hyphen', () => {
+  for (const id of ['example-blog', 'a1', '2026-news', 'x']) assert.equal(isValidSiteId(id), true, id);
+  for (const id of ['../evil', 'a/b', 'Evil', '', 'a b', '-a', 'a.b', 'a\n']) {
+    assert.equal(isValidSiteId(id), false, JSON.stringify(id));
+  }
 });

@@ -7,8 +7,8 @@ import { toggle } from '../src/main.js';
 
 const BLOG = readFileSync(new URL('./fixtures/blog.html', import.meta.url), 'utf8');
 
-function setup(options = {}) {
-  const { window } = new JSDOM(BLOG, { url: 'https://blog.example.com/posts#top' });
+function setup(options = {}, url = 'https://blog.example.com/posts#top') {
+  const { window } = new JSDOM(BLOG, { url });
   const doc = window.document;
   const picker = createPicker(doc, { repo: 'o/r', today: '2026-09-18', ...options });
   const click = (el) => el.dispatchEvent(new window.MouseEvent('click', { bubbles: true, cancelable: true }));
@@ -391,4 +391,41 @@ test('a page with no repeating articles can still continue with the single one (
   const picker = createPicker(window.document, { repo: 'o/r', today: '2026-09-18' });
   window.document.querySelector('h1').dispatchEvent(new window.MouseEvent('click', { bubbles: true, cancelable: true }));
   assert.equal(picker.root.querySelector('[data-action="copy"]').disabled, false);
+});
+
+function setMeta(t, key, value) {
+  const input = t.picker.root.querySelector(`[data-meta="${key}"]`);
+  input.value = value;
+  input.dispatchEvent(new t.window.Event('input', { bubbles: true }));
+}
+
+test('an id that is not a plain slug disables Copy and Open in GitHub and says why', () => {
+  const t = setup();
+  t.click(t.doc.querySelector('.post-card__excerpt'));
+  setMeta(t, 'id', '../evil');
+  assert.equal(t.button('copy').disabled, true);
+  assert.equal(t.button('github').disabled, true);
+  assert.match(t.picker.root.querySelector('.note').textContent, /id must be lowercase letters, digits and hyphens/);
+
+  setMeta(t, 'id', 'evil-blog');
+  assert.equal(t.button('copy').disabled, false);
+  assert.equal(t.button('github').disabled, false);
+  assert.doesNotMatch(t.picker.root.querySelector('.note').textContent, /id must be/);
+});
+
+test('warns when the listing URL carries a query string, until it is edited out', () => {
+  const t = setup({}, 'https://blog.example.com/posts?token=secret');
+  const warning = () => t.picker.root.querySelector('.meta .warn');
+  assert.equal(t.picker.state.meta.listing_url, 'https://blog.example.com/posts?token=secret');
+  assert.match(warning().textContent, /query string/);
+  assert.match(warning().textContent, /token/i);
+  assert.equal(warning().hidden, false);
+
+  setMeta(t, 'listing_url', 'https://blog.example.com/posts');
+  assert.equal(warning().hidden, true);
+});
+
+test('no query-string warning for a plain listing URL', () => {
+  const t = setup();
+  assert.equal(t.picker.root.querySelector('.meta .warn').hidden, true);
 });

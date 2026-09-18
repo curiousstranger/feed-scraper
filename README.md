@@ -85,7 +85,7 @@ updated feeds back to the repo.
 
    | Field | Meaning |
    |---|---|
-   | `id` | Short slug — used for the state file and feed filename |
+   | `id` | Short slug of lowercase letters, digits and hyphens — used for the state file and feed filename; the scraper refuses anything else |
    | `name` | Feed title |
    | `listing_url` | Page to scrape |
    | `base_url` | Used to resolve relative links |

@@ -2,7 +2,7 @@
 import { itemSelectorFor, relativeSelector } from './selectors.js';
 import { generalize, itemContaining, MIN_ITEMS } from './generalize.js';
 import { extractPreview, selectorCounts, rawCheckVerdict } from './extract.js';
-import { toYaml, slugForUrl, githubNewFileUrl } from './yaml.js';
+import { toYaml, slugForUrl, githubNewFileUrl, isValidSiteId } from './yaml.js';
 
 const FIELDS = ['link', 'title', 'date', 'category'];
 const NEXT_ARMED = { item: 'title', title: 'date', date: 'category', category: null, link: null };
@@ -24,6 +24,10 @@ const LEVEL_HINT =
   'Each orange box should hold exactly one article, and every article should have one. ' +
   'Box holds several articles? Click ↓ narrower. Box holds only part of an article? Click ↑ wider.';
 const LABELS = { link: 'article link', title: 'headline', date: 'date', category: 'topic/section' };
+const ID_MESSAGE = 'id must be lowercase letters, digits and hyphens — it names the feed and state files.';
+const QUERY_WARNING =
+  'listing_url has a query string. It is written into the YAML (and sent to GitHub by Open in GitHub), ' +
+  'so remove any session tokens or keys from it before copying.';
 // Which preview column shows the value a field's selector extracts.
 const EXAMPLE_COLUMN = { link: 'url', title: 'title', date: 'date_text', category: 'category' };
 const OUTLINES = { item: '2px solid #e8590c', field: '2px solid #1c7ed6', hover: '2px dashed #e8590c' };
@@ -132,6 +136,7 @@ export function createPicker(doc, options = {}) {
         ${Object.keys(state.meta)
           .map((k) => `<label>${k}<input data-meta="${k}" value="${escapeHtml(state.meta[k])}"></label>`)
           .join('')}
+        <p class="warn query" hidden></p>
       </section>
       <section class="check"></section>
       <section class="output">
@@ -379,6 +384,12 @@ export function createPicker(doc, options = {}) {
     $('.check').innerHTML = `${html}${level() ? '<button data-action="check">Check raw HTML</button>' : ''}`;
   }
 
+  function renderMeta() {
+    const warning = $('.meta .warn');
+    warning.textContent = QUERY_WARNING;
+    warning.hidden = !state.meta.listing_url.includes('?');
+  }
+
   function renderOutput() {
     const cfg = config();
     $('.output').hidden = !cfg;
@@ -386,17 +397,22 @@ export function createPicker(doc, options = {}) {
     const text = yamlText();
     $('.yaml').textContent = text;
     const github = $('[data-action="github"]');
+    const validId = isValidSiteId(state.meta.id);
+    const blocked = state.blocked || !validId;
     const { ok } = repo ? githubNewFileUrl(repo, state.meta.id, text) : { ok: false };
-    $('[data-action="copy"]').disabled = state.blocked;
-    github.disabled = !ok || state.blocked;
+    $('[data-action="copy"]').disabled = blocked;
+    github.disabled = !ok || blocked;
     github.title = !repo ? 'Repository unknown' : ok ? '' : 'Too long for a URL — use Copy instead';
-    $('.note').textContent = state.note || (repo && !ok ? 'Too long for GitHub — use Copy instead.' : '');
+    $('.note').textContent = !validId
+      ? ID_MESSAGE
+      : state.note || (repo && !ok ? 'Too long for GitHub — use Copy instead.' : '');
   }
 
   function render() {
     renderStatus();
     renderFields();
     renderPreview();
+    renderMeta();
     renderCheck();
     renderOutput();
     paint();
