@@ -54,3 +54,9 @@ def merge_items(state: dict, scraped_items: list[dict], max_items: int = 100) ->
         del items[url]
 
     return new_urls
+
+
+def last_updated(state: dict) -> str | None:
+    """When the site last gained a new item: the newest `first_seen`, or None."""
+    seen = [it["first_seen"] for it in state.get("items", {}).values() if it.get("first_seen")]
+    return max(seen) if seen else None

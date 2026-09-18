@@ -6,6 +6,7 @@ Usage:
 """
 from __future__ import annotations
 
+import datetime as dt
 import glob
 import html as html_mod
 import logging
@@ -88,7 +89,15 @@ def process_site(cfg: dict) -> dict:
         "listing_url": cfg["listing_url"],
         "count": len(state["items"]),
         "new": len(new_urls),
+        "last_updated": state_mod.last_updated(state),
     }
+
+
+def _format_updated(iso: str | None) -> str:
+    if not iso:
+        return "never updated"
+    when = dt.datetime.fromisoformat(iso).astimezone(dt.timezone.utc)
+    return f"updated {when:%Y-%m-%d %H:%M} UTC"
 
 
 def write_index(results: list[dict]) -> None:
@@ -96,7 +105,8 @@ def write_index(results: list[dict]) -> None:
     esc = html_mod.escape  # name/listing_url come from the scraped site; never trust them
     rows = "\n".join(
         f'    <li><a href="feeds/{esc(r["id"])}.xml">{esc(r["name"])}</a> '
-        f'— {r["count"]} items — <a href="{esc(r["listing_url"])}">source</a></li>'
+        f'— {r["count"]} items — {_format_updated(r.get("last_updated"))} '
+        f'— <a href="{esc(r["listing_url"])}">source</a></li>'
         for r in results
     )
     html = f"""<!doctype html>
@@ -147,6 +157,7 @@ def main() -> None:
                     "listing_url": cfg["listing_url"],
                     "count": len(state.get("items", {})),
                     "new": 0,
+                    "last_updated": state_mod.last_updated(state),
                 }
             )
 
