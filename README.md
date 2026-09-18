@@ -26,12 +26,13 @@ site's listing page only shows its newest handful of posts.
    ```
 
 2. **Enable GitHub Pages**: in the repo, go to *Settings → Pages*, and under
-   *Build and deployment* choose *Deploy from a branch*, branch `main`,
-   folder `/docs`. Save.
+   *Build and deployment* set *Source* to *GitHub Actions*. The *Update RSS
+   feeds* workflow deploys `docs/` itself after each scrape; don't pick
+   *Deploy from a branch*, or every merge will show a cancelled Pages build.
 
 3. Wait for the scheduled workflow to run once (or trigger it manually: repo
-   → *Actions* → *Update RSS feeds* → *Run workflow*), then wait a minute or
-   two for Pages to publish. Your feed will be live at:
+   → *Actions* → *Update RSS feeds* → *Run workflow*). Its `deploy` job
+   publishes to Pages. Your feed will be live at:
 
    ```
    https://<you>.github.io/<repo>/feeds/anthropic-news.xml

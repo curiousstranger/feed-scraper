@@ -11,7 +11,16 @@ on:
     paths:
       - "sites/**"
       - "scraper/**"
+      - "docs/**"
       - ".github/workflows/update-feeds.yml"
+
+# This workflow is the only thing that deploys GitHub Pages (Pages source is
+# set to "GitHub Actions", not "Deploy from a branch"). Deploying here, after
+# the feed commit, gives one deployment per run. Branch-based Pages would
+# build every push to main, and the feed commit this job pushes seconds
+# later would cancel the build for the triggering push, showing a spurious
+# failed check. The deploy can't live in a separate push-triggered workflow:
+# pushes made with GITHUB_TOKEN don't trigger other workflows.
 
 permissions:
   contents: write
@@ -23,6 +32,8 @@ concurrency:
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
     steps:
       - uses: actions/checkout@v4
 
@@ -35,13 +46,37 @@ jobs:
         run: uv run python -m scraper.run
 
       - name: Commit updated data & feeds
+        id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data docs
           if git diff --cached --quiet; then
             echo "No changes to commit."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "Update feeds ($(date -u +'%Y-%m-%dT%H:%M:%SZ'))"
             git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: docs
+
+  deploy:
+    needs: scrape
+    # A scheduled run with no new items leaves docs/ as already deployed.
+    # Pushes and manual runs always deploy, since they may have changed
+    # docs/ directly (e.g. a rebuilt bookmarklet.html).
+    if: needs.scrape.outputs.changed == 'true' || github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

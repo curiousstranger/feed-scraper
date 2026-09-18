@@ -70,10 +70,12 @@ Pipeline, run per site by `scraper/run.py:process_site`:
    targeted this run.
 
 `.github/workflows/update-feeds.yml` runs `python -m scraper.run` on a
-schedule (every 4 hours) and on any push touching `sites/**` or `scraper/**`,
-then commits `data/` and `docs/` back to `main` if they changed. This is the
-only place feeds get published from — there's no separate deploy step beyond
-GitHub Pages serving `docs/` on `main`.
+schedule (every 4 hours) and on any push touching `sites/**`, `scraper/**`
+or `docs/**`, commits `data/` and `docs/` back to `main` if they changed,
+then deploys `docs/` to GitHub Pages in its `deploy` job. This is the only
+place anything gets published from: the Pages source is set to "GitHub
+Actions", not branch-based, so a push to `main` does not publish by itself.
+Scheduled runs with nothing new skip the deploy.
 
 ## Adding a new site
 
