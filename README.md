@@ -79,7 +79,8 @@ updated feeds back to the repo.
    | `name` | Feed title |
    | `listing_url` | Page to scrape |
    | `base_url` | Used to resolve relative links |
-   | `item_selector` | CSS selector matching each article's anchor |
+   | `item_selector` | CSS selector matching each article's anchor — or, with `link_selector`, each article's container |
+   | `link_selector` | *(optional)* selector, relative to the item, for the `<a href>` inside it. Use when the link wraps only part of the item (e.g. just the title). Items where it finds no link, or a link without `href`, are skipped |
    | `title_selector` | *(optional)* selector, relative to the item, for the title |
    | `date_selector` | *(optional)* selector for a `<time>` (uses its `datetime` attribute if present, else its text) |
    | `date_format` | *(optional)* `strptime` format if automatic date parsing gets it wrong |

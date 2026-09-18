@@ -76,8 +76,12 @@ def extract_items(html: str, config: dict) -> list[dict]:
 
 def _extract_items(soup: BeautifulSoup, config: dict) -> list[dict]:
     items = []
+    # With link_selector, item_selector matches a container (e.g. an <article>
+    # whose <a> wraps only the title) and the URL comes from a link inside it.
+    link_selector = config.get("link_selector")
     for el in soup.select(config["item_selector"]):
-        href = el.get("href")
+        link = el.select_one(link_selector) if link_selector else el
+        href = link.get("href") if link else None
         if not href:
             continue
         url = urljoin(config["base_url"], href)

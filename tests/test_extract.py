@@ -56,3 +56,64 @@ def test_extract_items_does_not_duplicate_item_seen_in_both_sections():
     urls = [item["url"] for item in items]
 
     assert urls.count("https://example.com/news/regular-story") == 1
+
+
+CONTAINER_HTML = """
+<html><body>
+<article class="teaser">
+  <span class="kicker">Policy</span>
+  <h3 class="headline"><a class="teaser-link" href="/stories/alpha">Alpha story</a></h3>
+  <p class="byline">By <a href="/people/ann">Ann</a></p>
+</article>
+<article class="teaser">
+  <span class="kicker">Science</span>
+  <h3 class="headline">No link in this one</h3>
+</article>
+<article class="teaser">
+  <h3 class="headline"><a class="teaser-link">Anchor without href</a></h3>
+</article>
+<article class="teaser">
+  <h3 class="headline"><a class="teaser-link" href="https://other.example/beta">Beta story</a></h3>
+</article>
+</body></html>
+"""
+
+LINK_CONFIG = {
+    "base_url": "https://news.example.org",
+    "item_selector": "article.teaser",
+    "link_selector": "a.teaser-link",
+}
+
+
+def test_link_selector_takes_url_from_link_inside_container():
+    items = extract.extract_listing(CONTAINER_HTML, dict(LINK_CONFIG, title_selector="h3.headline"))
+
+    assert [item["url"] for item in items] == [
+        "https://news.example.org/stories/alpha",
+        "https://other.example/beta",
+    ]
+    assert items[0]["title"] == "Alpha story"
+
+
+def test_link_selector_skips_containers_without_a_matching_link_or_href():
+    items = extract.extract_listing(CONTAINER_HTML, LINK_CONFIG)
+
+    assert len(items) == 2
+
+
+def test_link_selector_leaves_field_selectors_relative_to_the_container():
+    items = extract.extract_listing(CONTAINER_HTML, dict(LINK_CONFIG, category_selector="span.kicker"))
+
+    assert items[0]["category"] == "Policy"
+
+
+def test_link_selector_title_fallback_uses_whole_container_text():
+    items = extract.extract_listing(CONTAINER_HTML, LINK_CONFIG)
+
+    assert items[0]["title"] == "Policy Alpha story By Ann"
+
+
+def test_without_link_selector_the_item_itself_must_carry_the_href():
+    config = {"base_url": "https://news.example.org", "item_selector": "article.teaser"}
+
+    assert extract.extract_listing(CONTAINER_HTML, config) == []
