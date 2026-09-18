@@ -6,22 +6,28 @@ export const MIN_ITEMS = 3;
 const MAX_LEVELS = 10;
 const SIGNATURE_DEPTH = 3;
 
-function signature(el) {
-  return `${el.localName}|${elementSignals(el).map((s) => s.value).sort().join(' ')}`;
+function signature(el, cache) {
+  if (!cache) cache = new Map();
+  if (cache.has(el)) return cache.get(el);
+  const sig = `${el.localName}|${elementSignals(el).map((s) => s.value).sort().join(' ')}`;
+  cache.set(el, sig);
+  return sig;
 }
 
 // Tag + stable classes of the element, its parent and grandparent. Hashed and
 // utility classes are ignored, so cards differing only in those still match.
-function signaturePath(el) {
+function signaturePath(el, cache) {
+  if (!cache) cache = new Map();
   const parts = [];
-  for (let n = el; n && parts.length < SIGNATURE_DEPTH; n = n.parentElement) parts.push(signature(n));
+  for (let n = el; n && parts.length < SIGNATURE_DEPTH; n = n.parentElement) parts.push(signature(n, cache));
   return parts.join(' < ');
 }
 
 /** Every element in el's document with the same signature path as el (el included). */
-export function similarElements(el) {
-  const sig = signaturePath(el);
-  return [...el.ownerDocument.querySelectorAll(el.localName)].filter((o) => signaturePath(o) === sig);
+export function similarElements(el, cache) {
+  if (!cache) cache = new Map();
+  const sig = signaturePath(el, cache);
+  return [...el.ownerDocument.querySelectorAll(el.localName)].filter((o) => signaturePath(o, cache) === sig);
 }
 
 function yieldsLink(el) {
@@ -34,8 +40,9 @@ function yieldsLink(el) {
 export function generalize(clicked) {
   const levels = [];
   const body = clicked.ownerDocument.body;
+  const cache = new Map();
   for (let el = clicked; el && el !== body && levels.length < MAX_LEVELS; el = el.parentElement) {
-    levels.push({ el, items: similarElements(el) });
+    levels.push({ el, items: similarElements(el, cache) });
   }
   const index = levels.findIndex((l) => l.items.length >= MIN_ITEMS && yieldsLink(l.el));
   return { levels, index };
