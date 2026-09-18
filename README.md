@@ -64,6 +64,15 @@ updated feeds back to the repo.
    - optionally, selectors *within* that element for the title, date, and
      category/tag
 
+   **Or use the selector-picker bookmarklet** (install it from
+   `docs/bookmarklet.html`, served at `https://<you>.github.io/<repo>/bookmarklet.html`):
+   on the listing page, click the bookmark, click one article (↑/↓ adjusts
+   which element counts as "one article"), then click its title, date and
+   category. It generates hash-proof selectors, previews the extracted items,
+   checks that the list is present in the raw HTML (not rendered by
+   JavaScript), and gives you the finished YAML to copy into
+   `sites/<id>.yaml`.
+
    Prefer `[class*="partial-name"]` substring selectors over full class
    names — many sites (Next.js, CSS Modules, etc.) inject a build-specific
    hash into class names, e.g. `PublicationList-module-scss-module__KxYrHG__listItem`,
@@ -79,7 +88,8 @@ updated feeds back to the repo.
    | `name` | Feed title |
    | `listing_url` | Page to scrape |
    | `base_url` | Used to resolve relative links |
-   | `item_selector` | CSS selector matching each article's anchor |
+   | `item_selector` | CSS selector matching each article's anchor — or, with `link_selector`, each article's container |
+   | `link_selector` | *(optional)* selector, relative to the item, for the `<a href>` inside it. Use when the link wraps only part of the item (e.g. just the title). Items where it finds no link, or a link without `href`, are skipped |
    | `title_selector` | *(optional)* selector, relative to the item, for the title |
    | `date_selector` | *(optional)* selector for a `<time>` (uses its `datetime` attribute if present, else its text) |
    | `date_format` | *(optional)* `strptime` format if automatic date parsing gets it wrong |

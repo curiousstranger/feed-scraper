@@ -96,6 +96,7 @@ def write_index(results: list[dict]) -> None:
 <ul>
 {rows}
 </ul>
+<p>Adding a site? Use the <a href="bookmarklet.html">selector-picker bookmarklet</a>.</p>
 </body>
 </html>
 """
