@@ -8,6 +8,14 @@
       "title": "Measurements for understanding the pace of AI development inside frontier labs",
       "url": "https://www.anthropic.com/institute/measuring-pace-of-ai-development"
     },
+    "https://www.anthropic.com/news/accenture-embedded-evaluation": {
+      "category": "Announcements",
+      "first_seen": "2026-09-18T22:37:14.314641+00:00",
+      "published": "2026-09-18T00:00:00+00:00",
+      "summary": "We\u2019re partnering with Accenture on independent evaluation of frontier AI\u2014part of our recent commitment to embed evaluators at Anthropic. Both we and Accenture expect to invest at least $1 billion to build capacity in this area over the next five years.",
+      "title": "Partnering with Accenture on embedded evaluation",
+      "url": "https://www.anthropic.com/news/accenture-embedded-evaluation"
+    },
     "https://www.anthropic.com/news/claude-opus-5": {
       "category": "Product",
       "first_seen": "2026-09-12T22:02:37.996156+00:00",
