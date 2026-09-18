@@ -20,6 +20,14 @@ function singleQuoted(s) {
   return `'${String(s).replace(/'/g, "''")}'`;
 }
 
+// Mirrors scraper/run.py:SITE_ID_RE. The id names data/<id>.json and
+// docs/feeds/<id>.xml, so nothing that could escape those directories.
+const SITE_ID = /^[a-z0-9][a-z0-9-]*$/;
+
+export function isValidSiteId(id) {
+  return SITE_ID.test(String(id));
+}
+
 function shouldQuoteId(id) {
   // Quote if it doesn't match the safe pattern or is a YAML keyword
   return !/^[a-z][a-z0-9-]*$/.test(id) || YAML_KEYWORDS.has(id);

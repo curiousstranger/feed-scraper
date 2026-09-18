@@ -8,8 +8,10 @@ from __future__ import annotations
 
 import datetime as dt
 import glob
+import html as html_mod
 import logging
 import os
+import re
 import sys
 
 import yaml
@@ -28,11 +30,20 @@ DOCS_DIR = os.path.join(ROOT, "docs")
 DOCS_FEEDS_DIR = os.path.join(DOCS_DIR, "feeds")
 
 
+# The id names data/<id>.json and docs/feeds/<id>.xml, so it must be a plain
+# slug: no path separators, dots or anything else that could escape those dirs.
+SITE_ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
+
+
 def load_site_configs(only_id: str | None = None) -> list[dict]:
     configs = []
     for path in sorted(glob.glob(os.path.join(SITES_DIR, "*.yaml"))):
         with open(path, encoding="utf-8") as f:
             cfg = yaml.safe_load(f)
+        if not isinstance(cfg.get("id"), str) or not SITE_ID_RE.match(cfg["id"]):
+            raise ValueError(
+                f"{os.path.basename(path)}: id must match {SITE_ID_RE.pattern}, got {cfg.get('id')!r}"
+            )
         if only_id and cfg.get("id") != only_id:
             continue
         cfg["_path"] = path
@@ -91,10 +102,11 @@ def _format_updated(iso: str | None) -> str:
 
 def write_index(results: list[dict]) -> None:
     os.makedirs(DOCS_DIR, exist_ok=True)
+    esc = html_mod.escape  # name/listing_url come from the scraped site; never trust them
     rows = "\n".join(
-        f'    <li><a href="feeds/{r["id"]}.xml">{r["name"]}</a> '
+        f'    <li><a href="feeds/{esc(r["id"])}.xml">{esc(r["name"])}</a> '
         f'— {r["count"]} items — {_format_updated(r.get("last_updated"))} '
-        f'— <a href="{r["listing_url"]}">source</a></li>'
+        f'— <a href="{esc(r["listing_url"])}">source</a></li>'
         for r in results
     )
     html = f"""<!doctype html>
