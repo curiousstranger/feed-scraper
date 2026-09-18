@@ -27,9 +27,16 @@ uv run python check_feed.py https://example.com/blog
 
 # run the test suite
 uv run pytest
+
+# bookmarklet (JS lives only under bookmarklet/)
+cd bookmarklet && npm ci && npm test
+cd bookmarklet && npm run build   # regenerates docs/bookmarklet.html — commit it
 ```
 
-There is no linter config in this repo. Both local dev and CI use `uv`
+There is no linter config in this repo. `.github/workflows/test.yml` runs
+`uv run pytest`, `npm test`, and `npm run build` + `git diff --exit-code
+docs/bookmarklet.html` on pull requests, so the committed bookmarklet must be
+rebuilt whenever `bookmarklet/src/` changes. Both local dev and CI use `uv`
 against `pyproject.toml` / `uv.lock` — there's no separate `requirements.txt`
 to keep in sync; `uv lock` after changing a dependency is the only step
 needed.
@@ -69,8 +76,10 @@ GitHub Pages serving `docs/` on `main`.
 ## Adding a new site
 
 Always run `check_feed.py` against the candidate site first — most
-blogs/CMSs already publish a feed, making a scraper config unnecessary. If
-none exists, `sites/anthropic-news.yaml` is the reference example, including
-its comment explaining why selectors use `[class*="partial-name"]`
-substring matching instead of full (often build-hashed) class names. Full
-field-by-field guidance is in README.md's "Adding another site" section.
+blogs/CMSs already publish a feed, making a scraper config unnecessary. The
+selector-picker bookmarklet (docs/bookmarklet.html) generates a config by
+point-and-click. If none exists, `sites/anthropic-news.yaml` is the reference
+example, including its comment explaining why selectors use
+`[class*="partial-name"]` substring matching instead of full (often
+build-hashed) class names. Full field-by-field guidance is in README.md's
+"Adding another site" section.

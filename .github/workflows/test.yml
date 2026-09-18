@@ -1,0 +1,39 @@
+name: Tests
+
+on:
+  pull_request: {}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v3
+
+      - name: Install Python dependencies
+        run: uv sync
+
+      - name: Python tests
+        run: uv run pytest
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: bookmarklet/package-lock.json
+
+      - name: Install bookmarklet dependencies
+        working-directory: bookmarklet
+        run: npm ci
+
+      - name: Bookmarklet tests
+        working-directory: bookmarklet
+        run: npm test
+
+      - name: Rebuild bookmarklet
+        working-directory: bookmarklet
+        run: npm run build
+
+      - name: Committed bookmarklet matches source
+        run: git diff --exit-code docs/bookmarklet.html
