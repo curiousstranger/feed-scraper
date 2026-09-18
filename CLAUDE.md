@@ -78,7 +78,7 @@ GitHub Pages serving `docs/` on `main`.
 Always run `check_feed.py` against the candidate site first — most
 blogs/CMSs already publish a feed, making a scraper config unnecessary. The
 selector-picker bookmarklet (docs/bookmarklet.html) generates a config by
-point-and-click. If none exists, `sites/anthropic-news.yaml` is the reference
+point-and-click. If no feed exists, `sites/anthropic-news.yaml` is the reference
 example, including its comment explaining why selectors use
 `[class*="partial-name"]` substring matching instead of full (often
 build-hashed) class names. Full field-by-field guidance is in README.md's
