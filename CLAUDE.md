@@ -51,8 +51,10 @@ Pipeline, run per site by `scraper/run.py:process_site`:
    logic itself is generic.
 2. **`scraper/extract.py`** — fetches the listing page and applies the
    selectors (`extract_listing`) to pull `{url, title, category, published}`
-   per item. `enrich_with_detail` optionally fetches a *new* item's own page
-   once to backfill a description/title/date from its OpenGraph/meta tags.
+   per item; `url` comes from the item itself unless an optional
+   `link_selector` points at a link nested inside it. `enrich_with_detail`
+   optionally fetches a *new* item's own page once to backfill a
+   description/title/date from its OpenGraph/meta tags.
 3. **`scraper/state.py`** — merges freshly scraped items into
    `data/<id>.json`, keyed by URL. This is what makes feeds additive: a
    listing page only shows a site's newest N items, but state accumulates
