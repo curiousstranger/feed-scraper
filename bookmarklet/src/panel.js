@@ -81,9 +81,18 @@ export function createPicker(doc, options = {}) {
     message: '',
     rawCheck: null,
     note: '',
+    skipped: new Set(),
   };
   let hovered = null;
   const savedOutlines = new Map();
+  let checkGeneration = 0;
+
+  const FIELD_ORDER = ['title', 'date', 'category'];
+
+  /** The first of title/date/category that has neither been picked nor skipped. */
+  function nextUnfinishedField() {
+    return FIELD_ORDER.find((f) => state.selectors[f] == null && !state.skipped.has(f)) ?? null;
+  }
 
   const host = doc.createElement('div');
   host.setAttribute('data-feed-scraper-picker', '');
@@ -135,6 +144,10 @@ export function createPicker(doc, options = {}) {
       category: null,
     };
     state.message = lv.items.length < MIN_ITEMS ? 'No repeating items found — try ↑, or continue with this one.' : '';
+    state.rawCheck = null;
+    state.armed = 'title';
+    state.skipped = new Set();
+    checkGeneration++;
   }
 
   function pick(target) {
@@ -157,7 +170,7 @@ export function createPicker(doc, options = {}) {
       state.message = sel ? '' : 'Could not build a selector for that element — try a nearby one.';
       if (sel) {
         state.selectors[state.armed] = sel;
-        state.armed = NEXT_ARMED[state.armed];
+        state.armed = state.armed === 'link' ? nextUnfinishedField() : NEXT_ARMED[state.armed];
       }
     }
     render();
@@ -167,6 +180,7 @@ export function createPicker(doc, options = {}) {
   async function runRawCheck() {
     const cfg = config();
     if (!cfg) return;
+    const generation = checkGeneration;
     state.rawCheck = { status: 'pending' };
     render();
     try {
@@ -176,8 +190,10 @@ export function createPicker(doc, options = {}) {
       const rawDoc = new win.DOMParser().parseFromString(await resp.text(), 'text/html');
       const rendered = selectorCounts(doc, cfg);
       const raw = selectorCounts(rawDoc, cfg);
+      if (generation !== checkGeneration) return; // level changed while the fetch was in flight
       state.rawCheck = { status: rawCheckVerdict(rendered.items, raw.items), rendered, raw };
     } catch (err) {
+      if (generation !== checkGeneration) return;
       state.rawCheck = { status: 'failed', error: String(err) };
     }
     render();
@@ -362,7 +378,10 @@ export function createPicker(doc, options = {}) {
     if (verb === 'up' && state.index + 1 < state.levels.length) setIndex(state.index + 1);
     if (verb === 'down' && state.index > 0) setIndex(state.index - 1);
     if (verb === 'arm') state.armed = arg;
-    if (verb === 'skip') state.armed = NEXT_ARMED[state.armed];
+    if (verb === 'skip') {
+      state.skipped.add(state.armed);
+      state.armed = NEXT_ARMED[state.armed];
+    }
     if (verb === 'clear') state.selectors[arg] = null;
     if (verb === 'check') return runRawCheck();
     if (verb === 'copy') return copyYaml();
@@ -375,7 +394,7 @@ export function createPicker(doc, options = {}) {
     const key = e.target.dataset.meta;
     if (!key) return;
     state.meta[key] = e.target.value;
-    renderOutput();
+    render();
   }
 
   function destroy() {

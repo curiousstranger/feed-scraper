@@ -42,7 +42,7 @@ test('classSignals: plain BEM class is used verbatim', () => {
 });
 
 test('classSignals: CSS-in-JS, bare hashes and utilities contribute nothing', () => {
-  for (const c of ['sc-bdVaJa', 'css-1x2y3z', 'jsx-123456', 'emotion-0', 'svelte-xyz123', 'kXyZab', 'mt-4', 'hover:underline']) {
+  for (const c of ['sc-bdVaJa', 'css-1x2y3z', 'jsx-123456', 'emotion-0', 'svelte-xyz123', 'astro-J7PV25F6', 'kXyZab', 'mt-4', 'hover:underline']) {
     assert.deepEqual(values(c), [], c);
   }
 });

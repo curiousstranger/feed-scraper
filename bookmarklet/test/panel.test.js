@@ -158,6 +158,65 @@ test('Esc removes the panel, listeners and highlights', () => {
   assert.equal(click(doc.querySelector('.post-card a')), true); // no longer intercepted
 });
 
+test('↑ clears a stale raw-HTML verdict and re-arms title (Bug A)', async () => {
+  const fetchImpl = async () => ({ ok: true, text: async () => BLOG });
+  const { doc, picker, click, button } = setup({ fetchImpl });
+  click(doc.querySelector('.post-card__excerpt'));
+  click(doc.querySelectorAll('.post-card__title')[1]);
+  click(doc.querySelector('time'));
+  button('skip').click(); // no category -> triggers the raw check
+  await settle();
+  assert.match(picker.root.querySelector('.check').textContent, /raw HTML: 3/);
+
+  button('up').click();
+
+  const checkText = picker.root.querySelector('.check').textContent;
+  assert.doesNotMatch(checkText, /✓/);
+  assert.doesNotMatch(checkText, /raw HTML: 3/);
+  assert.equal(picker.state.armed, 'title');
+  assert.equal(picker.state.rawCheck, null);
+});
+
+test('a raw-HTML check still in flight does not overwrite state after the level changes (Bug A race)', async () => {
+  let resolveFetch;
+  const fetchImpl = () => new Promise((resolve) => (resolveFetch = resolve));
+  const { doc, picker, click, button } = setup({ fetchImpl });
+  click(doc.querySelector('.post-card__excerpt'));
+  click(doc.querySelectorAll('.post-card__title')[1]);
+  click(doc.querySelector('time'));
+  button('skip').click(); // starts the check; fetch is still pending
+
+  button('up').click(); // level changes while the fetch is in flight
+
+  resolveFetch({ ok: true, text: async () => BLOG });
+  await settle();
+
+  assert.equal(picker.state.rawCheck, null);
+});
+
+test('overriding the link mid-flow arms the next unpicked field, not Done (Bug B)', () => {
+  const { doc, picker, click, button } = setup();
+  click(doc.querySelector('.post-card__excerpt'));
+  button('arm:link').click();
+  const linkInAnotherItem = doc.querySelectorAll('.post-card')[1].querySelector('a');
+  click(linkInAnotherItem);
+
+  assert.equal(picker.state.armed, 'title');
+  assert.equal(picker.state.rawCheck, null); // no raw check started
+});
+
+test('metadata edits re-render the whole panel, keeping the preview in sync (Bug C)', () => {
+  const { window, doc, picker, click } = setup();
+  click(doc.querySelector('.post-card__excerpt'));
+  click(doc.querySelectorAll('.post-card__title')[1]);
+  const input = picker.root.querySelector('[data-meta="base_url"]');
+  input.value = 'https://other.example';
+  input.dispatchEvent(new window.Event('input', { bubbles: true }));
+
+  const urlCell = picker.root.querySelector('.preview tr:nth-child(2) td:nth-child(4)');
+  assert.match(urlCell.textContent, /^https:\/\/other\.example\//);
+});
+
 test('toggle: second invocation closes the tool', () => {
   const { window } = new JSDOM(BLOG, { url: 'https://blog.example.com/' });
   assert.ok(toggle(window, { today: '2026-09-18' }));

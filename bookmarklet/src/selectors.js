@@ -4,7 +4,7 @@
 // BeautifulSoup/soupsieve (which the scraper uses): type, .class, [attr="v"],
 // [attr*="v"], the descendant combinator and ">". Never :nth-child etc.
 
-const CSS_IN_JS = /^(css|sc|jsx|emotion|svelte)-/;
+const CSS_IN_JS = /^(css|sc|jsx|emotion|svelte|astro)-/;
 const NOISE = new Set(['module', 'modules', 'scss', 'sass', 'less', 'css', 'style', 'styles']);
 const UTILITY_WORDS = new Set([
   'flex', 'grid', 'block', 'inline', 'hidden', 'relative', 'absolute', 'fixed', 'sticky',
