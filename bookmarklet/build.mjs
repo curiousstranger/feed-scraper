@@ -53,6 +53,8 @@ export function installPage(href) {
     <code>sites/&lt;id&gt;.yaml</code> (or use <b>Open in GitHub</b>).</li>
   <li>Test it: <code>uv run python -m scraper.run &lt;id&gt;</code></li>
 </ol>
+<p>Panel in the way? Click <b>–</b> to minimise it (it keeps showing the current step), or
+<b>⇆</b> to move it to the other side of the window.</p>
 <p>Esc, ✕ or clicking the bookmark again closes the tool. The bookmark contains the
 whole tool, so after it is updated, drag the new link again.</p>
 <p><a href="index.html">All feeds</a></p>

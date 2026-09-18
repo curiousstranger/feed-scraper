@@ -273,3 +273,41 @@ test('field rows use plain labels', () => {
   const labels = [...picker.root.querySelectorAll('.fields .row > span:first-child')].map((s) => s.textContent);
   assert.deepEqual(labels, ['article link', 'headline', 'date', 'topic/section']);
 });
+
+// --- getting the panel out of the way ---
+
+test('Minimise shrinks the panel to its header and current instruction; picking still works', () => {
+  const { doc, picker, click, button } = setup();
+  const panel = picker.root.querySelector('.panel');
+  button('collapse').click();
+  assert.ok(panel.classList.contains('collapsed'));
+  assert.equal(button('collapse').textContent, '+');
+  assert.equal(button('collapse').title, 'Expand');
+
+  click(doc.querySelector('.post-card__excerpt')); // picking while minimised
+  assert.equal(picker.state.itemSelector, 'div.post-card');
+  assert.ok(panel.classList.contains('collapsed')); // re-rendering keeps it minimised
+  assert.match(picker.root.querySelector('.status .prompt').textContent, /Step 2/);
+
+  button('collapse').click();
+  assert.ok(!panel.classList.contains('collapsed'));
+  assert.equal(button('collapse').textContent, '–');
+});
+
+test('minimised styling hides everything but the header and the current instruction', () => {
+  const { picker } = setup();
+  const css = picker.root.querySelector('style').textContent;
+  assert.match(css, /\.collapsed section:not\(\.status\)\s*\{\s*display:\s*none/);
+  assert.match(css, /\.collapsed \.status > :not\(\.prompt\):not\(\.message\)\s*\{\s*display:\s*none/);
+});
+
+test('Move to other side flips the panel between the right and left corners', () => {
+  const { picker, button } = setup();
+  assert.equal(picker.host.style.right, '12px');
+  button('side').click();
+  assert.equal(picker.host.style.left, '12px');
+  assert.equal(picker.host.style.right, '');
+  button('side').click();
+  assert.equal(picker.host.style.right, '12px');
+  assert.equal(picker.host.style.left, '');
+});

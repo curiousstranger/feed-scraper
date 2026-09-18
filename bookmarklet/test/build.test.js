@@ -24,4 +24,5 @@ test('installPage explains the clicks in plain words', () => {
   assert.match(page, /headline/);
   assert.match(page, /Skip/);
   assert.match(page, /orange/);
+  assert.match(page, /–.*minimise.*⇆.*other side/s);
 });

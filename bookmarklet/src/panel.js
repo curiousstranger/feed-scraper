@@ -53,6 +53,9 @@ const CSS = `
   .warn { color: #c92a2a; }
   .ok { color: #2b8a3e; }
   [hidden] { display: none !important; }
+  header .tools { display: flex; gap: 2px; }
+  .collapsed section:not(.status) { display: none; }
+  .collapsed .status > :not(.prompt):not(.message) { display: none; }
 `;
 
 function escapeHtml(s) {
@@ -115,7 +118,11 @@ export function createPicker(doc, options = {}) {
   root.innerHTML = `<style>${CSS}</style>
     <div class="panel">
       <header><strong>Feed selector picker</strong>
-        <button data-action="close" title="Close (Esc)">✕</button></header>
+        <span class="tools">
+          <button data-action="side" title="Move to other side">⇆</button>
+          <button data-action="collapse" title="Minimise">–</button>
+          <button data-action="close" title="Close (Esc)">✕</button>
+        </span></header>
       <section class="status"></section>
       <section class="fields"></section>
       <section class="preview"></section>
@@ -269,7 +276,7 @@ export function createPicker(doc, options = {}) {
 
   function renderStatus() {
     const lv = level();
-    const parts = [`<p>${escapeHtml(state.armed ? PROMPTS[state.armed] : DONE_PROMPT)}</p>`];
+    const parts = [`<p class="prompt">${escapeHtml(state.armed ? PROMPTS[state.armed] : DONE_PROMPT)}</p>`];
     if (lv) {
       const total = doc.querySelectorAll(state.itemSelector).length;
       parts.push(
@@ -399,6 +406,8 @@ export function createPicker(doc, options = {}) {
     if (!action) return;
     const [verb, arg] = action.split(':');
     if (verb === 'close') return destroy();
+    if (verb === 'collapse') return toggleCollapsed();
+    if (verb === 'side') return switchSide();
     if (verb === 'up' && state.index + 1 < state.levels.length) setIndex(state.index + 1);
     if (verb === 'down' && state.index > 0) setIndex(state.index - 1);
     if (verb === 'arm') state.armed = arg;
@@ -412,6 +421,20 @@ export function createPicker(doc, options = {}) {
     if (verb === 'github') return openGithub();
     render();
     if (verb === 'skip' && state.armed === null && state.rawCheck === null) runRawCheck();
+  }
+
+  // Minimised: only the header and the current instruction stay visible (see CSS).
+  function toggleCollapsed() {
+    const collapsed = $('.panel').classList.toggle('collapsed');
+    const btn = $('[data-action="collapse"]');
+    btn.textContent = collapsed ? '+' : '–';
+    btn.title = collapsed ? 'Expand' : 'Minimise';
+  }
+
+  function switchSide() {
+    const toLeft = host.style.right !== '';
+    host.style.right = toLeft ? '' : '12px';
+    host.style.left = toLeft ? '12px' : '';
   }
 
   function onMetaInput(e) {
