@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 18 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 23 Sep 2026 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Introducing Claude Opus 5</title>
       <link>https://www.anthropic.com/news/claude-opus-5</link>
@@ -134,6 +134,22 @@
       <guid isPermaLink="false">https://www.anthropic.com/news/accenture-embedded-evaluation</guid>
       <category>Announcements</category>
       <pubDate>Fri, 18 Sep 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>The Situation Report</title>
+      <link>https://www.anthropic.com/features/ebola-response</link>
+      <description>A rare strain of Ebola in the DRC, and no confirmed vaccine. Global health organizations are using Claude to move as fast as possible to combat it.</description>
+      <guid isPermaLink="false">https://www.anthropic.com/features/ebola-response</guid>
+      <category>Features</category>
+      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Claude discovers a novel enzyme system with CRISPR-like repeats</title>
+      <link>https://www.anthropic.com/news/claude-discovers-novel-enzyme-system</link>
+      <description>Anthropic announces its molecular research group and laboratory</description>
+      <guid isPermaLink="false">https://www.anthropic.com/news/claude-discovers-novel-enzyme-system</guid>
+      <category>Science</category>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 +0000</pubDate>
     </item>
   </channel>
 </rss>
