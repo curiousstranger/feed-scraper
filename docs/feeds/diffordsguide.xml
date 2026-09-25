@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 24 Sep 2026 04:57:27 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 25 Sep 2026 05:02:17 +0000</lastBuildDate>
     <item>
       <title>Cocktail of the Day18 September 2026</title>
       <link>https://www.diffordsguide.com/on-this-day/september/18</link>
@@ -217,6 +217,13 @@
       <description>America seems to have a 'national day' to celebrate pretty much everything and as we write what you read on this website, we thought it fitting that we recognise the importance of punctuation.</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/september/24</guid>
       <pubDate>Thu, 24 Sep 2026 04:57:27 +0000</pubDate>
+    </item>
+    <item>
+      <title>Cocktail of the Day25 September 2026</title>
+      <link>https://www.diffordsguide.com/on-this-day/september/25</link>
+      <description>Established in 2017, Sourest Day is a celebration of all things sour – not so much sour-faced people, but rather tangy, zesty treats in the form of candy, desserts, and particularly sour cocktails.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/september/25</guid>
+      <pubDate>Fri, 25 Sep 2026 05:02:17 +0000</pubDate>
     </item>
   </channel>
 </rss>
