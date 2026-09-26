@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 25 Sep 2026 13:52:25 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 26 Sep 2026 05:05:19 +0000</lastBuildDate>
     <item>
       <title>Cocktail of the Day18 September 2026</title>
       <link>https://www.diffordsguide.com/on-this-day/september/18</link>
@@ -280,6 +280,13 @@
       <description>Discover how to make a Pompanski Martini using Vodka, Triple sec, Pink grapefruit juice, Dry vermouth (+ 2 more) in just 5 easy to follow steps</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/1584/pompanski-martini</guid>
       <pubDate>Fri, 25 Sep 2026 13:52:25 +0000</pubDate>
+    </item>
+    <item>
+      <title>Cocktail of the Day26 September 2026</title>
+      <link>https://www.diffordsguide.com/on-this-day/september/26</link>
+      <description>Oh Concorde! How we miss you. On this day in 1973, Concorde slashed the transatlantic air-crossing record, making the journey between Washington and Paris in just over three and a half hours and averaging an impressive 1,535 kph (954 mph).</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/september/26</guid>
+      <pubDate>Sat, 26 Sep 2026 05:05:19 +0000</pubDate>
     </item>
   </channel>
 </rss>
