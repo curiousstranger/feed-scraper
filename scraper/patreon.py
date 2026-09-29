@@ -96,6 +96,19 @@ def enrich_new(item: dict, post: Post, cfg: dict) -> dict:
     return item
 
 
+LOCKED_MARKER = "🔒 Patrons only"
+
+
+def relock_summary(item: dict, post: Post) -> bool:
+    """If `post` is locked now but `item` still holds a public-form summary
+    (which may include the body), replace it with the label-only locked one.
+    Makes no requests. Returns True if the summary was replaced."""
+    if post.public or LOCKED_MARKER in (item.get("summary") or ""):
+        return False
+    item["summary"] = build_summary(item, public=False, image=post.image)
+    return True
+
+
 def build_summary(item: dict, *, public: bool, image: str | None, body: str = "") -> str:
     esc = html.escape  # every value here came from Patreon's API
     category = esc(item.get("category") or "Post")
@@ -108,7 +121,7 @@ def build_summary(item: dict, *, public: bool, image: str | None, body: str = ""
         parts.append(f"<p>Public · {category}</p>")
     else:
         parts.append(
-            f'<p>🔒 Patrons only · {category} · <a href="{esc(item["url"])}">Read on Patreon →</a></p>'
+            f'<p>{LOCKED_MARKER} · {category} · <a href="{esc(item["url"])}">Read on Patreon →</a></p>'
         )
     return "\n".join(parts)
 
@@ -167,7 +180,11 @@ def _to_post(raw) -> Post | None:
     url = attrs.get("url")
     url = urljoin("https://www.patreon.com/", url) if isinstance(url, str) and url else None
     if not is_http_url(url):
-        log.warning("Skipping Patreon post %s with no usable url (%r)", raw.get("id"), attrs.get("url"))
+        log.warning(
+            "Skipping Patreon post %s with no usable url (%r)",
+            raw.get("id") if isinstance(raw, dict) else None,
+            attrs.get("url"),
+        )
         return None
     published_at = attrs.get("published_at")
     published = extract.parse_date(published_at) if isinstance(published_at, str) else None

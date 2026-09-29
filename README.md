@@ -167,6 +167,8 @@ published, and no Patreon login, cookie or token is involved.
 - Patreon image URLs are signed and expire after about two weeks. Readers
   that cache images when they fetch an item keep them. Others show broken
   images on older posts.
-- A Patreon post's summary is built once, when the post first appears. A
-  post that is unlocked or locked later keeps its original summary, and edits
-  to a public post's text aren't picked up.
+- A Patreon post's summary is built once, when the post first appears. A post
+  that is locked later has its body removed from the feed on the next run
+  (earlier copies remain in git history and in readers that already fetched
+  it). A post that is unlocked later keeps its label-only summary, and edits to
+  a public post's text aren't picked up.

@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 import pytest
 
@@ -194,3 +195,25 @@ def test_unknown_type_raises_naming_the_config_file(out_dirs):
 
     with pytest.raises(ValueError, match=r"sites/weird\.yaml.*'rss'"):
         run.process_site(cfg)
+
+
+def test_patreon_post_locked_later_loses_its_stored_body(out_dirs, kenji_http):
+    run.process_site(dict(PATREON_SITE))
+    assert "latest knife-sharpening video" in _state(out_dirs)["items"][HONING_URL]["summary"]
+
+    listing = json.loads((Path(__file__).parent / "fixtures" / "patreon" / "posts.json").read_text(encoding="utf-8"))
+    for raw in listing["data"]:
+        if raw["id"] == "168800580":
+            raw["attributes"]["current_user_can_view"] = False
+    kenji_http.route("/api/posts", body=json.dumps(listing))
+    kenji_http.calls.clear()
+
+    result = run.process_site(dict(PATREON_SITE))
+
+    assert result["new"] == 0
+    assert kenji_http.paths() == ["/api/campaigns", "/api/posts"]
+    summary = _state(out_dirs)["items"][HONING_URL]["summary"]
+    assert "latest knife-sharpening video" not in summary
+    assert "🔒 Patrons only" in summary
+    feed = (out_dirs / "feeds" / "kenji-lopez-alt.xml").read_text(encoding="utf-8")
+    assert "latest knife-sharpening video" not in feed

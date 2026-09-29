@@ -94,6 +94,11 @@ def process_site(cfg: dict) -> dict:
             if url not in state["items"]:  # new, but already trimmed by max_items
                 continue
             state["items"][url] = patreon.enrich_new(state["items"][url], posts_by_url[url], cfg)
+        # A post that was public when first seen may have been locked since:
+        # drop the body we stored. No requests; locked content is never fetched.
+        for url, post in posts_by_url.items():
+            if url in state["items"] and url not in new_urls and patreon.relock_summary(state["items"][url], post):
+                log.info("  Patreon post %s is now locked; removed its stored body", url)
     elif cfg.get("fetch_detail", True):
         for url in new_urls:
             log.info("  fetching detail page for new item: %s", url)

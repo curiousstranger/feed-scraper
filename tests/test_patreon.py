@@ -56,6 +56,12 @@ def test_fetch_posts_requests_only_metadata_fields(kenji_http):
     assert list_call["params"]["fields[post]"] == "title,url,published_at,post_type,image,current_user_can_view"
     assert list_call["params"]["sort"] == "-published_at"
     assert all(c["headers"]["User-Agent"] == "TestUA/1.0" for c in kenji_http.calls)
+    # No authentication, and no JSON:API includes (campaign, creator, rewards...).
+    assert all(set(c["headers"]) == {"User-Agent"} for c in kenji_http.calls)
+    assert all(
+        c["params"]["json-api-use-default-includes"] == "false" and c["params"]["include"] == ""
+        for c in kenji_http.calls
+    )
 
 
 @pytest.mark.parametrize("max_items, expected", [(10, "10"), (100, "100"), (500, "100")])
@@ -153,6 +159,8 @@ def test_posts_without_usable_fields_are_skipped_or_defaulted(patreon_http):
                         },
                     },
                     {"id": "4", "type": "post"},
+                    "not a post",
+                    None,
                 ]
             }
         ),
@@ -212,6 +220,9 @@ def test_public_post_summary_includes_sanitized_body(kenji_http):
 
     assert kenji_http.paths() == ["/api/posts/168800580"]
     assert kenji_http.calls[0]["params"]["fields[post]"] == "content_json_string,current_user_can_view"
+    assert set(kenji_http.calls[0]["headers"]) == {"User-Agent"}
+    assert kenji_http.calls[0]["params"]["json-api-use-default-includes"] == "false"
+    assert kenji_http.calls[0]["params"]["include"] == ""
     assert item["summary"].startswith("<p>Hi everyone,</p>")
     assert "latest knife-sharpening video" in item["summary"]
     assert item["summary"].endswith("<hr>\n<p>Public · Text</p>")
