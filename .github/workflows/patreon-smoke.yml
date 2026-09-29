@@ -1,0 +1,66 @@
+name: Patreon smoke test (temporary)
+
+# Proves GitHub Actions runner IPs are served JSON, not a Cloudflare
+# challenge, by the Patreon endpoints scraper/patreon.py uses. Temporary:
+# delete this file before the branch is merged.
+
+on:
+  push:
+    branches: [feat/patreon-source]
+    paths: [".github/workflows/patreon-smoke.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    env:
+      UA: "Mozilla/5.0 (compatible; PersonalSiteRSSBot/1.0; run by a single subscriber for personal use)"
+      API: https://www.patreon.com/api
+    steps:
+      - name: Vanity lookup returns JSON
+        run: |
+          set -euo pipefail
+          meta=$(curl -sS -g -A "$UA" -o vanity.json -w '%{http_code} %{content_type}' --get "$API/campaigns" \
+            --data-urlencode 'filter[vanity]=kenjilopezalt' \
+            --data-urlencode 'fields[campaign]=vanity' \
+            --data-urlencode 'json-api-use-default-includes=false' \
+            --data-urlencode 'include=')
+          echo "vanity endpoint: HTTP $meta"
+          case "$meta" in "200 application/"*json*) ;; *) head -c 600 vanity.json; exit 1 ;; esac
+          campaign_id=$(jq -er '.data[0].id' vanity.json)
+          echo "campaign id: $campaign_id"
+          echo "CAMPAIGN_ID=$campaign_id" >> "$GITHUB_ENV"
+
+      - name: Post list returns JSON
+        run: |
+          set -euo pipefail
+          meta=$(curl -sS -g -A "$UA" -o posts.json -w '%{http_code} %{content_type}' --get "$API/posts" \
+            --data-urlencode "filter[campaign_id]=$CAMPAIGN_ID" \
+            --data-urlencode 'filter[contains_exclusive_posts]=true' \
+            --data-urlencode 'sort=-published_at' \
+            --data-urlencode 'page[count]=20' \
+            --data-urlencode 'fields[post]=title,url,published_at,post_type,image,current_user_can_view' \
+            --data-urlencode 'json-api-use-default-includes=false' \
+            --data-urlencode 'include=')
+          echo "list endpoint: HTTP $meta"
+          case "$meta" in "200 application/"*json*) ;; *) head -c 600 posts.json; exit 1 ;; esac
+          jq -e '.data | length > 0' posts.json
+          jq -r '.data[] | [.id, .attributes.current_user_can_view, .attributes.post_type, .attributes.title] | @tsv' posts.json
+          # Only a post the anonymous request can already view is probed for its body.
+          public_id=$(jq -r '[.data[] | select(.attributes.current_user_can_view == true)][0].id // empty' posts.json)
+          echo "first public post: ${public_id:-none in this page}"
+          echo "PUBLIC_ID=$public_id" >> "$GITHUB_ENV"
+
+      - name: Public post body returns JSON (public posts only)
+        if: env.PUBLIC_ID != ''
+        run: |
+          set -euo pipefail
+          meta=$(curl -sS -g -A "$UA" -o body.json -w '%{http_code} %{content_type}' --get "$API/posts/$PUBLIC_ID" \
+            --data-urlencode 'fields[post]=content_json_string,current_user_can_view' \
+            --data-urlencode 'json-api-use-default-includes=false' \
+            --data-urlencode 'include=')
+          echo "body endpoint: HTTP $meta"
+          case "$meta" in "200 application/"*json*) ;; *) head -c 600 body.json; exit 1 ;; esac
+          jq -e '.data.attributes.current_user_can_view == true and (.data.attributes.content_json_string | type == "string")' body.json
