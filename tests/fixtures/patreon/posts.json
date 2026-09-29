@@ -1,0 +1,66 @@
+{
+  "data": [
+    {
+      "id": "169276035",
+      "type": "post",
+      "attributes": {
+        "current_user_can_view": true,
+        "image": {
+          "url": "https://c10.patreonusercontent.com/4/patreon-media/p/post/169276035/f8255c54ae9c47dfb9724b978cac0bf3/eyJ3Ijo2MjB9/1.jpg?token-hash=v3VbVuq6YnIgeLTQIzo0R6__1KoN6t26hBSAD2rHLOE%3D&token-time=1791936000",
+          "large_url": "https://c10.patreonusercontent.com/4/patreon-media/p/post/169276035/f8255c54ae9c47dfb9724b978cac0bf3/eyJ3IjoxMDgwfQ%3D%3D/1.jpg?token-hash=JGy2zuLT0QGDan3i1OR4_F1fndL8GUU8dOvCIHTD1aE%3D&token-time=1791936000"
+        },
+        "post_type": "video_external_file",
+        "published_at": "2026-09-23T18:18:03.000+00:00",
+        "title": "Easy Weeknight Pasta with Mushrooms",
+        "url": "https://frienji.kenjilopezalt.com/posts/easy-weeknight-169276035"
+      }
+    },
+    {
+      "id": "169276041",
+      "type": "post",
+      "attributes": {
+        "current_user_can_view": false,
+        "image": {
+          "url": "https://c10.patreonusercontent.com/4/patreon-media/p/post/169276041/83dfeeb070bf4fc5826f0c2ed2988eea/eyJ3Ijo2MjB9/1.jpeg?token-hash=alnGBsCCJQNisE8WE4K1hfg0ZWo_ROi8dVGQ32k7tKo%3D&token-time=1791936000",
+          "large_url": "https://c10.patreonusercontent.com/4/patreon-media/p/post/169276041/83dfeeb070bf4fc5826f0c2ed2988eea/eyJ3IjoxMDgwfQ%3D%3D/1.jpeg?token-hash=qkkoWjR1QH2zXABmROSFCOg22wpt01ayVcWsPnqJKWc%3D&token-time=1791936000"
+        },
+        "post_type": "image_file",
+        "published_at": "2026-09-28T16:00:19.000+00:00",
+        "title": "Grilled Chicken, Pepper, and Chickpea Salad With Tahini",
+        "url": "https://frienji.kenjilopezalt.com/posts/grilled-chicken-169276041"
+      }
+    },
+    {
+      "id": "169260984",
+      "type": "post",
+      "attributes": {
+        "current_user_can_view": false,
+        "image": null,
+        "post_type": "text_only",
+        "published_at": "2026-09-11T17:13:42.000+00:00",
+        "title": "Recipe: Grilled Vegetable Flatbread Wraps With Yogurt, Sumac, and Mint",
+        "url": "https://frienji.kenjilopezalt.com/posts/recipe-grilled-169260984"
+      }
+    },
+    {
+      "id": "168800580",
+      "type": "post",
+      "attributes": {
+        "current_user_can_view": true,
+        "image": null,
+        "post_type": "text_only",
+        "published_at": "2026-09-08T17:14:33.000+00:00",
+        "title": "How Honing Really Fixes Knives (A Correction)",
+        "url": "https://frienji.kenjilopezalt.com/posts/how-honing-fixes-168800580"
+      }
+    }
+  ],
+  "links": {
+    "next": "https://www.patreon.com/api/posts?page%5Bcursor%5D=trimmed"
+  },
+  "meta": {
+    "pagination": {
+      "total": 454
+    }
+  }
+}
