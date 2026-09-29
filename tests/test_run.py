@@ -217,3 +217,38 @@ def test_patreon_post_locked_later_loses_its_stored_body(out_dirs, kenji_http):
     assert "🔒 Patrons only" in summary
     feed = (out_dirs / "feeds" / "kenji-lopez-alt.xml").read_text(encoding="utf-8")
     assert "latest knife-sharpening video" not in feed
+
+
+def test_listing_larger_than_max_items_enriches_only_kept_items(tmp_path, monkeypatch):
+    # First run of a site whose listing shows more items than max_items:
+    # merge_items trims the overflow, so enrichment must not look it up.
+    monkeypatch.setattr(run, "DATA_DIR", str(tmp_path / "data"))
+    monkeypatch.setattr(run, "DOCS_FEEDS_DIR", str(tmp_path / "feeds"))
+    monkeypatch.setattr(
+        run.extract,
+        "fetch",
+        lambda url, user_agent=None: '<a href="/1">1</a><a href="/2">2</a><a href="/3">3</a>',
+    )
+    enriched = []
+
+    def passthrough(item, cfg):
+        enriched.append(item["url"])
+        return item
+
+    monkeypatch.setattr(run.extract, "enrich_with_detail", passthrough)
+    cfg = {
+        "id": "x",
+        "name": "x",
+        "listing_url": "https://e.com/",
+        "base_url": "https://e.com",
+        "item_selector": "a",
+        "max_items": 2,
+        "fetch_detail": True,
+        "_path": "sites/x.yaml",
+    }
+
+    result = run.process_site(cfg)
+
+    assert result["count"] == 2
+    assert result["new"] == 2
+    assert len(enriched) == 2
