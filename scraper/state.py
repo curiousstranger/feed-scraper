@@ -24,7 +24,8 @@ def save_state(path: str, state: dict) -> None:
 
 def merge_items(state: dict, scraped_items: list[dict], max_items: int = 100) -> list[str]:
     """Merge freshly scraped items into persisted state. Returns the list of URLs
-    that are new (weren't previously known) so callers can enrich only those."""
+    that are new (weren't previously known) and survived trimming to max_items,
+    so callers can enrich only those."""
     now = dt.datetime.now(dt.timezone.utc).isoformat()
     items = state.setdefault("items", {})
     new_urls = []
@@ -53,7 +54,7 @@ def merge_items(state: dict, scraped_items: list[dict], max_items: int = 100) ->
     for url in ordered[max_items:]:
         del items[url]
 
-    return new_urls
+    return [url for url in new_urls if url in items]
 
 
 def last_updated(state: dict) -> str | None:
