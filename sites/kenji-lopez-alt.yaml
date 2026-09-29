@@ -1,0 +1,14 @@
+# Patreon creator feed, built from what a logged-out visitor can see.
+# Locked posts appear as title + cover image + a "patrons only" link;
+# public posts also carry their full text. See README "Adding a Patreon creator".
+
+id: kenji-lopez-alt
+type: patreon
+name: "J. Kenji López-Alt (Patreon, unofficial)"
+description: "Post titles and public posts from Kenji's Patreon; locked posts link through."
+vanity: kenjilopezalt
+listing_url: "https://www.patreon.com/kenjilopezalt"
+
+max_items: 100
+
+user_agent: "Mozilla/5.0 (compatible; PersonalSiteRSSBot/1.0; run by a single subscriber for personal use)"

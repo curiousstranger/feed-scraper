@@ -18,6 +18,7 @@ import yaml
 
 from . import extract
 from . import feedgen_util
+from . import patreon
 from . import state as state_mod
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -51,26 +52,54 @@ def load_site_configs(only_id: str | None = None) -> list[dict]:
     return configs
 
 
+SOURCE_TYPES = ("html", "patreon")
+
+
 def process_site(cfg: dict) -> dict:
     site_id = cfg["id"]
-    log.info("Scraping %s (%s)", site_id, cfg["listing_url"])
-    html = extract.fetch(cfg["listing_url"], cfg.get("user_agent"))
-    scraped = extract.extract_items(html, cfg)
-    log.info("  found %d item(s) on the listing page", len(scraped))
-    if not scraped:
-        log.warning(
-            "  0 items matched item_selector %r — the site's markup likely changed; "
-            "re-check the selectors in %s",
-            cfg["item_selector"],
-            cfg["_path"],
+    source_type = cfg.get("type", "html")
+    if source_type not in SOURCE_TYPES:
+        raise ValueError(
+            f"{cfg['_path']}: unknown type {source_type!r} (expected one of: {', '.join(SOURCE_TYPES)})"
         )
+    log.info("Scraping %s (%s)", site_id, cfg["listing_url"])
+
+    posts_by_url: dict[str, patreon.Post] = {}
+    if source_type == "patreon":
+        posts = patreon.fetch_posts(cfg)
+        posts_by_url = {p.item["url"]: p for p in posts}
+        scraped = [p.item for p in posts]
+        log.info("  found %d post(s) on Patreon", len(scraped))
+        if not scraped:
+            log.warning("  0 posts returned for Patreon vanity %r (%s)", cfg.get("vanity"), cfg["_path"])
+    else:
+        html = extract.fetch(cfg["listing_url"], cfg.get("user_agent"))
+        scraped = extract.extract_items(html, cfg)
+        log.info("  found %d item(s) on the listing page", len(scraped))
+        if not scraped:
+            log.warning(
+                "  0 items matched item_selector %r — the site's markup likely changed; "
+                "re-check the selectors in %s",
+                cfg["item_selector"],
+                cfg["_path"],
+            )
 
     state_path = os.path.join(DATA_DIR, f"{site_id}.json")
     state = state_mod.load_state(state_path)
     new_urls = state_mod.merge_items(state, scraped, max_items=cfg.get("max_items", 100))
     log.info("  %d new item(s) since last run", len(new_urls))
 
-    if cfg.get("fetch_detail", True):
+    if source_type == "patreon":
+        for url in new_urls:
+            if url not in state["items"]:  # new, but already trimmed by max_items
+                continue
+            state["items"][url] = patreon.enrich_new(state["items"][url], posts_by_url[url], cfg)
+        # A post that was public when first seen may have been locked since:
+        # drop the body we stored. No requests; locked content is never fetched.
+        for url, post in posts_by_url.items():
+            if url in state["items"] and url not in new_urls and patreon.relock_summary(state["items"][url], post):
+                log.info("  Patreon post %s is now locked; removed its stored body", url)
+    elif cfg.get("fetch_detail", True):
         for url in new_urls:
             log.info("  fetching detail page for new item: %s", url)
             state["items"][url] = extract.enrich_with_detail(state["items"][url], cfg)

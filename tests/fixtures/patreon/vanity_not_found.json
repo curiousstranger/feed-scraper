@@ -1,0 +1,12 @@
+{
+  "errors": [
+    {
+      "id": "a5fb42b7-7f70-4de6-b801-3a60f9e0cd4c",
+      "code_name": "CampaignNotFound",
+      "code": 302,
+      "title": "Campaign was not found.",
+      "detail": "Campaign with id zz_no_such_creator_xq9 was not found.",
+      "status": "404"
+    }
+  ]
+}

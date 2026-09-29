@@ -112,6 +112,34 @@ updated feeds back to the repo.
    touches `sites/` or `scraper/`, so the new feed appears within a minute or
    two, in addition to its regular schedule.
 
+## Adding a Patreon creator
+
+A `type: patreon` config builds a feed from what a logged-out visitor can see
+on a creator's Patreon, using the JSON API that patreon.com's own pages call
+(not Patreon's official API). Every post appears with its title, date, post
+type and cover image. Public posts also carry their full text. Locked posts
+get a "🔒 Patrons only · Read on Patreon →" link, so you click through and
+read them on Patreon while logged in. Nothing locked is ever requested or
+published, and no Patreon login, cookie or token is involved.
+
+1. Find the creator's vanity name, the `<vanity>` in `patreon.com/<vanity>`.
+   It works even if the creator's page lives on a custom domain.
+2. Copy `sites/kenji-lopez-alt.yaml` to `sites/<id>.yaml` and change `id`,
+   `name`, `description`, `vanity` and `listing_url`:
+
+   | Field | Meaning |
+   |---|---|
+   | `type` | `patreon` (leave it out, or use `html`, for a scraped site) |
+   | `vanity` | The creator's name in `patreon.com/<vanity>` |
+   | `listing_url` | The creator's Patreon page, used as the feed's link |
+   | `max_items` | How many posts to keep. Each run asks for the newest `min(max_items, 100)` |
+   | `user_agent` | As for scraped sites |
+
+   Selector fields and `fetch_detail` don't apply to Patreon configs and are ignored.
+
+3. Test locally with `uv run python -m scraper.run <id>`, then check
+   `docs/feeds/<id>.xml`.
+
 ## Limitations
 
 - This only works for sites that render their article list in the initial
@@ -133,3 +161,14 @@ updated feeds back to the repo.
   under the Actions run) rather than failing silently forever, so periodically
   check the Actions tab or your feed reader if a normally-active feed goes
   quiet.
+- Patreon feeds use an undocumented API that can change without notice. If
+  Patreon starts serving GitHub's runners a Cloudflare challenge, the run
+  fails with "Patreon returned non-JSON … possibly a Cloudflare challenge".
+- Patreon image URLs are signed and expire after about two weeks. Readers
+  that cache images when they fetch an item keep them. Others show broken
+  images on older posts.
+- A Patreon post's summary is built once, when the post first appears. A post
+  that is locked later has its body removed from the feed on the next run
+  (earlier copies remain in git history and in readers that already fetched
+  it). A post that is unlocked later keeps its label-only summary, and edits to
+  a public post's text aren't picked up.
