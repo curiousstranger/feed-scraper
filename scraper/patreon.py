@@ -8,6 +8,7 @@ never requested.
 """
 from __future__ import annotations
 
+import html
 import logging
 from dataclasses import dataclass
 from urllib.parse import urljoin
@@ -15,12 +16,13 @@ from urllib.parse import urljoin
 import requests
 
 from . import extract
-from .patreon_render import is_http_url
+from .patreon_render import body_html, is_http_url
 
 log = logging.getLogger(__name__)
 
 API = "https://www.patreon.com/api"
 LIST_FIELDS = "title,url,published_at,post_type,image,current_user_can_view"
+BODY_FIELDS = "content_json_string,current_user_can_view"
 # Without these, every response also embeds the campaign, creator, rewards...
 NO_INCLUDES = {"json-api-use-default-includes": "false", "include": ""}
 
@@ -80,6 +82,37 @@ def fetch_posts(cfg: dict) -> list[Post]:
     return posts
 
 
+def enrich_new(item: dict, post: Post, cfg: dict) -> dict:
+    """Set item["summary"]. For a public post, first fetch and sanitize its body
+    (best-effort: on any failure, log and fall back to the label-only summary).
+    A locked post gets the label-only summary and no request at all."""
+    body = ""
+    if post.public:
+        try:
+            body = _fetch_body(post, cfg)
+        except Exception as exc:  # one bad post must not fail the whole site
+            log.warning("Could not fetch body of public Patreon post %s: %s", item["url"], exc)
+    item["summary"] = build_summary(item, public=post.public, image=post.image, body=body)
+    return item
+
+
+def build_summary(item: dict, *, public: bool, image: str | None, body: str = "") -> str:
+    esc = html.escape  # every value here came from Patreon's API
+    category = esc(item.get("category") or "Post")
+    parts = []
+    if is_http_url(image):
+        parts.append(f'<p><img src="{esc(image)}" alt=""></p>')
+    if public:
+        if body:
+            parts.append(body)
+        parts.append(f"<p>Public · {category}</p>")
+    else:
+        parts.append(
+            f'<p>🔒 Patrons only · {category} · <a href="{esc(item["url"])}">Read on Patreon →</a></p>'
+        )
+    return "\n".join(parts)
+
+
 def _campaign_id(cfg: dict) -> str:
     path = cfg.get("_path", cfg.get("id"))
     vanity = cfg.get("vanity")
@@ -100,6 +133,18 @@ def _campaign_id(cfg: dict) -> str:
     if not campaigns:
         raise ValueError(not_found)
     return str(campaigns[0]["id"])
+
+
+def _fetch_body(post: Post, cfg: dict) -> str:
+    if not post.id.isdigit():
+        raise ValueError(f"unexpected post id {post.id!r}")
+    data = _get_json(f"{API}/posts/{post.id}", cfg, {"fields[post]": BODY_FIELDS, **NO_INCLUDES})
+    attrs = (data.get("data") or {}).get("attributes") or {}
+    if attrs.get("current_user_can_view") is not True:
+        # Locked between the list request and this one: publish nothing from it.
+        log.warning("Patreon post %s is no longer public; not using its body", post.id)
+        return ""
+    return body_html(attrs.get("content_json_string"))
 
 
 def _get_json(url: str, cfg: dict, params: dict) -> dict:
