@@ -69,6 +69,11 @@ Pipeline, run per site by `scraper/run.py:process_site`:
    whatever site state currently exists — even when only one site was
    targeted this run.
 
+Each config may set `type` (default `html`, the pipeline above). `type: patreon`
+swaps step 2 (listing and detail enrichment) for `scraper/patreon.py` (Patreon's
+anonymous web API; public post bodies are rendered and nh3-sanitized by
+`scraper/patreon_render.py`); state, feed and index steps are shared.
+
 `.github/workflows/update-feeds.yml` runs `python -m scraper.run` on a
 schedule (every 4 hours) and on any push touching `sites/**`, `scraper/**`
 or `docs/**`, commits `data/` and `docs/` back to `main` if they changed,
