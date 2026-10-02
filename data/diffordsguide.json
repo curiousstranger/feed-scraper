@@ -8,6 +8,14 @@
       "title": "Kahl\u00faa Coffee Cream",
       "url": "https://www.diffordsguide.com/beer-wine-spirits/14184/kahlua-coffee-cream"
     },
+    "https://www.diffordsguide.com/cocktails/recipe/1144/lemon-drop-martini": {
+      "category": null,
+      "first_seen": "2026-10-02T14:46:02.228419+00:00",
+      "published": null,
+      "summary": "Discover how to make a Lemon Drop Martini using Citrus vodka, Triple sec, Lemon juice, Sugar syrup rich (2:1) (+ 1 more) in just 5 easy to follow steps",
+      "title": "Lemon Drop Martini",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/1144/lemon-drop-martini"
+    },
     "https://www.diffordsguide.com/cocktails/recipe/1198/lucky-lily-margarita": {
       "category": null,
       "first_seen": "2026-09-18T22:48:18.452078+00:00",
@@ -40,6 +48,14 @@
       "title": "Roman Punch",
       "url": "https://www.diffordsguide.com/cocktails/recipe/1688/roman-punch"
     },
+    "https://www.diffordsguide.com/cocktails/recipe/195/bees-knees-with-rum-and-cream": {
+      "category": null,
+      "first_seen": "2026-10-02T14:46:02.228419+00:00",
+      "published": null,
+      "summary": "Discover how to make a Bees Knees (with rum and cream) using Navy rum (ideally circa 55% alc./vol.) (+ 4 more) in 6 easy to follow steps",
+      "title": "Bee's Knees (with rum & cream)",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/195/bees-knees-with-rum-and-cream"
+    },
     "https://www.diffordsguide.com/cocktails/recipe/2292/beverly-hills-hotel-cocktail": {
       "category": null,
       "first_seen": "2026-09-18T22:48:18.452078+00:00",
@@ -71,6 +87,14 @@
       "summary": "Discover how to make a Geisha Martini using Vodka, Sake, Dry vermouth, Japanese whisky, Sugar syrup rich (2:1) (+ 1 more) in just 4 easy to follow steps",
       "title": "Geisha Martini",
       "url": "https://www.diffordsguide.com/cocktails/recipe/3948/geisha-martini"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/41647/el-guapo": {
+      "category": null,
+      "first_seen": "2026-10-02T14:46:02.228419+00:00",
+      "published": null,
+      "summary": "Discover how to make an El Guapo using Lime (fresh), Cucumber (fresh), Mezcal, Blanco tequila (+ 2 more) in 6 easy to follow steps",
+      "title": "El Guapo",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/41647/el-guapo"
     },
     "https://www.diffordsguide.com/cocktails/recipe/41789/fizz-italiano": {
       "category": null,
@@ -216,6 +240,14 @@
       "title": "Sangaree",
       "url": "https://www.diffordsguide.com/cocktails/recipe/42679/sangaree"
     },
+    "https://www.diffordsguide.com/cocktails/recipe/42718/spicy-elderflower-margarita": {
+      "category": null,
+      "first_seen": "2026-10-02T14:46:02.228419+00:00",
+      "published": null,
+      "summary": "Discover how to make a Spicy Elderflower Margarita using Reposado tequila, Elderflower liqueur, Chilli liqueur (+ 2 more) in just 5 easy to follow steps",
+      "title": "Spicy Elderflower Margarita",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/42718/spicy-elderflower-margarita"
+    },
     "https://www.diffordsguide.com/cocktails/recipe/42744/port-and-gin-sangaree": {
       "category": null,
       "first_seen": "2026-09-25T13:52:25.538254+00:00",
@@ -223,6 +255,38 @@
       "summary": "Discover how to make a Port and Gin Sangaree using Old Tom gin, Tawny port and Powdered sugar in 6 easy to follow steps",
       "title": "Port & Gin Sangaree",
       "url": "https://www.diffordsguide.com/cocktails/recipe/42744/port-and-gin-sangaree"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/42755/tailspin": {
+      "category": null,
+      "first_seen": "2026-10-02T14:46:02.228419+00:00",
+      "published": null,
+      "summary": "Discover how to make a Tailspin using Red bitter liqueur, Gin, Chartreuse Green, Vermouth alla vaniglia and Orange bitters in 6 easy to follow steps",
+      "title": "Tailspin",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/42755/tailspin"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/42803/up-to-date": {
+      "category": null,
+      "first_seen": "2026-10-02T14:46:02.228419+00:00",
+      "published": null,
+      "summary": "Discover how to make an Up To Date using Rye whiskey 50% abv, Oloroso sherry, Grand Marnier and Aromatic bitters in just 5 easy to follow steps",
+      "title": "Up To Date",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/42803/up-to-date"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/42805/pecan-pie-tai": {
+      "category": null,
+      "first_seen": "2026-10-02T14:46:02.228419+00:00",
+      "published": null,
+      "summary": "Discover how to make a Pecan Pie Tai using Aged rum (6-10yr), Tropical cura\u00e7ao liqueur, Pecan pie syrup (+ 2 more) in just 5 easy to follow steps",
+      "title": "Pecan Pie Tai",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/42805/pecan-pie-tai"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/42806/creamy-pecan-pie": {
+      "category": null,
+      "first_seen": "2026-10-02T14:46:02.228419+00:00",
+      "published": null,
+      "summary": "Discover how to make a Creamy Pecan Pie using Vanilla vodka, Irish cream liqueur, Scotch whisky, Pecan pie syrup (+ 1 more) in 6 easy to follow steps",
+      "title": "Creamy Pecan Pie",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/42806/creamy-pecan-pie"
     },
     "https://www.diffordsguide.com/cocktails/recipe/912/green-fizz": {
       "category": null,
@@ -375,6 +439,14 @@
       "summary": "An icon of the 1950s, whose roles were the very embodiment of teenage disillusionment, James Dean died on this day at the age of just 24.",
       "title": "Cocktail of the Day30 September 2026",
       "url": "https://www.diffordsguide.com/on-this-day/september/30"
+    },
+    "https://www.diffordsguide.com/producer/1302/crossfire-hurricane-rum": {
+      "category": null,
+      "first_seen": "2026-10-02T14:46:02.228419+00:00",
+      "published": null,
+      "summary": "Discover how Crossfire Hurricane Rum draws on Jamaican roots and The Rolling Stones links from the early 1970s, spanning music and recording.",
+      "title": "Crossfire Hurricane Rum",
+      "url": "https://www.diffordsguide.com/producer/1302/crossfire-hurricane-rum"
     }
   }
 }
