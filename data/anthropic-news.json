@@ -56,6 +56,14 @@
       "title": "Claude discovers a novel enzyme system with CRISPR-like repeats",
       "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system"
     },
+    "https://www.anthropic.com/news/claude-frontier-academy": {
+      "category": "Announcements",
+      "first_seen": "2026-10-02T20:47:51.184356+00:00",
+      "published": "2026-10-02T00:00:00+00:00",
+      "summary": "Claude Frontier Academy trains Frontier Deployed Engineers to the standard of Anthropic\u2019s own \u2014 a $100 million commitment to train 10,000 by the end of 2027.",
+      "title": "Anthropic invests $100 million to train 10,000 engineers and tackle the enterprise AI talent gap",
+      "url": "https://www.anthropic.com/news/claude-frontier-academy"
+    },
     "https://www.anthropic.com/news/claude-opus-5": {
       "category": "Product",
       "first_seen": "2026-09-12T22:02:37.996156+00:00",
