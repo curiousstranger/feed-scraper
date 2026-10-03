@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 02 Oct 2026 14:46:02 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 03 Oct 2026 05:23:16 +0000</lastBuildDate>
     <item>
       <title>Cocktail of the Day18 September 2026</title>
       <link>https://www.diffordsguide.com/on-this-day/september/18</link>
@@ -399,6 +399,13 @@
       <description>Discover how to make a Lemon Drop Martini using Citrus vodka, Triple sec, Lemon juice, Sugar syrup rich (2:1) (+ 1 more) in just 5 easy to follow steps</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/1144/lemon-drop-martini</guid>
       <pubDate>Fri, 02 Oct 2026 14:46:02 +0000</pubDate>
+    </item>
+    <item>
+      <title>Cocktail of the Day3 October 2026</title>
+      <link>https://www.diffordsguide.com/on-this-day/october/03</link>
+      <description>Tag der Deutschen Einheit, or German Unity Day, today commemorates the reunification of Germany and is marked by political speeches, a Bürgerfest (citizens' festival) and plenty of fireworks.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/03</guid>
+      <pubDate>Sat, 03 Oct 2026 05:23:16 +0000</pubDate>
     </item>
   </channel>
 </rss>
