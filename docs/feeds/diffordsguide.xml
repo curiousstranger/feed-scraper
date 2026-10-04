@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 03 Oct 2026 05:23:16 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 04 Oct 2026 05:59:11 +0000</lastBuildDate>
     <item>
       <title>Cocktail of the Day18 September 2026</title>
       <link>https://www.diffordsguide.com/on-this-day/september/18</link>
@@ -406,6 +406,13 @@
       <description>Tag der Deutschen Einheit, or German Unity Day, today commemorates the reunification of Germany and is marked by political speeches, a Bürgerfest (citizens' festival) and plenty of fireworks.</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/03</guid>
       <pubDate>Sat, 03 Oct 2026 05:23:16 +0000</pubDate>
+    </item>
+    <item>
+      <title>Cocktail of the Day4 October 2026</title>
+      <link>https://www.diffordsguide.com/on-this-day/october/04</link>
+      <description>Our friends across the pond have given us a reason to celebrate. In America, the 4th of October is National Vodka Day, so by extension, for the rest of us, it's International Vodka Day. Why today? I have no idea, but stateside, today is also National Taco Day.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/04</guid>
+      <pubDate>Sun, 04 Oct 2026 05:59:11 +0000</pubDate>
     </item>
   </channel>
 </rss>
