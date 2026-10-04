@@ -160,6 +160,14 @@
       <pubDate>Wed, 23 Sep 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
+      <title>Introducing Claude Sonnet 5.5</title>
+      <link>https://www.anthropic.com/claude-sonnet-5-5</link>
+      <description>Claude Sonnet 5.5 is a clear upgrade over Claude Sonnet 5, runs 30%+ faster, and costs up to 30% less for most work.</description>
+      <guid isPermaLink="false">https://www.anthropic.com/claude-sonnet-5-5</guid>
+      <category>Announcements</category>
+      <pubDate>Mon, 28 Sep 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
       <title>Barclays scales Claude to upgrade operations and improve client experience</title>
       <link>https://www.anthropic.com/news/barclays-scales-claude</link>
       <description>Barclays, the British universal bank, is expanding its strategic collaboration with Anthropic to integrate secure, enterprise-grade AI systems across its global operations.</description>

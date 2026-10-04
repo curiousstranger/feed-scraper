@@ -16,6 +16,14 @@
       "title": "Introducing Claude Opus 5.5",
       "url": "https://www.anthropic.com/claude-opus-5-5"
     },
+    "https://www.anthropic.com/claude-sonnet-5-5": {
+      "category": "Announcements",
+      "first_seen": "2026-10-04T16:40:02.832624+00:00",
+      "published": "2026-09-28T00:00:00+00:00",
+      "summary": "Claude Sonnet 5.5 is a clear upgrade over Claude Sonnet 5, runs 30%+ faster, and costs up to 30% less for most work.",
+      "title": "Introducing Claude Sonnet 5.5",
+      "url": "https://www.anthropic.com/claude-sonnet-5-5"
+    },
     "https://www.anthropic.com/features/ebola-response": {
       "category": "Features",
       "first_seen": "2026-09-23T19:41:53.887825+00:00",
