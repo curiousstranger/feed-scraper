@@ -1,3 +1,7 @@
+import pathlib
+
+import yaml
+
 from scraper import extract
 
 CONFIG = {
@@ -117,3 +121,51 @@ def test_without_link_selector_the_item_itself_must_carry_the_href():
     config = {"base_url": "https://news.example.org", "item_selector": "article.teaser"}
 
     assert extract.extract_listing(CONTAINER_HTML, config) == []
+
+
+# Trimmed from the live anthropic.com/news FeaturedGrid block (2026-10-04).
+ANTHROPIC_FEATURED_HTML = """
+<html><body>
+<div class="FeaturedGrid-module-scss-module__W1FydW__root">
+  <div class="FeaturedGrid-module-scss-module__W1FydW__featuredItem">
+    <a class="FeaturedGrid-module-scss-module__W1FydW__content" href="/claude-sonnet-5-5">
+      <h2 class="headline-4 FeaturedGrid-module-scss-module__W1FydW__featuredTitle">Introducing Claude Sonnet 5.5</h2>
+      <div class="FeaturedGrid-module-scss-module__W1FydW__featuredItemContent">
+        <div class="FeaturedGrid-module-scss-module__W1FydW__meta">
+          <span class="caption bold">Announcements</span>
+          <time class="FeaturedGrid-module-scss-module__W1FydW__date caption bold">Sep 28, 2026</time>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="FeaturedGrid-module-scss-module__W1FydW__sideItems">
+    <a class="FeaturedGrid-module-scss-module__W1FydW__sideLink FeaturedGrid-module-scss-module__W1FydW__gridItem" href="/claude-opus-5-5">
+      <div class="FeaturedGrid-module-scss-module__W1FydW__meta">
+        <span class="caption bold">Announcements</span>
+        <time class="FeaturedGrid-module-scss-module__W1FydW__date caption bold">Sep 22, 2026</time>
+      </div>
+      <h4 class="headline-6 FeaturedGrid-module-scss-module__W1FydW__title">Introducing Claude Opus 5.5</h4>
+    </a>
+  </div>
+</div>
+</body></html>
+"""
+
+
+def test_anthropic_config_scrapes_featured_hero_and_side_links():
+    """The big hero at the top of anthropic.com/news is where the newest
+    announcement goes, often before (or instead of) it reaching the
+    chronological PublicationList. Missing it leaves the feed stale."""
+    config_path = pathlib.Path(__file__).parent.parent / "sites" / "anthropic-news.yaml"
+    config = yaml.safe_load(config_path.read_text())
+
+    items = {i["url"]: i for i in extract.extract_items(ANTHROPIC_FEATURED_HTML, config)}
+
+    hero = items["https://www.anthropic.com/claude-sonnet-5-5"]
+    assert hero["title"] == "Introducing Claude Sonnet 5.5"
+    assert hero["category"] == "Announcements"
+    assert hero["published"] == "2026-09-28T00:00:00+00:00"
+
+    side = items["https://www.anthropic.com/claude-opus-5-5"]
+    assert side["title"] == "Introducing Claude Opus 5.5"
+    assert side["published"] == "2026-09-22T00:00:00+00:00"
