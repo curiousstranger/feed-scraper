@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 04 Oct 2026 05:59:11 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 05 Oct 2026 05:47:47 +0000</lastBuildDate>
     <item>
       <title>Cocktail of the Day18 September 2026</title>
       <link>https://www.diffordsguide.com/on-this-day/september/18</link>
@@ -413,6 +413,13 @@
       <description>Our friends across the pond have given us a reason to celebrate. In America, the 4th of October is National Vodka Day, so by extension, for the rest of us, it's International Vodka Day. Why today? I have no idea, but stateside, today is also National Taco Day.</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/04</guid>
       <pubDate>Sun, 04 Oct 2026 05:59:11 +0000</pubDate>
+    </item>
+    <item>
+      <title>Cocktail of the Day5 October 2026</title>
+      <link>https://www.diffordsguide.com/on-this-day/october/05</link>
+      <description>Quiet at the back! No sniggering. Today is World Teachers Day, a chance to celebrate the role this often-maligned profession plays in all our lives.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/05</guid>
+      <pubDate>Mon, 05 Oct 2026 05:47:47 +0000</pubDate>
     </item>
   </channel>
 </rss>
