@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 06 Oct 2026 01:19:12 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 07 Oct 2026 06:06:05 +0000</lastBuildDate>
     <item>
       <title>Cocktail of the Day18 September 2026</title>
       <link>https://www.diffordsguide.com/on-this-day/september/18</link>
@@ -427,6 +427,13 @@
       <description>The Mad Hatter in Alice's Adventures in Wonderland wears, as we all know, a top hat.</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/06</guid>
       <pubDate>Tue, 06 Oct 2026 01:19:12 +0000</pubDate>
+    </item>
+    <item>
+      <title>Cocktail of the Day7 October 2026</title>
+      <link>https://www.diffordsguide.com/on-this-day/october/07</link>
+      <description>An American National Day marked annually on October 7th, National Frappé Day is designed to celebrate the blended coffee drink of the same name that's topped with whipped cream.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/07</guid>
+      <pubDate>Wed, 07 Oct 2026 06:06:05 +0000</pubDate>
     </item>
   </channel>
 </rss>
