@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 06 Oct 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 07 Oct 2026 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Introducing Claude Opus 5</title>
       <link>https://www.anthropic.com/news/claude-opus-5</link>
@@ -190,6 +190,14 @@
       <guid isPermaLink="false">https://www.anthropic.com/news/cyber-verification-program</guid>
       <category>Announcements</category>
       <pubDate>Tue, 06 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Introducing Claude Haiku 5.5</title>
+      <link>https://www.anthropic.com/claude-haiku-5-5</link>
+      <description>Claude Haiku 5.5 is our fastest, most capable small model. Built for high-volume work like summarization, subagents, and browser use.</description>
+      <guid isPermaLink="false">https://www.anthropic.com/claude-haiku-5-5</guid>
+      <category>Announcements</category>
+      <pubDate>Wed, 07 Oct 2026 00:00:00 +0000</pubDate>
     </item>
   </channel>
 </rss>

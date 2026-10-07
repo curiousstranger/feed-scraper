@@ -8,6 +8,14 @@
       "title": "Introducing Claude Fable 5.1 and Claude Mythos 5.1",
       "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1"
     },
+    "https://www.anthropic.com/claude-haiku-5-5": {
+      "category": "Announcements",
+      "first_seen": "2026-10-07T21:20:15.100472+00:00",
+      "published": "2026-10-07T00:00:00+00:00",
+      "summary": "Claude Haiku 5.5 is our fastest, most capable small model. Built for high-volume work like summarization, subagents, and browser use.",
+      "title": "Introducing Claude Haiku 5.5",
+      "url": "https://www.anthropic.com/claude-haiku-5-5"
+    },
     "https://www.anthropic.com/claude-opus-5-5": {
       "category": "Announcements",
       "first_seen": "2026-09-29T00:23:47.291493+00:00",
