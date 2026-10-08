@@ -48,6 +48,14 @@
       "title": "Measurements for understanding the pace of AI development inside frontier labs",
       "url": "https://www.anthropic.com/institute/measuring-pace-of-ai-development"
     },
+    "https://www.anthropic.com/news/2026-usage-policy-update": {
+      "category": "Announcements",
+      "first_seen": "2026-10-08T21:21:44.068294+00:00",
+      "published": "2026-10-08T00:00:00+00:00",
+      "summary": "We\u2019re publishing a new version of our Usage Policy. In this post, we summarize the changes we\u2019ve made.",
+      "title": "2026 Usage Policy update",
+      "url": "https://www.anthropic.com/news/2026-usage-policy-update"
+    },
     "https://www.anthropic.com/news/accenture-embedded-evaluation": {
       "category": "Announcements",
       "first_seen": "2026-09-18T22:37:14.314641+00:00",
@@ -55,6 +63,14 @@
       "summary": "We\u2019re partnering with Accenture on independent evaluation of frontier AI\u2014part of our recent commitment to embed evaluators at Anthropic. Both we and Accenture expect to invest at least $1 billion to build capacity in this area over the next five years.",
       "title": "Partnering with Accenture on embedded evaluation",
       "url": "https://www.anthropic.com/news/accenture-embedded-evaluation"
+    },
+    "https://www.anthropic.com/news/anthropic-cyber-mission": {
+      "category": "Announcements",
+      "first_seen": "2026-10-08T21:21:44.068294+00:00",
+      "published": "2026-10-08T00:00:00+00:00",
+      "summary": "Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems.",
+      "title": "Introducing the Anthropic Cyber Mission",
+      "url": "https://www.anthropic.com/news/anthropic-cyber-mission"
     },
     "https://www.anthropic.com/news/barclays-scales-claude": {
       "category": "Announcements",
