@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 07 Oct 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 08 Oct 2026 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Introducing Claude Opus 5</title>
       <link>https://www.anthropic.com/news/claude-opus-5</link>
@@ -198,6 +198,14 @@
       <guid isPermaLink="false">https://www.anthropic.com/claude-haiku-5-5</guid>
       <category>Announcements</category>
       <pubDate>Wed, 07 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Building on our commitment to American scientific discovery</title>
+      <link>https://www.anthropic.com/news/genesis-mission-commitment</link>
+      <description>Anthropic is committing $150 million over three years to the Genesis Mission, a federal initiative to accelerate scientific and technological discovery through AI.</description>
+      <guid isPermaLink="false">https://www.anthropic.com/news/genesis-mission-commitment</guid>
+      <category>Announcements</category>
+      <pubDate>Thu, 08 Oct 2026 00:00:00 +0000</pubDate>
     </item>
   </channel>
 </rss>
