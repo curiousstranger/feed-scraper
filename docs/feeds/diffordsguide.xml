@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 07 Oct 2026 06:06:05 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 08 Oct 2026 06:11:42 +0000</lastBuildDate>
     <item>
       <title>Cocktail of the Day18 September 2026</title>
       <link>https://www.diffordsguide.com/on-this-day/september/18</link>
@@ -434,6 +434,13 @@
       <description>An American National Day marked annually on October 7th, National Frappé Day is designed to celebrate the blended coffee drink of the same name that's topped with whipped cream.</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/07</guid>
       <pubDate>Wed, 07 Oct 2026 06:06:05 +0000</pubDate>
+    </item>
+    <item>
+      <title>Cocktail of the Day8 October 2026</title>
+      <link>https://www.diffordsguide.com/on-this-day/october/08</link>
+      <description>Octopuses are of course known for their eight semi-autonomous arms lined with thousands of suckers. But this remarkable creature also has blue blood coursing through three beating hearts, and highly developed intelligence with 500 million neurons in their brains and arms. Octopuses have been around for 300 million years so pre-date the dinosaurs.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/08</guid>
+      <pubDate>Thu, 08 Oct 2026 06:11:42 +0000</pubDate>
     </item>
   </channel>
 </rss>
