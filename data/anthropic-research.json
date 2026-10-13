@@ -1,0 +1,84 @@
+{
+  "items": {
+    "https://www.anthropic.com/research/claude-shaped-science": {
+      "category": "Science",
+      "first_seen": "2026-10-13T15:32:52.306070+00:00",
+      "published": "2026-10-01T00:00:00+00:00",
+      "summary": "Matthew Schwartz describes what happened when he stopped fighting Claude and allowed Claude to find \u201cClaude-shaped\u201d problems. This led him to build BootLoops, a toolkit for exact calculations in quantitative science, which he has been applying across scientific fields alongside experts.",
+      "title": "Claude-shaped science",
+      "url": "https://www.anthropic.com/research/claude-shaped-science"
+    },
+    "https://www.anthropic.com/research/distillation-defenses": {
+      "category": "Policy",
+      "first_seen": "2026-10-13T15:32:52.306070+00:00",
+      "published": "2026-10-12T00:00:00+00:00",
+      "summary": "Illicit distillation allows model developers to copy frontier AI capabilities without creating proportionally robust safeguards. Here, we describe how we\u2019ve reduced the rate of distillation by more than 90%.",
+      "title": "Strengthening our defenses against distillation attacks",
+      "url": "https://www.anthropic.com/research/distillation-defenses"
+    },
+    "https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities": {
+      "category": "Frontier Red Team",
+      "first_seen": "2026-10-13T15:32:52.306070+00:00",
+      "published": "2026-09-29T00:00:00+00:00",
+      "summary": "GLM-5.3 can autonomously build end-to-end cyber exploits, but unlike other frontier models, it was released without meaningful safeguards to limit misuse.",
+      "title": "GLM-5.3 and the spread of advanced cyber capabilities",
+      "url": "https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities"
+    },
+    "https://www.anthropic.com/research/investigating-unintended-model-actions": {
+      "category": "Alignment",
+      "first_seen": "2026-10-13T15:32:52.306070+00:00",
+      "published": "2026-10-09T00:00:00+00:00",
+      "summary": "Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems.",
+      "title": "Investigating unintended model actions in our evaluations and internal use",
+      "url": "https://www.anthropic.com/research/investigating-unintended-model-actions"
+    },
+    "https://www.anthropic.com/research/launching-opt-in-vuln-finding-service-for-open-source": {
+      "category": "Frontier Red Team",
+      "first_seen": "2026-10-13T15:32:52.306070+00:00",
+      "published": "2026-10-08T00:00:00+00:00",
+      "summary": "We\u2019re launching OSS Scanner, an opt-in vulnerability scanner for the open-source ecosystem informed by our experience using Claude to find vulnerabilities during Project Glasswing. Projects that join will receive thorough, periodic security scans by our strongest models at no cost.",
+      "title": "Launching an opt-in vulnerability-finding service for open-source software",
+      "url": "https://www.anthropic.com/research/launching-opt-in-vuln-finding-service-for-open-source"
+    },
+    "https://www.anthropic.com/research/self-replicating-ai": {
+      "category": "Frontier Red Team",
+      "first_seen": "2026-10-13T15:32:52.306070+00:00",
+      "published": "2026-10-12T00:00:00+00:00",
+      "summary": "Small AI models may be only months away from being able to self-replicate across cheap IoT devices like Android TV boxes, with no datacenter needed.",
+      "title": "AI models may be capable of self-replicating without access to a datacenter",
+      "url": "https://www.anthropic.com/research/self-replicating-ai"
+    },
+    "https://www.anthropic.com/research/the-missing-map-of-the-sky": {
+      "category": "Science",
+      "first_seen": "2026-10-13T15:32:52.306070+00:00",
+      "published": "2026-10-08T00:00:00+00:00",
+      "summary": "Claude Science helped produce the first complete map of the sky in UV light",
+      "title": "The missing map of the sky",
+      "url": "https://www.anthropic.com/research/the-missing-map-of-the-sky"
+    },
+    "https://www.anthropic.com/research/what-work-can-robots-do": {
+      "category": "Economics",
+      "first_seen": "2026-10-13T15:32:52.306070+00:00",
+      "published": "2026-09-30T00:00:00+00:00",
+      "summary": "What work can robots do? Anthropic's robot exposure index finds robots can do 3/4 of US physical job tasks, but are cost-competitive for only 0.3%.",
+      "title": "What work can robots do?",
+      "url": "https://www.anthropic.com/research/what-work-can-robots-do"
+    },
+    "https://www.anthropic.com/research/yes-claude-can-do-nine-loops": {
+      "category": "Science",
+      "first_seen": "2026-10-13T15:32:52.306070+00:00",
+      "published": "2026-09-25T00:00:00+00:00",
+      "summary": "Claude computes a nine-loop amplitude in N=4 super-Yang-Mills",
+      "title": "Yes, Claude can do Nine Loops",
+      "url": "https://www.anthropic.com/research/yes-claude-can-do-nine-loops"
+    },
+    "https://www.anthropic.com/research/your-thoughts-on-ai": {
+      "category": "Societal Impacts",
+      "first_seen": "2026-10-13T15:32:52.306070+00:00",
+      "published": "2026-09-29T00:00:00+00:00",
+      "summary": "Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems.",
+      "title": "What do you want from AI?",
+      "url": "https://www.anthropic.com/research/your-thoughts-on-ai"
+    }
+  }
+}
