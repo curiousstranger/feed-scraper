@@ -128,17 +128,17 @@
       <pubDate>Wed, 21 Jan 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
-      <title>Building a C compiler with a team of parallel Claudes</title>
-      <link>https://www.anthropic.com/engineering/building-c-compiler</link>
-      <description>Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems.</description>
-      <guid isPermaLink="false">https://www.anthropic.com/engineering/building-c-compiler</guid>
-      <pubDate>Thu, 05 Feb 2026 00:00:00 +0000</pubDate>
-    </item>
-    <item>
       <title>Quantifying infrastructure noise in agentic coding evals</title>
       <link>https://www.anthropic.com/engineering/infrastructure-noise</link>
       <description>Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems.</description>
       <guid isPermaLink="false">https://www.anthropic.com/engineering/infrastructure-noise</guid>
+      <pubDate>Thu, 05 Feb 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Building a C compiler with a team of parallel Claudes</title>
+      <link>https://www.anthropic.com/engineering/building-c-compiler</link>
+      <description>Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems.</description>
+      <guid isPermaLink="false">https://www.anthropic.com/engineering/building-c-compiler</guid>
       <pubDate>Thu, 05 Feb 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
