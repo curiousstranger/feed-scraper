@@ -1,0 +1,38 @@
+# Unofficial feed config for Anthropic's engineering blog (anthropic.com has no RSS feed).
+#
+# Like anthropic.com/news, this is a Next.js page whose CSS class names carry a
+# build-specific hash, e.g. "ArticleList-module-scss-module___tpu-a__cardLink".
+# The hash can change whenever Anthropic redeploys the site, so selectors below
+# use CSS "contains" matching ([class*="..."]) on the stable parts of the class
+# name. See sites/anthropic-news.yaml for more on this.
+
+id: anthropic-engineering
+name: "Anthropic Engineering (unofficial)"
+description: "Unofficial RSS feed scraped from anthropic.com/engineering — Anthropic does not publish an official feed."
+listing_url: "https://www.anthropic.com/engineering"
+base_url: "https://www.anthropic.com"
+
+# Each matched element must itself be the <a href="..."> for one article.
+# The big "Featured" hero at the top of the page and every row of the article
+# table below it share this same cardLink class, so one selector covers both;
+# no featured_item_selector is needed. When an article drops out of the hero
+# slot into the table its URL is unchanged, so state never duplicates it.
+item_selector: 'a[class*="ArticleList"][class*="cardLink"]'
+
+# Selectors below are evaluated *inside* each matched item element.
+# The hero's title is an <h2>; table rows use <h3>.
+title_selector: 'h2, h3'
+# Table rows carry a <time datetime="...">. The hero has no date in the listing
+# markup at all; fetch_detail backfills it from the article page's
+# article:published_time meta tag.
+date_selector: 'time'
+
+# Fetch each new article's own page once (via OpenGraph meta tags) to get a
+# description for the feed, and the hero's publish date. Only runs for items
+# not already in data/*.json.
+fetch_detail: true
+
+# Keep at most this many of the most recent items in the feed/state file.
+max_items: 75
+
+user_agent: "Mozilla/5.0 (compatible; PersonalSiteRSSBot/1.0; run by a single subscriber for personal use)"
