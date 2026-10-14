@@ -83,5 +83,32 @@
       {"url": "https://news.example.org/stories/beta", "title": "Beta story", "category": "Science", "date_text": "28 Aug 2026"},
       {"url": "https://news.example.org/stories/gamma", "title": "Gamma story", "category": "Culture", "date_text": "20 Aug 2026"}
     ]
+  },
+  {
+    "fixture": "engineering.html",
+    "base_url": "https://www.anthropic.com",
+    "clicks": {
+      "item": "a[href=\"/engineering/april-23-postmortem\"]",
+      "title": "a[href=\"/engineering/how-we-contain-claude\"] h3",
+      "date": "a[href=\"/engineering/how-we-contain-claude\"] time",
+      "featured": {
+        "item": "article[class*=\"featured\"] h2",
+        "title": "article[class*=\"featured\"] h2"
+      }
+    },
+    "expected_selectors": {
+      "item_selector": "a[class*=\"cardLink\"]",
+      "title_selector": "h3.headline-4",
+      "date_selector": "time",
+      "featured_item_selector": "article[class*=\"featured\"] a[class*=\"cardLink\"]",
+      "featured_title_selector": "h2.headline-1"
+    },
+    "expected_items": [
+      {"url": "https://www.anthropic.com/engineering/how-we-contain-claude", "title": "How we contain Claude across products", "category": null, "date_text": "2026-05-25"},
+      {"url": "https://www.anthropic.com/engineering/april-23-postmortem", "title": "An update on recent Claude Code quality reports", "category": null, "date_text": "2026-04-23"},
+      {"url": "https://www.anthropic.com/engineering/managed-agents", "title": "Scaling Managed Agents: Decoupling the brain from the hands", "category": null, "date_text": "2026-04-08"},
+      {"url": "https://www.anthropic.com/engineering/infrastructure-noise", "title": "Quantifying infrastructure noise in agentic coding evals", "category": null, "date_text": "2026-02-05"},
+      {"url": "https://www.anthropic.com/engineering/redesigning-source-control", "title": "Redesigning source control at Anthropic", "category": null, "date_text": null}
+    ]
   }
 ]

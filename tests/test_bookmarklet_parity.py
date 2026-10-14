@@ -1,6 +1,7 @@
-"""The scraper must extract the same items the bookmarklet previews, using the
-selectors the bookmarklet generates. Cases are shared with
-bookmarklet/test/parity.test.js via bookmarklet/test/cases.json."""
+"""The scraper (extract_items, including any featured section) must extract the
+same items the bookmarklet previews, using the selectors the bookmarklet
+generates. Cases are shared with bookmarklet/test/parity.test.js via
+bookmarklet/test/cases.json."""
 import json
 from pathlib import Path
 
@@ -22,7 +23,7 @@ def test_scraper_extracts_what_the_bookmarklet_previews(case):
     html = (BOOKMARKLET_TEST / "fixtures" / case["fixture"]).read_text(encoding="utf-8")
     config = {"base_url": case["base_url"], **case["expected_selectors"]}
 
-    items = extract.extract_listing(html, config)
+    items = extract.extract_items(html, config)
 
     assert items == [
         {

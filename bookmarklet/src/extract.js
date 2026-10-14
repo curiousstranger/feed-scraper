@@ -27,11 +27,34 @@ function fieldText(el, selector) {
   return found ? getText(found, '') : null;
 }
 
-/** [{url, title, category, date_text}] for every item, like the scraper.
+const FIELD_KEYS = ['link_selector', 'title_selector', 'date_selector', 'category_selector'];
+
+/** The featured_* keys as a plain section config, like extract_items' featured_config. */
+export function featuredConfig(config) {
+  return {
+    base_url: config.base_url,
+    item_selector: config.featured_item_selector,
+    link_selector: config.featured_link_selector,
+    title_selector: config.featured_title_selector,
+    date_selector: config.featured_date_selector,
+    category_selector: config.featured_category_selector,
+  };
+}
+
+/** Elements the featured section claims; the main list skips them. */
+function claimedBy(root, config) {
+  return config.featured_item_selector ? new Set(root.querySelectorAll(config.featured_item_selector)) : new Set();
+}
+
+function mainElements(root, config, claimed) {
+  return [...root.querySelectorAll(config.item_selector)].filter((el) => !claimed.has(el));
+}
+
+/** Rows for `elements`, like scraper/extract.py:_extract_items.
  *  date_text is the raw string the scraper would hand to parse_date. */
-export function extractPreview(root, config) {
+function extractRows(elements, config) {
   const rows = [];
-  for (const el of root.querySelectorAll(config.item_selector)) {
+  for (const el of elements) {
     const linkEl = config.link_selector ? el.querySelector(config.link_selector) : el;
     const href = linkEl ? linkEl.getAttribute('href') : null;
     if (!href) continue;
@@ -63,13 +86,51 @@ export function extractPreview(root, config) {
   return rows;
 }
 
-/** {items, <field>_selector: number of items where that selector hits}. */
-export function selectorCounts(root, config) {
-  const items = [...root.querySelectorAll(config.item_selector)];
+/** {main, featured} rows. Main-list matches that featured_item_selector also
+ *  matches are skipped (the featured section claims them), as in
+ *  scraper/extract.py:extract_items. featured is before URL de-duplication. */
+export function extractSections(root, config) {
+  const claimed = claimedBy(root, config);
+  return {
+    main: extractRows(mainElements(root, config, claimed), config),
+    featured: config.featured_item_selector ? extractRows([...claimed], featuredConfig(config)) : [],
+  };
+}
+
+/** The featured rows the scraper keeps: URL not already seen (main list or an
+ *  earlier featured row). */
+export function keptFeatured(main, featured) {
+  const seen = new Set(main.map((r) => r.url));
+  const kept = [];
+  for (const row of featured) {
+    if (seen.has(row.url)) continue;
+    seen.add(row.url);
+    kept.push(row);
+  }
+  return kept;
+}
+
+/** [{url, title, category, date_text}] in extract_items order: main rows, then
+ *  the featured rows it keeps. */
+export function extractPreview(root, config) {
+  const { main, featured } = extractSections(root, config);
+  return [...main, ...keptFeatured(main, featured)];
+}
+
+function fieldCounts(items, config) {
   const counts = { items: items.length };
-  for (const key of ['link_selector', 'title_selector', 'date_selector', 'category_selector']) {
+  for (const key of FIELD_KEYS) {
     if (config[key]) counts[key] = items.filter((it) => it.querySelector(config[key])).length;
   }
+  return counts;
+}
+
+/** {items, <field>_selector: number of items where that selector hits}, main
+ *  list minus claimed elements; plus featured: {...} when there is a featured section. */
+export function selectorCounts(root, config) {
+  const claimed = claimedBy(root, config);
+  const counts = fieldCounts(mainElements(root, config, claimed), config);
+  if (config.featured_item_selector) counts.featured = fieldCounts([...claimed], featuredConfig(config));
   return counts;
 }
 

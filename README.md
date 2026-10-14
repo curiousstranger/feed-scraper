@@ -74,6 +74,15 @@ updated feeds back to the repo.
    JavaScript), and gives you the finished YAML to copy into
    `sites/<id>.yaml`.
 
+   If the page also has one "featured" article marked up differently from
+   the list (a hero at the top, say), the picker can capture it as a
+   featured section, written as the `featured_*` fields. It offers this
+   itself when your list selector also catches elements outside the list
+   (outlined purple dashed): click **Add as featured section**. Otherwise,
+   once the list is done, click **+ Add featured section** and click the
+   featured article. The featured section claims what it matches, so the
+   list selector may overlap it.
+
    Prefer `[class*="partial-name"]` substring selectors over full class
    names — many sites (Next.js, CSS Modules, etc.) inject a build-specific
    hash into class names, e.g. `PublicationList-module-scss-module__KxYrHG__listItem`,
@@ -95,8 +104,8 @@ updated feeds back to the repo.
    | `date_selector` | *(optional)* selector for a `<time>` (uses its `datetime` attribute if present, else its text) |
    | `date_format` | *(optional)* `strptime` format if automatic date parsing gets it wrong |
    | `category_selector` | *(optional)* selector for a category/tag |
-   | `featured_item_selector` | *(optional)* like `item_selector`, but for a separate "featured/promoted" block some sites show outside their main chronological listing — see `sites/anthropic-news.yaml` |
-   | `featured_title_selector`, `featured_date_selector`, `featured_date_format`, `featured_category_selector` | *(optional)* counterparts to the fields above, evaluated inside each featured item |
+   | `featured_item_selector` | *(optional)* like `item_selector`, but for a separate "featured/promoted" block some sites show outside their main chronological listing — see `sites/anthropic-news.yaml`. An element both `item_selector` and `featured_item_selector` match is scraped once, as featured |
+   | `featured_link_selector`, `featured_title_selector`, `featured_date_selector`, `featured_date_format`, `featured_category_selector` | *(optional)* counterparts to the fields above, evaluated inside each featured item |
    | `fetch_detail` | If true (default), fetch each *new* article's own page once to pull a description from its OpenGraph meta tags |
    | `max_items` | How many recent items to retain in the feed/state |
 

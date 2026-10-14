@@ -1,6 +1,7 @@
 import pathlib
 
 import yaml
+from bs4 import BeautifulSoup
 
 from scraper import extract
 
@@ -169,3 +170,146 @@ def test_anthropic_config_scrapes_featured_hero_and_side_links():
     side = items["https://www.anthropic.com/claude-opus-5-5"]
     assert side["title"] == "Introducing Claude Opus 5.5"
     assert side["published"] == "2026-09-22T00:00:00+00:00"
+
+
+HERO_HTML = """
+<html><body>
+<div class="list">
+  <article class="card featured"><a class="card-link" href="/posts/hero">
+    <h2>Hero post</h2><span class="kicker">Essays</span><p>A long summary.</p>
+  </a></article>
+  <div>
+    <article class="card"><a class="card-link" href="/posts/one">
+      <h3>Post one</h3><time datetime="2026-09-03">Sep 3, 2026</time>
+    </a></article>
+  </div>
+</div>
+</body></html>
+"""
+
+HERO_CONFIG = {
+    "base_url": "https://example.com",
+    "item_selector": "a.card-link",
+    "title_selector": "h3",
+    "date_selector": "time",
+    "featured_item_selector": "article.featured a.card-link",
+    "featured_title_selector": "h2",
+    "featured_category_selector": "span.kicker",
+}
+
+
+def test_element_matched_by_both_sections_is_extracted_once_as_featured():
+    """The featured section claims its elements: a hero that the main
+    item_selector also matches must not be scraped as a main-list item
+    (whose title_selector misses its <h2>, so the title would be the whole
+    card's text)."""
+    items = extract.extract_items(HERO_HTML, HERO_CONFIG)
+
+    assert items == [
+        {
+            "url": "https://example.com/posts/one",
+            "title": "Post one",
+            "category": None,
+            "published": "2026-09-03T00:00:00+00:00",
+        },
+        {
+            "url": "https://example.com/posts/hero",
+            "title": "Hero post",
+            "category": "Essays",
+            "published": None,
+        },
+    ]
+
+
+def test_featured_link_selector_takes_url_from_link_inside_featured_container():
+    html = """
+    <section class="hero"><span class="kicker">News</span><h2><a href="/posts/hero">Hero</a></h2></section>
+    <a class="row" href="/posts/one">Post one</a>
+    """
+    config = {
+        "base_url": "https://example.com",
+        "item_selector": "a.row",
+        "featured_item_selector": "section.hero",
+        "featured_link_selector": "a",
+        "featured_title_selector": "h2",
+        "featured_category_selector": "span.kicker",
+    }
+
+    items = extract.extract_items(html, config)
+
+    assert len(items) == 2
+    assert items[-1] == {
+        "url": "https://example.com/posts/hero",
+        "title": "Hero",
+        "category": "News",
+        "published": None,
+    }
+
+
+def test_same_url_as_two_distinct_elements_keeps_the_main_list_copy():
+    """Claiming is by element, not URL: when the hero and a main-list row are
+    different elements linking to the same article, the main list's copy wins
+    (URL de-duplication unchanged)."""
+    html = """
+    <div class="hero"><a class="hero-link" href="/posts/same"><h2>Hero title</h2></a></div>
+    <a class="row" href="/posts/same"><h3>Row title</h3></a>
+    """
+    config = {
+        "base_url": "https://example.com",
+        "item_selector": "a.row",
+        "title_selector": "h3",
+        "featured_item_selector": "div.hero a.hero-link",
+        "featured_title_selector": "h2",
+    }
+
+    assert extract.extract_items(html, config) == [
+        {"url": "https://example.com/posts/same", "title": "Row title", "category": None, "published": None}
+    ]
+
+
+def test_claiming_is_by_element_identity_not_equal_markup():
+    """bs4 Tags with identical markup compare (and hash) equal, so a set of
+    featured Tags would also swallow an identical-looking main-list element."""
+    card = '<a class="card-link" href="/posts/same">Same <span class="kicker">K</span></a>'
+    html = f'<div class="hero">{card}</div><div class="rows">{card}</div>'
+    config = {
+        "base_url": "https://example.com",
+        "item_selector": "a.card-link",
+        "featured_item_selector": "div.hero a.card-link",
+        "featured_title_selector": "span.kicker",
+    }
+
+    assert extract.extract_items(html, config) == [
+        {"url": "https://example.com/posts/same", "title": "Same K", "category": None, "published": None}
+    ]
+
+
+ANTHROPIC_NEWS_HTML = ANTHROPIC_FEATURED_HTML.replace(
+    "</body>",
+    """<ul class="PublicationList-module-scss-module__KxYrHG__list"><li>
+  <a class="PublicationList-module-scss-module__KxYrHG__listItem" href="/news/policy-brief">
+    <time class="PublicationList-module-scss-module__KxYrHG__date body-3" datetime="2026-09-01T00:00:00Z">Sep 1, 2026</time>
+    <span class="PublicationList-module-scss-module__KxYrHG__subject body-3">Policy</span>
+    <span class="PublicationList-module-scss-module__KxYrHG__title body-3">A policy brief</span>
+  </a>
+</li></ul>
+</body>""",
+)
+
+
+def test_anthropic_news_main_selector_never_matches_a_featured_element():
+    """Claiming must not change existing configs: on anthropic.com/news the
+    main and featured selectors match disjoint elements."""
+    config_path = pathlib.Path(__file__).parent.parent / "sites" / "anthropic-news.yaml"
+    config = yaml.safe_load(config_path.read_text())
+    soup = BeautifulSoup(ANTHROPIC_NEWS_HTML, "html.parser")
+
+    main = {id(el) for el in soup.select(config["item_selector"])}
+    featured = {id(el) for el in soup.select(config["featured_item_selector"])}
+
+    assert main and featured and not (main & featured)
+    assert [i["url"] for i in extract.extract_items(ANTHROPIC_NEWS_HTML, config)] == [
+        "https://www.anthropic.com/news/policy-brief",
+        "https://www.anthropic.com/claude-sonnet-5-5",
+        "https://www.anthropic.com/claude-opus-5-5",
+    ]

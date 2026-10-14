@@ -1,11 +1,12 @@
 // The picker UI: a Shadow-DOM panel plus page-click interception.
 import { itemSelectorFor, relativeSelector } from './selectors.js';
-import { generalize, itemContaining, MIN_ITEMS } from './generalize.js';
-import { extractPreview, selectorCounts, rawCheckVerdict } from './extract.js';
+import { generalize, featuredGeneralize, itemContaining, overlaps, yieldsLink, MIN_ITEMS } from './generalize.js';
+import { extractSections, keptFeatured, selectorCounts, rawCheckVerdict } from './extract.js';
 import { toYaml, slugForUrl, githubNewFileUrl, isValidSiteId } from './yaml.js';
 
 const FIELDS = ['link', 'title', 'date', 'category'];
 const NEXT_ARMED = { item: 'title', title: 'date', date: 'category', category: null, link: null };
+const FIELD_ORDER = ['title', 'date', 'category'];
 // Plain-language guidance. Deliberately generic: sites differ in which parts
 // they show, so every optional part says what to do when it's missing.
 const PROMPTS = {
@@ -18,6 +19,19 @@ const PROMPTS = {
   category:
     'Step 4 — Click the article\'s topic or section label, inside any orange box. No label? Click Skip.',
 };
+// Shown after a purple "Featured section" badge, so they don't read as main-list steps.
+const FEATURED_PROMPTS = {
+  item: 'Click the featured/hero article (outside the orange boxes).',
+  link: 'Click the link, inside the purple box, that opens the article.',
+  title: 'Click the featured article\'s headline, inside the purple box. No headline? Click Skip.',
+  date:
+    'Click the date the featured article was published, inside the purple box. ' +
+    'No date? Click Skip — the article\'s own page usually has one.',
+  category:
+    'Click the featured article\'s topic or section label, inside the purple box. No label? Click Skip.',
+};
+const FEATURED_IN_MAIN = 'That is part of the main list (orange boxes) — click the featured article outside them.';
+const NO_FEATURED_LINK = 'No link found there — click the featured article itself.';
 const DONE_PROMPT =
   'Done — check the table below shows the right headlines, dates and links, then click Copy YAML.';
 const LEVEL_HINT =
@@ -30,7 +44,13 @@ const QUERY_WARNING =
   'so remove any session tokens or keys from it before copying.';
 // Which preview column shows the value a field's selector extracts.
 const EXAMPLE_COLUMN = { link: 'url', title: 'title', date: 'date_text', category: 'category' };
-const OUTLINES = { item: '2px solid #e8590c', field: '2px solid #1c7ed6', hover: '2px dashed #e8590c' };
+const OUTLINES = {
+  item: '2px solid #e8590c',
+  featured: '2px solid #7048e8',
+  field: '2px solid #1c7ed6',
+  hover: '2px dashed #e8590c',
+  overmatch: '2px dashed #7048e8',
+};
 const BLOCKED_EVENTS = ['mousedown', 'mouseup', 'pointerdown', 'pointerup'];
 const PREVIEW_ROWS = 5;
 
@@ -56,14 +76,41 @@ const CSS = `
   .row small { max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #495057; }
   .warn { color: #c92a2a; }
   .ok { color: #2b8a3e; }
+  .group { border-top: 1px solid #dee2e6; margin-top: 6px; padding-top: 4px; }
+  .group h4 { margin: 2px 0; font-size: 13px; }
   [hidden] { display: none !important; }
   header .tools { display: flex; gap: 2px; }
   .collapsed section:not(.status) { display: none; }
   .collapsed .status > :not(.prompt):not(.message) { display: none; }
+  .prompt.featured { border-left: 4px solid #7048e8; background: #f3f0ff; padding: 4px 6px; }
+  .prompt .badge { background: #7048e8; color: #fff; border-radius: 3px; padding: 0 4px; }
 `;
 
 function escapeHtml(s) {
   return String(s ?? '').replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
+}
+
+/** 'featured:title' → {section: 'featured', field: 'title'}; 'title' → {section: 'main', field: 'title'}. */
+function parseArmed(armed) {
+  if (!armed) return { section: null, field: null };
+  const [a, b] = armed.split(':');
+  return b ? { section: a, field: b } : { section: 'main', field: a };
+}
+
+/** The armed value for a section's field; null field → null (Done). */
+function armedFor(section, field) {
+  if (!field) return null;
+  return section === 'featured' ? `featured:${field}` : field;
+}
+
+function emptySection() {
+  return {
+    levels: [],
+    index: -1,
+    itemSelector: null,
+    selectors: { link: null, title: null, date: null, category: null },
+    skipped: new Set(),
+  };
 }
 
 /**
@@ -104,17 +151,16 @@ export function createPicker(doc, options = {}) {
     rawCheck: null,
     note: '',
     skipped: new Set(),
+    featured: null,
   };
   let hovered = null;
   const savedOutlines = new Map();
   let checkGeneration = 0;
   let autoCollapsed = false; // shrunk by a Pick button, not by the user
 
-  const FIELD_ORDER = ['title', 'date', 'category'];
-
-  /** The first of title/date/category that has neither been picked nor skipped. */
-  function nextUnfinishedField() {
-    return FIELD_ORDER.find((f) => state.selectors[f] == null && !state.skipped.has(f)) ?? null;
+  /** The first of title/date/category in `sec` that has neither been picked nor skipped. */
+  function nextUnfinishedField(sec) {
+    return FIELD_ORDER.find((f) => sec.selectors[f] == null && !sec.skipped.has(f)) ?? null;
   }
 
   const host = doc.createElement('div');
@@ -150,32 +196,72 @@ export function createPicker(doc, options = {}) {
   doc.body.appendChild(host);
   const $ = (sel) => root.querySelector(sel);
 
-  const level = () => state.levels[state.index] ?? null;
+  /** The main list lives on `state` itself; the featured section on state.featured. */
+  const sectionState = (name) => (name === 'featured' ? state.featured : state);
+  const levelOf = (sec) => sec?.levels[sec.index] ?? null;
+  const level = () => levelOf(state);
+
+  /** Elements the featured section claims; the scraper skips them in the main list. */
+  function claimed() {
+    const sel = state.featured?.itemSelector;
+    return sel ? new Set(doc.querySelectorAll(sel)) : new Set();
+  }
+
+  /** Main-selector matches the scraper treats as main-list items. */
+  function mainMatches() {
+    const c = claimed();
+    return [...doc.querySelectorAll(state.itemSelector)].filter((el) => !c.has(el));
+  }
+
+  /** Main-selector matches outside the orange boxes and not claimed by the featured section. */
+  function overMatches() {
+    const lv = level();
+    if (!lv) return [];
+    const items = new Set(lv.items);
+    return mainMatches().filter((el) => !items.has(el));
+  }
 
   function config() {
     const lv = level();
     if (!lv) return null;
     const cfg = { ...state.meta, item_selector: state.itemSelector };
     for (const f of FIELDS) cfg[`${f}_selector`] = state.selectors[f];
+    const fs = state.featured;
+    if (fs?.itemSelector) {
+      cfg.featured_item_selector = fs.itemSelector;
+      for (const f of FIELDS) cfg[`featured_${f}_selector`] = fs.selectors[f];
+    }
     return cfg;
   }
 
-  function setIndex(index) {
-    state.index = index;
-    const lv = level();
-    state.itemSelector = itemSelectorFor(lv.el, lv.items);
+  function setIndex(index, name = 'main') {
+    const sec = sectionState(name);
+    sec.index = index;
+    const lv = levelOf(sec);
+    sec.itemSelector = itemSelectorFor(lv.el, lv.items);
     const link = lv.el.matches('a[href]') ? null : lv.el.querySelector('a[href]');
-    state.selectors = {
+    sec.selectors = {
       link: link ? relativeSelector(link, lv.el, lv.items) : null,
       title: null,
       date: null,
       category: null,
     };
-    levelMessage(lv);
+    // Recomputed from the main level even for the featured section, so a
+    // featured change clears stale messages but keeps the main list's warning.
+    if (level()) levelMessage(level());
+    else state.message = '';
     state.rawCheck = null;
-    state.armed = 'title';
-    state.skipped = new Set();
+    state.armed = armedFor(name, 'title');
+    sec.skipped = new Set();
     checkGeneration++;
+  }
+
+  /** What to arm after `field` of `section` is picked or skipped. A finished
+   *  featured flow returns to the first unfinished main-list field, if any. */
+  function nextArmed(section, field) {
+    const next = field === 'link' ? nextUnfinishedField(sectionState(section)) : NEXT_ARMED[field];
+    if (next) return armedFor(section, next);
+    return section === 'featured' ? armedFor('main', nextUnfinishedField(state)) : null;
   }
 
   /** Too few boxes: point at the level that repeats, or allow continuing if none does. */
@@ -197,32 +283,54 @@ export function createPicker(doc, options = {}) {
   }
 
   function pick(target) {
-    if (state.armed === 'item') {
+    const { section, field } = parseArmed(state.armed);
+    if (field === 'item' && section === 'main') {
       const { levels, index } = generalize(target);
       if (!levels.length) return;
       state.levels = levels;
       setIndex(Math.max(index, 0));
-      state.armed = NEXT_ARMED.item;
       regrow();
-    } else if (state.armed) {
-      const lv = level();
+    } else if (field === 'item') {
+      pickFeaturedItem(target);
+    } else if (field) {
+      const sec = sectionState(section);
+      const lv = levelOf(sec);
       const item = itemContaining(lv.items, target);
-      const field = state.armed === 'link' ? target.closest('a[href]') : target;
-      if (!item || !field || field === item || !item.contains(field)) {
-        state.message = 'That was outside the orange boxes — click inside one of them.';
+      const el = field === 'link' ? target.closest('a[href]') : target;
+      if (!item || !el || el === item || !item.contains(el)) {
+        const colour = section === 'featured' ? 'purple' : 'orange';
+        state.message = `That was outside the ${colour} boxes — click inside one of them.`;
         render();
         return;
       }
-      const sel = relativeSelector(field, item, lv.items);
+      const sel = relativeSelector(el, item, lv.items);
       state.message = sel ? '' : 'Could not build a selector for that element — try a nearby one.';
       if (sel) {
-        state.selectors[state.armed] = sel;
-        state.armed = state.armed === 'link' ? nextUnfinishedField() : NEXT_ARMED[state.armed];
+        sec.selectors[field] = sel;
+        state.armed = nextArmed(section, field);
         regrow();
       }
     }
     render();
     if (state.armed === null && state.rawCheck === null) runRawCheck();
+  }
+
+  /** Everything a featured level's item selector would claim on the page. */
+  const featuredClaims = (lv) => [...doc.querySelectorAll(itemSelectorFor(lv.el, lv.items))];
+
+  /** A featured-item click: the clicked hero (or its repeating group) becomes
+   *  the featured section, at the nearest level whose selector claims nothing
+   *  in or around the main list's boxes; refused if there is none (it would
+   *  claim the main list). */
+  function pickFeaturedItem(target) {
+    const { levels, index } = featuredGeneralize(target, level()?.items ?? [], featuredClaims);
+    if (index === -1) {
+      state.message = levels.some((l) => yieldsLink(l.el)) ? FEATURED_IN_MAIN : NO_FEATURED_LINK;
+      return;
+    }
+    state.featured = { ...emptySection(), levels };
+    setIndex(index, 'featured');
+    regrow();
   }
 
   async function runRawCheck() {
@@ -239,7 +347,12 @@ export function createPicker(doc, options = {}) {
       const rendered = selectorCounts(doc, cfg);
       const raw = selectorCounts(rawDoc, cfg);
       if (generation !== checkGeneration) return; // level changed while the fetch was in flight
-      state.rawCheck = { status: rawCheckVerdict(rendered.items, raw.items), rendered, raw };
+      state.rawCheck = {
+        status: rawCheckVerdict(rendered.items, raw.items),
+        featuredStatus: rendered.featured ? rawCheckVerdict(rendered.featured.items, raw.featured.items) : null,
+        rendered,
+        raw,
+      };
     } catch (err) {
       if (generation !== checkGeneration) return;
       state.rawCheck = { status: 'failed', error: String(err) };
@@ -289,10 +402,17 @@ export function createPicker(doc, options = {}) {
     const lv = level();
     if (lv) {
       for (const it of lv.items) outline(it, OUTLINES.item);
-      for (const f of ['title', 'date', 'category']) {
-        const sel = state.selectors[f];
+      for (const el of overMatches()) outline(el, OUTLINES.overmatch);
+    }
+    const flv = levelOf(state.featured);
+    if (flv) for (const it of flv.items) outline(it, OUTLINES.featured);
+    for (const sec of [state, state.featured]) {
+      const slv = levelOf(sec);
+      if (!slv) continue;
+      for (const f of FIELD_ORDER) {
+        const sel = sec.selectors[f];
         if (!sel) continue;
-        for (const it of lv.items) {
+        for (const it of slv.items) {
           const hit = it.querySelector(sel);
           if (hit) outline(hit, OUTLINES.field);
         }
@@ -303,22 +423,21 @@ export function createPicker(doc, options = {}) {
 
   function renderStatus() {
     const lv = level();
-    const optional = FIELD_ORDER.includes(state.armed);
+    const { section, field } = parseArmed(state.armed);
+    const featured = section === 'featured';
+    const prompt = !state.armed ? DONE_PROMPT : (featured ? FEATURED_PROMPTS : PROMPTS)[field];
     const parts = [
-      `<p class="prompt">${escapeHtml(state.armed ? PROMPTS[state.armed] : DONE_PROMPT)}
-        ${optional ? '<button data-action="skip">Skip</button>' : ''}</p>`,
+      `<p class="prompt${featured ? ' featured' : ''}">${featured ? '<b class="badge">Featured section</b> ' : ''}${escapeHtml(prompt)}
+        ${FIELD_ORDER.includes(field) ? '<button data-action="skip">Skip</button>' : ''}</p>`,
     ];
     if (lv) {
-      const total = doc.querySelectorAll(state.itemSelector).length;
-      parts.push(
-        `<p><b class="count">${lv.items.length}</b> items · level ${state.index + 1}/${state.levels.length}
-          <button data-action="up" ${state.index + 1 >= state.levels.length ? 'disabled' : ''}>↑ wider</button>
-          <button data-action="down" ${state.index <= 0 ? 'disabled' : ''}>↓ narrower</button></p>
-         <div class="row"><span>item</span><code>${escapeHtml(state.itemSelector)}</code>
-           <button data-action="arm:item">Re-pick</button></div>
-         <p class="hint">${escapeHtml(LEVEL_HINT)}</p>`,
-      );
-      if (total !== lv.items.length) {
+      parts.push(`<p class="hint">${escapeHtml(LEVEL_HINT)}</p>`);
+      const extra = overMatches();
+      const total = mainMatches().length;
+      if (extra.length && !state.featured?.itemSelector) {
+        parts.push(`<p class="warn overmatch">Your selector also catches ${extra.length} element(s) outside the list (purple) — e.g. a featured article.
+          <button data-action="featured-from-overmatch">Add as featured section</button></p>`);
+      } else if (total !== lv.items.length) {
         parts.push(`<p class="warn">Selector matches ${total} elements, not ${lv.items.length}.</p>`);
       }
     }
@@ -327,29 +446,56 @@ export function createPicker(doc, options = {}) {
   }
 
   function renderFields() {
-    const lv = level();
-    if (!lv) {
+    const cfg = config();
+    if (!cfg) {
       $('.fields').innerHTML = '';
       return;
     }
-    const itemIsLink = lv.el.matches('a[href]');
-    const first = extractPreview(doc, config())[0] ?? {};
-    const example = (f) => {
-      if (state.selectors[f]) {
-        const value = first[EXAMPLE_COLUMN[f]];
-        return value ? `“${value}”` : '(nothing found in the first article)';
+    const { main, featured } = extractSections(doc, cfg);
+    const groups = [sectionGroup('main', main[0] ?? {})];
+    if (state.featured) groups.push(sectionGroup('featured', featured[0] ?? {}));
+    else if (state.armed === null) groups.push('<button data-action="add-featured">+ Add featured section</button>');
+    $('.fields').innerHTML = groups.join('');
+  }
+
+  /** One section's block: count, ↑/↓, item row, field rows (+ Remove for featured).
+   *  `first` is that section's first extracted row, for the example values. */
+  function sectionGroup(name, first) {
+    const sec = sectionState(name);
+    const lv = levelOf(sec);
+    const featured = name === 'featured';
+    const p = featured ? 'featured:' : ''; // prefix of this section's armed values
+    const parts = [`<div class="group" data-group="${name}"><h4>${featured ? 'Featured section' : 'Main list'}</h4>`];
+    if (lv) {
+      const arg = featured ? ':featured' : '';
+      parts.push(
+        `<p><b class="count">${lv.items.length}</b> items · level ${sec.index + 1}/${sec.levels.length}
+          <button data-action="up${arg}" ${sec.index + 1 >= sec.levels.length ? 'disabled' : ''}>↑ wider</button>
+          <button data-action="down${arg}" ${sec.index <= 0 ? 'disabled' : ''}>↓ narrower</button></p>
+         <div class="row item"><span>item</span><code>${escapeHtml(sec.itemSelector)}</code>
+           <button data-action="arm:${p}item">Re-pick</button></div>`,
+      );
+      const example = (f) => {
+        if (sec.selectors[f]) {
+          const value = first[EXAMPLE_COLUMN[f]];
+          return value ? `“${value}”` : '(nothing found in the first article)';
+        }
+        return sec.skipped.has(f) ? 'Skipped' : '';
+      };
+      const itemIsLink = lv.el.matches('a[href]');
+      for (const f of FIELDS.filter((f) => !(f === 'link' && itemIsLink))) {
+        parts.push(`<div class="row field"><span>${LABELS[f]}</span>
+          <code data-field="${p}${f}">${escapeHtml(sec.selectors[f] ?? '—')}</code>
+          <small data-example="${p}${f}" title="${escapeHtml(example(f))}">${escapeHtml(example(f))}</small>
+          <button data-action="arm:${p}${f}">${state.armed === `${p}${f}` ? 'Picking…' : 'Pick'}</button>
+          ${f !== 'link' ? `<button data-action="clear:${p}${f}">Clear</button>` : ''}</div>`);
       }
-      return state.skipped.has(f) ? 'Skipped' : '';
-    };
-    $('.fields').innerHTML = FIELDS.filter((f) => !(f === 'link' && itemIsLink))
-      .map(
-        (f) => `<div class="row"><span>${LABELS[f]}</span>
-          <code data-field="${f}">${escapeHtml(state.selectors[f] ?? '—')}</code>
-          <small data-example="${f}" title="${escapeHtml(example(f))}">${escapeHtml(example(f))}</small>
-          <button data-action="arm:${f}">${state.armed === f ? 'Picking…' : 'Pick'}</button>
-          ${f !== 'link' ? `<button data-action="clear:${f}">Clear</button>` : ''}</div>`,
-      )
-      .join('');
+    } else {
+      parts.push('<p>Click the featured article on the page. <button data-action="arm:featured:item">Pick</button></p>');
+    }
+    if (featured) parts.push('<button data-action="remove-featured">Remove featured section</button>');
+    parts.push('</div>');
+    return parts.join('');
   }
 
   function renderPreview() {
@@ -358,11 +504,15 @@ export function createPicker(doc, options = {}) {
       $('.preview').innerHTML = '';
       return;
     }
-    const rows = extractPreview(doc, cfg).slice(0, PREVIEW_ROWS);
+    const { main, featured } = extractSections(doc, cfg);
+    const rows = [
+      ...keptFeatured(main, featured).map((r) => ({ ...r, star: true })),
+      ...main.slice(0, PREVIEW_ROWS),
+    ];
     $('.preview').innerHTML = `<table><tr><th>title</th><th>date</th><th>category</th><th>url</th></tr>${rows
       .map(
-        (r) => `<tr><td>${escapeHtml(r.title)}</td><td>${escapeHtml(r.date_text)}</td>
-          <td>${escapeHtml(r.category)}</td><td>${escapeHtml(r.url)}</td></tr>`,
+        (r) => `<tr${r.star ? ' class="featured"' : ''}><td>${r.star ? '★ ' : ''}${escapeHtml(r.title)}</td>
+          <td>${escapeHtml(r.date_text)}</td><td>${escapeHtml(r.category)}</td><td>${escapeHtml(r.url)}</td></tr>`,
       )
       .join('')}</table>`;
   }
@@ -379,6 +529,11 @@ export function createPicker(doc, options = {}) {
       html = `<p class="${cls}">rendered: ${rc.rendered.items} · raw HTML: ${rc.raw.items} ${rc.status === 'ok' ? '✓' : '✗'}</p>`;
       if (rc.status === 'js-rendered') {
         html += `<p class="warn">This list looks JavaScript-rendered; the scraper fetches raw HTML and won't see it.</p>`;
+      }
+      if (rc.featuredStatus) {
+        const ok = rc.featuredStatus === 'ok';
+        html += `<p class="${ok ? 'ok' : 'warn'}">featured — rendered: ${rc.rendered.featured.items} · raw HTML: ${rc.raw.featured.items} ${ok ? '✓' : '✗'}</p>`;
+        if (!ok) html += `<p class="warn">The featured section looks JavaScript-rendered; the scraper won't see it.</p>`;
       }
     }
     $('.check').innerHTML = `${html}${level() ? '<button data-action="check">Check raw HTML</button>' : ''}`;
@@ -446,30 +601,68 @@ export function createPicker(doc, options = {}) {
   function onPanelClick(e) {
     const action = e.target.closest('[data-action]')?.dataset.action;
     if (!action) return;
-    const [verb, arg] = action.split(':');
+    const [verb, ...rest] = action.split(':');
+    const arg = rest.join(':');
     if (verb === 'close') return destroy();
     if (verb === 'collapse') return toggleCollapsed();
     if (verb === 'side') return switchSide();
-    if (verb === 'up' && state.index + 1 < state.levels.length) setIndex(state.index + 1);
-    if (verb === 'down' && state.index > 0) setIndex(state.index - 1);
+    if (verb === 'up' || verb === 'down') {
+      const name = arg || 'main';
+      const sec = sectionState(name);
+      const next = sec.index + (verb === 'up' ? 1 : -1);
+      const lv = sec.levels[next];
+      if (lv && name === 'featured' && overlaps(featuredClaims(lv), level()?.items ?? [])) {
+        state.message = FEATURED_IN_MAIN; // that level would claim the main list
+      } else if (lv) setIndex(next, name);
+    }
     if (verb === 'arm') {
       state.armed = arg;
-      // Get out of the way while the user clicks on the page; pick() grows it back.
-      if (!$('.panel').classList.contains('collapsed')) {
-        setCollapsed(true);
-        autoCollapsed = true;
+      shrinkForPick();
+    }
+    if (verb === 'add-featured') {
+      state.featured = emptySection();
+      state.armed = 'featured:item';
+      shrinkForPick();
+    }
+    if (verb === 'featured-from-overmatch') {
+      const el = overMatches()[0];
+      if (el) {
+        state.featured = emptySection();
+        state.armed = 'featured:item';
+        return pick(el);
       }
     }
-    if (verb === 'skip') {
-      state.skipped.add(state.armed);
-      state.armed = NEXT_ARMED[state.armed];
+    if (verb === 'remove-featured') {
+      state.featured = null;
+      // Back to the first unfinished main-list field (null = Done).
+      if (parseArmed(state.armed).section === 'featured') state.armed = armedFor('main', nextUnfinishedField(state));
+      state.message = '';
+      state.rawCheck = null;
+      checkGeneration++;
     }
-    if (verb === 'clear') state.selectors[arg] = null;
+    if (verb === 'skip') {
+      const { section, field } = parseArmed(state.armed);
+      sectionState(section).skipped.add(field);
+      state.armed = nextArmed(section, field);
+    }
+    if (verb === 'clear') {
+      const { section, field } = parseArmed(arg);
+      sectionState(section).selectors[field] = null;
+    }
     if (verb === 'check') return runRawCheck();
     if (verb === 'copy') return copyYaml();
     if (verb === 'github') return openGithub();
     render();
-    if (verb === 'skip' && state.armed === null && state.rawCheck === null) runRawCheck();
+    if ((verb === 'skip' || verb === 'remove-featured') && state.armed === null && state.rawCheck === null) {
+      runRawCheck();
+    }
+  }
+
+  /** Get out of the way while the user clicks on the page; pick() grows it back. */
+  function shrinkForPick() {
+    if ($('.panel').classList.contains('collapsed')) return;
+    setCollapsed(true);
+    autoCollapsed = true;
   }
 
   // Minimised: only the header and the current instruction stay visible (see CSS).

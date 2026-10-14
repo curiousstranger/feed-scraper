@@ -31,7 +31,7 @@ export function similarElements(el, cache) {
   return [...el.ownerDocument.querySelectorAll(el.localName)].filter((o) => signaturePath(o, cache) === sig);
 }
 
-function yieldsLink(el) {
+export function yieldsLink(el) {
   return el.matches('a[href]') || el.querySelector('a[href]') !== null;
 }
 
@@ -67,6 +67,26 @@ export function generalize(clicked) {
     if (inner) return generalize(inner);
   }
   return { levels, index };
+}
+
+/** Whether any of `items` is, contains or sits inside any of `avoid`. */
+export function overlaps(items, avoid) {
+  return items.some((it) => avoid.some((a) => a === it || a.contains(it) || it.contains(a)));
+}
+
+/** generalize() for a featured section: when no level repeats — the usual case
+ *  for a single hero — the nearest level that is or contains a link, instead
+ *  of -1. Its items are whatever matches that level (usually just the one).
+ *  A level whose claimed elements (`claims(level)`, default its items) overlap
+ *  `avoid` (the main list's items) is never chosen: if generalize()'s level
+ *  does, the clean level below it that is closest to the click is used,
+ *  e.g. a hero inside one of several repeating page sections. -1 if none. */
+export function featuredGeneralize(clicked, avoid = [], claims = (l) => l.items) {
+  const { levels, index } = generalize(clicked);
+  if (index !== -1 && !overlaps(claims(levels[index]), avoid)) return { levels, index };
+  const usable = (l) => yieldsLink(l.el) && !overlaps(claims(l), avoid);
+  const below = index === -1 ? levels : levels.slice(0, index);
+  return { levels, index: below.findIndex(usable) };
 }
 
 /** The item that is or contains `node`, or null. */
