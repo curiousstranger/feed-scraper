@@ -1,6 +1,6 @@
 // The picker UI: a Shadow-DOM panel plus page-click interception.
 import { itemSelectorFor, relativeSelector } from './selectors.js';
-import { generalize, featuredGeneralize, itemContaining, yieldsLink, MIN_ITEMS } from './generalize.js';
+import { generalize, featuredGeneralize, itemContaining, overlaps, yieldsLink, MIN_ITEMS } from './generalize.js';
 import { extractSections, keptFeatured, selectorCounts, rawCheckVerdict } from './extract.js';
 import { toYaml, slugForUrl, githubNewFileUrl, isValidSiteId } from './yaml.js';
 
@@ -604,7 +604,10 @@ export function createPicker(doc, options = {}) {
       const name = arg || 'main';
       const sec = sectionState(name);
       const next = sec.index + (verb === 'up' ? 1 : -1);
-      if (next >= 0 && next < sec.levels.length) setIndex(next, name);
+      const lv = sec.levels[next];
+      if (lv && name === 'featured' && overlaps(featuredClaims(lv), level()?.items ?? [])) {
+        state.message = FEATURED_IN_MAIN; // that level would claim the main list
+      } else if (lv) setIndex(next, name);
     }
     if (verb === 'arm') {
       state.armed = arg;

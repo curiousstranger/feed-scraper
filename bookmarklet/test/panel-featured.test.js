@@ -321,3 +321,21 @@ test('refuses a featured item whose only selector would also claim the main list
   assert.equal(t.picker.state.armed, 'featured:item');
   assert.match(t.status(), /part of the main list/);
 });
+
+test('↑ on the featured section never widens it into the main list', () => {
+  const t = setup();
+  pickMainList(t);
+  t.button('add-featured').click();
+  t.click(t.$('.card__headline'));
+  const main = [...t.doc.querySelectorAll('a.card__link')].filter((a) => a.getAttribute('href') !== '/posts/hero');
+  const claimsMain = () =>
+    [...t.doc.querySelectorAll(t.picker.state.featured.itemSelector)].some((el) =>
+      main.some((m) => m === el || el.contains(m) || m.contains(el)),
+    );
+  t.button('up:featured').click();
+  assert.equal(t.picker.state.featured.itemSelector, 'article.card--featured');
+  t.button('up:featured').click(); // next level is div.posts, around the main list
+  assert.equal(claimsMain(), false);
+  assert.equal(t.picker.state.featured.itemSelector, 'article.card--featured');
+  assert.match(t.status(), /part of the main list/);
+});
