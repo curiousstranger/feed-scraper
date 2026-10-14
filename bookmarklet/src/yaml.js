@@ -1,4 +1,4 @@
-// Site config → sites/<id>.yaml text, plus the GitHub "new file" link.
+// Site config → sites/<id>.yaml text, plus the GitHub "new file" and "edit file" links.
 
 export const DEFAULT_USER_AGENT =
   'Mozilla/5.0 (compatible; PersonalSiteRSSBot/1.0; run by a single subscriber for personal use)';
@@ -85,4 +85,12 @@ export function githubNewFileUrl(repo, id, yaml) {
   const filename = encodeURIComponent(`sites/${id}.yaml`).replace(/%2F/g, '/');
   const url = `https://github.com/${repo}/new/main?filename=${filename}&value=${encodeURIComponent(yaml)}`;
   return { url, ok: url.length <= MAX_GITHUB_URL_LENGTH };
+}
+
+/**
+ * GitHub's editor for an existing sites/<id>.yaml. /new/ can't overwrite a file
+ * and /edit/ ignores ?value=, so the YAML goes via the clipboard instead.
+ */
+export function githubEditFileUrl(repo, id) {
+  return `https://github.com/${repo}/edit/main/sites/${encodeURIComponent(id)}.yaml`;
 }

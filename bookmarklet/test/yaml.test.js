@@ -1,6 +1,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { toYaml, slugForUrl, githubNewFileUrl, isValidSiteId, MAX_GITHUB_URL_LENGTH } from '../src/yaml.js';
+import {
+  toYaml,
+  slugForUrl,
+  githubNewFileUrl,
+  githubEditFileUrl,
+  isValidSiteId,
+  MAX_GITHUB_URL_LENGTH,
+} from '../src/yaml.js';
 
 const CFG = {
   id: 'example-blog',
@@ -52,6 +59,16 @@ test('githubNewFileUrl pre-fills path and content', () => {
   assert.equal(
     url,
     'https://github.com/curiousstranger/feed-scraper/new/main?filename=sites/example-blog.yaml&value=id%3A%20x%0A',
+  );
+});
+
+// GitHub's /new/ page only creates: committing to an existing path fails with
+// "A file with the same name already exists". Its /edit/ page ignores ?value=,
+// so the edit link carries no content.
+test('githubEditFileUrl opens an existing config in GitHub\'s editor', () => {
+  assert.equal(
+    githubEditFileUrl('curiousstranger/feed-scraper', 'anthropic-engineering'),
+    'https://github.com/curiousstranger/feed-scraper/edit/main/sites/anthropic-engineering.yaml',
   );
 });
 

@@ -2,7 +2,7 @@
 import { itemSelectorFor, relativeSelector } from './selectors.js';
 import { generalize, featuredGeneralize, itemContaining, overlaps, yieldsLink, MIN_ITEMS } from './generalize.js';
 import { extractSections, keptFeatured, selectorCounts, rawCheckVerdict } from './extract.js';
-import { toYaml, slugForUrl, githubNewFileUrl, isValidSiteId } from './yaml.js';
+import { toYaml, slugForUrl, githubNewFileUrl, githubEditFileUrl, isValidSiteId } from './yaml.js';
 
 const FIELDS = ['link', 'title', 'date', 'category'];
 const NEXT_ARMED = { item: 'title', title: 'date', date: 'category', category: null, link: null };
@@ -40,7 +40,7 @@ const LEVEL_HINT =
 const LABELS = { link: 'article link', title: 'headline', date: 'date', category: 'topic/section' };
 const ID_MESSAGE = 'id must be lowercase letters, digits and hyphens — it names the feed and state files.';
 const QUERY_WARNING =
-  'listing_url has a query string. It is written into the YAML (and sent to GitHub by Open in GitHub), ' +
+  'listing_url has a query string. It is written into the YAML (and sent to GitHub by New file in GitHub), ' +
   'so remove any session tokens or keys from it before copying.';
 // Which preview column shows the value a field's selector extracts.
 const EXAMPLE_COLUMN = { link: 'url', title: 'title', date: 'date_text', category: 'category' };
@@ -115,7 +115,7 @@ function emptySection() {
 
 /**
  * Mount the picker on `doc`. Options (all injectable for tests):
- *   repo       "owner/name" for Open in GitHub (null disables it)
+ *   repo       "owner/name" for the GitHub buttons (null disables them)
  *   fetchImpl  fetch used for the raw-HTML check
  *   clipboard  object with writeText(text) → Promise
  *   today      "YYYY-MM-DD" for the YAML header
@@ -188,7 +188,8 @@ export function createPicker(doc, options = {}) {
       <section class="output">
         <pre class="yaml"></pre>
         <button data-action="copy">Copy YAML</button>
-        <button data-action="github">Open in GitHub</button>
+        <button data-action="github">New file in GitHub</button>
+        <button data-action="github-edit">Update existing in GitHub</button>
         <p class="note"></p>
         <textarea hidden readonly></textarea>
       </section>
@@ -364,25 +365,36 @@ export function createPicker(doc, options = {}) {
     return toYaml(config(), { date: today });
   }
 
-  async function copyYaml() {
-    const text = yamlText();
+  /** Clipboard, else a selected textarea to copy from; either way sets the note. */
+  async function copyText(text, copiedNote) {
     const textarea = $('textarea');
     try {
       await clipboard.writeText(text);
       textarea.hidden = true;
-      state.note = 'Copied. Paste into sites/<id>.yaml.';
+      state.note = copiedNote;
     } catch {
       textarea.hidden = false;
       textarea.value = text;
       textarea.select();
       state.note = 'Clipboard blocked — press ⌘C / Ctrl+C to copy the selected text.';
     }
+  }
+
+  async function copyYaml() {
+    await copyText(yamlText(), 'Copied. Paste into sites/<id>.yaml.');
     render();
   }
 
   function openGithub() {
     const { url, ok } = githubNewFileUrl(repo, state.meta.id, yamlText());
     if (ok) win.open(url, '_blank', 'noopener');
+  }
+
+  // Copy before opening: the new tab takes focus, and the clipboard needs it.
+  async function editOnGithub() {
+    await copyText(yamlText(), "Copied. In GitHub's editor, select all and paste.");
+    win.open(githubEditFileUrl(repo, state.meta.id), '_blank', 'noopener');
+    render();
   }
 
   // --- rendering -----------------------------------------------------------
@@ -558,6 +570,9 @@ export function createPicker(doc, options = {}) {
     $('[data-action="copy"]').disabled = blocked;
     github.disabled = !ok || blocked;
     github.title = !repo ? 'Repository unknown' : ok ? '' : 'Too long for a URL — use Copy instead';
+    const edit = $('[data-action="github-edit"]');
+    edit.disabled = !repo || blocked;
+    edit.title = repo ? 'Copies the YAML and opens the existing file in GitHub\'s editor' : 'Repository unknown';
     $('.note').textContent = !validId
       ? ID_MESSAGE
       : state.note || (repo && !ok ? 'Too long for GitHub — use Copy instead.' : '');
@@ -652,6 +667,7 @@ export function createPicker(doc, options = {}) {
     if (verb === 'check') return runRawCheck();
     if (verb === 'copy') return copyYaml();
     if (verb === 'github') return openGithub();
+    if (verb === 'github-edit') return editOnGithub();
     render();
     if ((verb === 'skip' || verb === 'remove-featured') && state.armed === null && state.rawCheck === null) {
       runRawCheck();
