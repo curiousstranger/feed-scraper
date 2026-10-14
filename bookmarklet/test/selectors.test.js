@@ -36,6 +36,20 @@ test('classSignals: hashed CSS-modules class yields stable fragments, noise drop
   assert.deepEqual(values('Card_title__a1b2c'), ['[class*="Card"]', '[class*="title"]']);
 });
 
+test('classSignals: CSS-modules hash containing _ or - is recognised by position', () => {
+  // anthropic.com/engineering: hash is `_tpu-a`, which splits into `tpu` and `a`.
+  assert.deepEqual(values('ArticleList-module-scss-module___tpu-a__cardLink'), [
+    '[class*="ArticleList"]',
+    '[class*="cardLink"]',
+  ]);
+  // Hash `ab-Cd_`; the local name itself contains `__`.
+  assert.deepEqual(values('PostCard-module-css-module__ab-Cd___card__title'), [
+    '[class*="PostCard"]',
+    '[class*="card"]',
+    '[class*="title"]',
+  ]);
+});
+
 test('classSignals: plain BEM class is used verbatim', () => {
   assert.deepEqual(values('post-card__title'), ['.post-card__title']);
   assert.deepEqual(values('h-entry'), ['.h-entry']);
