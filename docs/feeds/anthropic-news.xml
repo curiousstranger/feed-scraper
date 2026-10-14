@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 08 Oct 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 14 Oct 2026 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Introducing Claude Opus 5</title>
       <link>https://www.anthropic.com/news/claude-opus-5</link>
@@ -222,6 +222,14 @@
       <guid isPermaLink="false">https://www.anthropic.com/news/2026-usage-policy-update</guid>
       <category>Announcements</category>
       <pubDate>Thu, 08 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Anthropic opens Singapore office and signs MOU with the Government of Singapore</title>
+      <link>https://www.anthropic.com/news/singapore-office-opening</link>
+      <description>Anthropic opens its fifth Asia-Pacific office in Singapore and signs an MOU with the government on AI safety, evaluation, and responsible adoption.</description>
+      <guid isPermaLink="false">https://www.anthropic.com/news/singapore-office-opening</guid>
+      <category>Announcements</category>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
     </item>
   </channel>
 </rss>
