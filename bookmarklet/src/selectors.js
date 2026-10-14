@@ -15,6 +15,10 @@ const UTILITY_PREFIX =
 // w-/h- only when followed by a Tailwind-style size, so microformats' h-entry survives.
 const UTILITY_SIZE = /^[wh]-(\d|full|screen|auto|px|fit|min|max)/;
 const IDENT = /^-?[A-Za-z_][A-Za-z0-9_-]*$/;
+// Next.js/Turbopack CSS modules: <File>-module-scss-module__<hash>__<local>. The
+// hash is 6 URL-safe base64 chars, so it may contain _ or - (`_tpu-a`) and only
+// its position, not its shape, identifies it.
+const CSS_MODULE = /^(.+)-module-(?:s?css|sass|less)-module__[A-Za-z0-9_-]{6}__(.+)$/;
 
 /** 5–8 alphanumerics that look machine-generated: letters mixed with digits,
  *  or mixed case that isn't a camelCase/PascalCase word (KxYrHG, a1b2c3). */
@@ -35,8 +39,9 @@ export function isUtilityClass(cls) {
  *  `.class`, or `[class*="segment"]` fragments for classes carrying a hash. */
 export function classSignals(cls) {
   if (isUtilityClass(cls) || CSS_IN_JS.test(cls)) return [];
-  const segments = cls.split(/[_-]+/).filter(Boolean);
-  if (!segments.some(isHashLike)) {
+  const cssModule = CSS_MODULE.exec(cls);
+  const segments = (cssModule ? `${cssModule[1]}_${cssModule[2]}` : cls).split(/[_-]+/).filter(Boolean);
+  if (!cssModule && !segments.some(isHashLike)) {
     return IDENT.test(cls) ? [{ value: cls, selector: `.${cls}` }] : [];
   }
   return segments
