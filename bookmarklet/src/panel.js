@@ -1,7 +1,7 @@
 // The picker UI: a Shadow-DOM panel plus page-click interception.
 import { itemSelectorFor, relativeSelector } from './selectors.js';
 import { generalize, featuredGeneralize, itemContaining, MIN_ITEMS } from './generalize.js';
-import { extractPreview, extractSections, selectorCounts, rawCheckVerdict } from './extract.js';
+import { extractSections, keptFeatured, selectorCounts, rawCheckVerdict } from './extract.js';
 import { toYaml, slugForUrl, githubNewFileUrl, isValidSiteId } from './yaml.js';
 
 const FIELDS = ['link', 'title', 'date', 'category'];
@@ -346,7 +346,12 @@ export function createPicker(doc, options = {}) {
       const rendered = selectorCounts(doc, cfg);
       const raw = selectorCounts(rawDoc, cfg);
       if (generation !== checkGeneration) return; // level changed while the fetch was in flight
-      state.rawCheck = { status: rawCheckVerdict(rendered.items, raw.items), rendered, raw };
+      state.rawCheck = {
+        status: rawCheckVerdict(rendered.items, raw.items),
+        featuredStatus: rendered.featured ? rawCheckVerdict(rendered.featured.items, raw.featured.items) : null,
+        rendered,
+        raw,
+      };
     } catch (err) {
       if (generation !== checkGeneration) return;
       state.rawCheck = { status: 'failed', error: String(err) };
@@ -497,11 +502,15 @@ export function createPicker(doc, options = {}) {
       $('.preview').innerHTML = '';
       return;
     }
-    const rows = extractPreview(doc, cfg).slice(0, PREVIEW_ROWS);
+    const { main, featured } = extractSections(doc, cfg);
+    const rows = [
+      ...keptFeatured(main, featured).map((r) => ({ ...r, star: true })),
+      ...main.slice(0, PREVIEW_ROWS),
+    ];
     $('.preview').innerHTML = `<table><tr><th>title</th><th>date</th><th>category</th><th>url</th></tr>${rows
       .map(
-        (r) => `<tr><td>${escapeHtml(r.title)}</td><td>${escapeHtml(r.date_text)}</td>
-          <td>${escapeHtml(r.category)}</td><td>${escapeHtml(r.url)}</td></tr>`,
+        (r) => `<tr${r.star ? ' class="featured"' : ''}><td>${r.star ? '★ ' : ''}${escapeHtml(r.title)}</td>
+          <td>${escapeHtml(r.date_text)}</td><td>${escapeHtml(r.category)}</td><td>${escapeHtml(r.url)}</td></tr>`,
       )
       .join('')}</table>`;
   }
@@ -518,6 +527,11 @@ export function createPicker(doc, options = {}) {
       html = `<p class="${cls}">rendered: ${rc.rendered.items} · raw HTML: ${rc.raw.items} ${rc.status === 'ok' ? '✓' : '✗'}</p>`;
       if (rc.status === 'js-rendered') {
         html += `<p class="warn">This list looks JavaScript-rendered; the scraper fetches raw HTML and won't see it.</p>`;
+      }
+      if (rc.featuredStatus) {
+        const ok = rc.featuredStatus === 'ok';
+        html += `<p class="${ok ? 'ok' : 'warn'}">featured — rendered: ${rc.rendered.featured.items} · raw HTML: ${rc.raw.featured.items} ${ok ? '✓' : '✗'}</p>`;
+        if (!ok) html += `<p class="warn">The featured section looks JavaScript-rendered; the scraper won't see it.</p>`;
       }
     }
     $('.check').innerHTML = `${html}${level() ? '<button data-action="check">Check raw HTML</button>' : ''}`;

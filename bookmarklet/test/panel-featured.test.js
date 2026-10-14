@@ -224,3 +224,40 @@ test('an exact main selector shows no over-match offer', () => {
   assert.equal(t.button('featured-from-overmatch'), null);
   assert.doesNotMatch(t.status(), /also catches|Selector matches/);
 });
+
+const previewRows = (t) =>
+  [...t.picker.root.querySelectorAll('.preview tr')].slice(1).map((tr) => [...tr.querySelectorAll('td')].map((td) => td.textContent));
+
+test('preview lists the kept featured rows first, marked ★, then the main rows', () => {
+  const t = setup();
+  pickMainList(t);
+  pickFeatured(t);
+  const rows = previewRows(t);
+  assert.deepEqual(rows[0], ['★ The hero post', '', 'Essays', 'https://hero.example.com/posts/hero']);
+  assert.deepEqual(rows.slice(1).map((r) => r[0]), ['Post one', 'Post two', 'Post three']);
+  assert.ok(t.picker.root.querySelector('.preview tr.featured'));
+});
+
+test('raw check counts the featured section and passes when it is in the raw HTML', async () => {
+  const t = setup();
+  pickMainList(t);
+  pickFeatured(t);
+  await settle();
+  const text = t.picker.root.querySelector('.check').textContent;
+  assert.match(text, /rendered: 3 · raw HTML: 3 ✓/);
+  assert.match(text, /featured — rendered: 1 · raw HTML: 1 ✓/);
+  assert.doesNotMatch(text, /JavaScript-rendered/);
+});
+
+test('raw check warns when the featured section is missing from the raw HTML', async () => {
+  const raw = HERO.replace(/<article class="card card--featured">[\s\S]*?<\/article>/, '');
+  const t = setup({ fetchImpl: async () => ({ ok: true, text: async () => raw }) });
+  pickMainList(t);
+  pickFeatured(t);
+  await settle();
+  const text = t.picker.root.querySelector('.check').textContent;
+  assert.match(text, /rendered: 3 · raw HTML: 3 ✓/);
+  assert.match(text, /featured — rendered: 1 · raw HTML: 0 ✗/);
+  assert.match(text, /The featured section looks JavaScript-rendered; the scraper won't see it\./);
+  assert.doesNotMatch(text, /This list looks JavaScript-rendered/);
+});
