@@ -19,15 +19,16 @@ const PROMPTS = {
   category:
     'Step 4 — Click the article\'s topic or section label, inside any orange box. No label? Click Skip.',
 };
+// Shown after a purple "Featured section" badge, so they don't read as main-list steps.
 const FEATURED_PROMPTS = {
-  item: 'Featured — click the featured/hero article (outside the orange boxes).',
-  link: 'Featured — click the link, inside the purple box, that opens the article.',
-  title: 'Featured — click the featured article\'s headline, inside the purple box. No headline? Click Skip.',
+  item: 'Click the featured/hero article (outside the orange boxes).',
+  link: 'Click the link, inside the purple box, that opens the article.',
+  title: 'Click the featured article\'s headline, inside the purple box. No headline? Click Skip.',
   date:
-    'Featured — click the date the featured article was published, inside the purple box. ' +
+    'Click the date the featured article was published, inside the purple box. ' +
     'No date? Click Skip — the article\'s own page usually has one.',
   category:
-    'Featured — click the featured article\'s topic or section label, inside the purple box. No label? Click Skip.',
+    'Click the featured article\'s topic or section label, inside the purple box. No label? Click Skip.',
 };
 const FEATURED_IN_MAIN = 'That is part of the main list (orange boxes) — click the featured article outside them.';
 const NO_FEATURED_LINK = 'No link found there — click the featured article itself.';
@@ -81,6 +82,8 @@ const CSS = `
   header .tools { display: flex; gap: 2px; }
   .collapsed section:not(.status) { display: none; }
   .collapsed .status > :not(.prompt):not(.message) { display: none; }
+  .prompt.featured { border-left: 4px solid #7048e8; background: #f3f0ff; padding: 4px 6px; }
+  .prompt .badge { background: #7048e8; color: #fff; border-radius: 3px; padding: 0 4px; }
 `;
 
 function escapeHtml(s) {
@@ -421,9 +424,10 @@ export function createPicker(doc, options = {}) {
   function renderStatus() {
     const lv = level();
     const { section, field } = parseArmed(state.armed);
-    const prompt = !state.armed ? DONE_PROMPT : (section === 'featured' ? FEATURED_PROMPTS : PROMPTS)[field];
+    const featured = section === 'featured';
+    const prompt = !state.armed ? DONE_PROMPT : (featured ? FEATURED_PROMPTS : PROMPTS)[field];
     const parts = [
-      `<p class="prompt">${escapeHtml(prompt)}
+      `<p class="prompt${featured ? ' featured' : ''}">${featured ? '<b class="badge">Featured section</b> ' : ''}${escapeHtml(prompt)}
         ${FIELD_ORDER.includes(field) ? '<button data-action="skip">Skip</button>' : ''}</p>`,
     ];
     if (lv) {

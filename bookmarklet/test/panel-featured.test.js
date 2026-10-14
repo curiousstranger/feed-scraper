@@ -54,7 +54,7 @@ test('+ Add featured section appears once the main list is done and arms the fea
   t.click(t.$('a[href="/posts/one"] .card__tag'));
   t.button('add-featured').click();
   assert.equal(t.picker.state.armed, 'featured:item');
-  assert.match(t.status(), /Featured — click the featured\/hero article \(outside the orange boxes\)\./);
+  assert.match(t.status(), /Featured section\s+Click the featured\/hero article \(outside the orange boxes\)\./);
   assert.ok(t.picker.root.querySelector('[data-group="featured"]'));
 });
 
@@ -283,6 +283,32 @@ test('engineering: over-match → Add as featured section → YAML matches the p
     assert.ok(t.yaml().includes(yamlLine(key, value)), `${key} in YAML`);
   }
   assert.doesNotMatch(t.status(), /also catches|Selector matches/);
+});
+
+test('engineering: after Add as featured section the prompt is marked purple as the featured section', () => {
+  const t = setup({}, ENGINEERING, 'https://www.anthropic.com/engineering');
+  const { clicks } = ENG_CASE;
+  const prompt = () => t.picker.root.querySelector('.status .prompt');
+  t.click(t.$(clicks.item));
+  assert.ok(!prompt().classList.contains('featured')); // main-list headline prompt: unmarked
+  assert.equal(prompt().querySelector('.badge'), null);
+  t.button('featured-from-overmatch').click();
+  assert.ok(prompt().classList.contains('featured'));
+  assert.equal(prompt().querySelector('.badge')?.textContent, 'Featured section');
+  assert.match(prompt().textContent, /^Featured section\s+Click the featured article's headline, inside the purple box\./);
+  t.click(t.$(clicks.featured.title));
+  t.button('skip').click();
+  t.button('skip').click(); // featured flow finished → back to the main list
+  assert.equal(t.picker.state.armed, 'title');
+  assert.ok(!prompt().classList.contains('featured'));
+  assert.equal(prompt().querySelector('.badge'), null);
+});
+
+test('the featured marker is styled purple, like the featured boxes', () => {
+  const t = setup();
+  const css = t.picker.root.querySelector('style').textContent;
+  assert.match(css, /\.prompt\.featured\s*\{[^}]*#7048e8/);
+  assert.match(css, /\.prompt \.badge\s*\{[^}]*#7048e8/);
 });
 
 const SECTIONS = readFileSync(new URL('./fixtures/sections.html', import.meta.url), 'utf8');

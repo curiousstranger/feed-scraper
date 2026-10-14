@@ -96,8 +96,12 @@ pick/skip/clear handlers work for either section.
    picked as the featured item.
 2. **Manual:** a **+ Add featured section** button, shown once the main flow
    reaches Done (and no featured section exists), arms `featured:item` with the
-   prompt: *"Featured — click the featured/hero article (outside the orange
-   boxes)."*
+   prompt: *"Click the featured/hero article (outside the orange boxes)."*
+   Every featured-flow prompt is marked as such: a purple **Featured section**
+   badge leads it and the prompt line gets a purple left border and tint, so
+   the switch from a main-list step (notably via the over-match button, where
+   nothing is clicked on the page) can't be mistaken for the main-list
+   prompt it replaces.
 
 ### Featured flow
 
