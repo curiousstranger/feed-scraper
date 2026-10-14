@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Hero Blog</title></head>
+<body>
+<!-- A main list plus one differently-marked "featured" hero. Hero and rows
+     share the card__link anchor class and the rows' wrapper is a bare <div>,
+     so no selector without :not() matches the rows but not the hero. -->
+<nav><a href="/">Home</a> <a href="/about">About</a></nav>
+<div class="posts">
+  <article class="card card--featured"><a class="card__link" href="/posts/hero">
+    <span class="card__label">Featured</span>
+    <h2 class="card__headline">The hero post</h2>
+    <p class="card__summary">A long summary of the hero post.</p>
+    <span class="card__tag">Essays</span>
+  </a></article>
+  <div>
+    <article class="card"><a class="card__link" href="/posts/one">
+      <h3 class="card__title">Post one</h3><time datetime="2026-09-03">Sep 3, 2026</time><span class="card__tag">Notes</span>
+    </a></article>
+    <article class="card"><a class="card__link" href="/posts/two">
+      <h3 class="card__title">Post two</h3><time datetime="2026-08-20">Aug 20, 2026</time><span class="card__tag">Travel</span>
+    </a></article>
+    <article class="card"><a class="card__link" href="/posts/three">
+      <h3 class="card__title">Post three</h3><time datetime="2026-08-02">Aug 2, 2026</time><span class="card__tag">Notes</span>
+    </a></article>
+  </div>
+</div>
+<footer><a href="/contact">Contact</a></footer>
+</body>
+</html>

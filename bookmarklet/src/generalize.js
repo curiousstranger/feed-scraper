@@ -69,6 +69,15 @@ export function generalize(clicked) {
   return { levels, index };
 }
 
+/** generalize() for a featured section: when no level repeats — the usual case
+ *  for a single hero — the nearest level that is or contains a link, instead
+ *  of -1. Its items are whatever matches that level (usually just the one). */
+export function featuredGeneralize(clicked) {
+  const result = generalize(clicked);
+  if (result.index !== -1) return result;
+  return { levels: result.levels, index: result.levels.findIndex((l) => yieldsLink(l.el)) };
+}
+
 /** The item that is or contains `node`, or null. */
 export function itemContaining(items, node) {
   return items.find((it) => it === node || it.contains(node)) ?? null;

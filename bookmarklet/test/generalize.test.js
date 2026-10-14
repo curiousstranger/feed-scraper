@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { generalize, itemContaining } from '../src/generalize.js';
+import { generalize, featuredGeneralize, itemContaining } from '../src/generalize.js';
 import { htmlDoc, loadFixture } from './helpers.js';
 
 test('clicking a field climbs to the nearest repeating level that has a link', () => {
@@ -61,4 +61,45 @@ test('clicking a Tailwind list container picks its rows, not the nav', () => {
   const doc = loadFixture('tailwind.html');
   const { levels, index } = generalize(doc.querySelector('main ul'));
   assert.deepEqual(levels[index].items, [...doc.querySelectorAll('main li')]);
+});
+
+test('featuredGeneralize: a lone hero falls back to the nearest level with a link', () => {
+  const doc = loadFixture('hero.html');
+  const hero = doc.querySelector('a[href="/posts/hero"]');
+  assert.equal(generalize(doc.querySelector('.card__headline')).index, -1);
+  const { levels, index } = featuredGeneralize(doc.querySelector('.card__headline'));
+  assert.equal(index, 1);
+  assert.equal(levels[index].el, hero);
+  assert.deepEqual(levels[index].items, [hero]);
+});
+
+test('featuredGeneralize: clicking the hero link itself uses that level', () => {
+  const doc = loadFixture('hero.html');
+  const hero = doc.querySelector('a[href="/posts/hero"]');
+  const { levels, index } = featuredGeneralize(hero);
+  assert.equal(index, 0);
+  assert.equal(levels[0].el, hero);
+});
+
+test('featuredGeneralize: a repeating featured group is used like generalize', () => {
+  const doc = loadFixture('hero.html');
+  const clicked = doc.querySelector('a[href="/posts/two"] h3');
+  const expected = generalize(clicked);
+  const { levels, index } = featuredGeneralize(clicked);
+  assert.equal(index, expected.index);
+  assert.deepEqual(levels[index].items, expected.levels[expected.index].items);
+});
+
+test('featuredGeneralize: a two-item group keeps both items', () => {
+  const doc = htmlDoc(`<main><div class="side">
+    <a class="side__link" href="/a"><h4 class="side__title">A</h4></a>
+    <a class="side__link" href="/b"><h4 class="side__title">B</h4></a></div></main>`);
+  const { levels, index } = featuredGeneralize(doc.querySelector('.side__title'));
+  assert.equal(levels[index].el.localName, 'a');
+  assert.equal(levels[index].items.length, 2);
+});
+
+test('featuredGeneralize: no link at any level → -1', () => {
+  const doc = htmlDoc('<main><div><p>No links here</p></div></main>');
+  assert.equal(featuredGeneralize(doc.querySelector('p')).index, -1);
 });
