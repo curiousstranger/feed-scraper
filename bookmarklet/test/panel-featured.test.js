@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { JSDOM } from 'jsdom';
 import { createPicker } from '../src/panel.js';
+import { loadCases } from './helpers.js';
 
 const HERO = readFileSync(new URL('./fixtures/hero.html', import.meta.url), 'utf8');
 const PURPLE = '2px solid #7048e8';
@@ -260,4 +261,26 @@ test('raw check warns when the featured section is missing from the raw HTML', a
   assert.match(text, /featured — rendered: 1 · raw HTML: 0 ✗/);
   assert.match(text, /The featured section looks JavaScript-rendered; the scraper won't see it\./);
   assert.doesNotMatch(text, /This list looks JavaScript-rendered/);
+});
+
+const ENGINEERING = readFileSync(new URL('./fixtures/engineering.html', import.meta.url), 'utf8');
+const ENG_CASE = loadCases().find((c) => c.fixture === 'engineering.html');
+const yamlLine = (key, value) => `${key}: '${value.replaceAll("'", "''")}'`;
+
+test('engineering: over-match → Add as featured section → YAML matches the parity case', () => {
+  const t = setup({}, ENGINEERING, 'https://www.anthropic.com/engineering');
+  const { clicks } = ENG_CASE;
+  t.click(t.$(clicks.item));
+  assert.match(t.status(), /also catches 1 element\(s\) outside the list/);
+  t.button('featured-from-overmatch').click();
+  t.click(t.$(clicks.featured.title));
+  t.button('skip').click(); // featured date: none in the listing
+  t.button('skip').click(); // featured topic
+  t.click(t.$(clicks.title)); // back on the main list
+  t.click(t.$(clicks.date));
+  t.button('skip').click(); // main topic
+  for (const [key, value] of Object.entries(ENG_CASE.expected_selectors)) {
+    assert.ok(t.yaml().includes(yamlLine(key, value)), `${key} in YAML`);
+  }
+  assert.doesNotMatch(t.status(), /also catches|Selector matches/);
 });
