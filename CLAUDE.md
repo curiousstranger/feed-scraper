@@ -55,6 +55,9 @@ Pipeline, run per site by `scraper/run.py:process_site`:
    `link_selector` points at a link nested inside it. `enrich_with_detail`
    optionally fetches a *new* item's own page once to backfill a
    description/title/date from its OpenGraph/meta tags.
+   `extract_items` adds an optional featured section (`featured_*` keys),
+   which claims its own elements: main-list matches that
+   `featured_item_selector` also matches are scraped once, as featured.
 3. **`scraper/state.py`** — merges freshly scraped items into
    `data/<id>.json`, keyed by URL. This is what makes feeds additive: a
    listing page only shows a site's newest N items, but state accumulates
