@@ -50,7 +50,8 @@ export function installPage(href) {
   <li>Check the table in the panel shows the right headlines, dates and links. Next to each part the
     panel shows what it found in the first article, so a wrong click is easy to spot (click Pick to redo it).</li>
   <li>Adjust the id/name if you like, then <b>Copy YAML</b> and save it as
-    <code>sites/&lt;id&gt;.yaml</code> (or use <b>Open in GitHub</b>).</li>
+    <code>sites/&lt;id&gt;.yaml</code> (or use <b>New file in GitHub</b>, or
+    <b>Update existing in GitHub</b> if that file already exists).</li>
   <li>Test it: <code>uv run python -m scraper.run &lt;id&gt;</code></li>
 </ol>
 <p>The panel shrinks by itself after you click a <b>Pick</b> button and grows back once you've clicked.

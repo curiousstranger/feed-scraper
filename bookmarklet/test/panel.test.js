@@ -148,6 +148,52 @@ test('Open in GitHub is disabled when the URL would be too long', () => {
   assert.match(picker.root.querySelector('.note').textContent, /use Copy instead/);
 });
 
+test('Update existing in GitHub copies the YAML, then opens the existing file in the editor', async () => {
+  const events = [];
+  const t = setup({ clipboard: { writeText: async (text) => events.push(['copy', text]) } });
+  t.window.open = (url, target) => events.push(['open', url, target]);
+  t.click(t.doc.querySelector('.post-card__excerpt'));
+  t.button('github-edit').click();
+  await settle();
+  assert.deepEqual(
+    events.map(([kind]) => kind),
+    ['copy', 'open'],
+  );
+  assert.match(events[0][1], /^item_selector: 'div\.post-card'$/m);
+  assert.deepEqual(events[1].slice(1), ['https://github.com/o/r/edit/main/sites/blog-example-posts.yaml', '_blank']);
+  assert.match(t.picker.root.querySelector('.note').textContent, /select all.*paste/i);
+});
+
+test('Update existing in GitHub still opens the editor when the clipboard is blocked, with the YAML selected', async () => {
+  const opened = [];
+  const t = setup({ clipboard: { writeText: async () => Promise.reject(new Error('denied')) } });
+  t.window.open = (url) => opened.push(url);
+  t.click(t.doc.querySelector('.post-card__excerpt'));
+  t.button('github-edit').click();
+  await settle();
+  const textarea = t.picker.root.querySelector('textarea');
+  assert.equal(textarea.hidden, false);
+  assert.match(textarea.value, /^item_selector: /m);
+  assert.deepEqual(opened, ['https://github.com/o/r/edit/main/sites/blog-example-posts.yaml']);
+  assert.match(t.picker.root.querySelector('.note').textContent, /Clipboard blocked/);
+});
+
+test('Update existing in GitHub stays enabled when the YAML is too long for a new-file URL', () => {
+  const { window, doc, picker, click, button } = setup();
+  click(doc.querySelector('.post-card__excerpt'));
+  const input = picker.root.querySelector('[data-meta="description"]');
+  input.value = 'x'.repeat(9000);
+  input.dispatchEvent(new window.Event('input', { bubbles: true }));
+  assert.equal(button('github').disabled, true);
+  assert.equal(button('github-edit').disabled, false);
+});
+
+test('Update existing in GitHub is disabled without a repository', () => {
+  const { doc, click, button } = setup({ repo: null });
+  click(doc.querySelector('.post-card__excerpt'));
+  assert.equal(button('github-edit').disabled, true);
+});
+
 test('Esc removes the panel, listeners and highlights', () => {
   const { window, doc, click } = setup();
   const card = doc.querySelector('.post-card');
@@ -377,11 +423,13 @@ test('with only one box outlined while a repeating level exists, Copy is disable
   button('up').click(); // main.posts: one box around the whole list
   assert.equal(button('copy').disabled, true);
   assert.equal(button('github').disabled, true);
+  assert.equal(button('github-edit').disabled, true);
   assert.match(picker.root.querySelector('.status .message').textContent, /whole list.*↓ narrower/);
 
   button('down').click();
   assert.equal(button('copy').disabled, false);
   assert.equal(button('github').disabled, false);
+  assert.equal(button('github-edit').disabled, false);
 });
 
 test('a page with no repeating articles can still continue with the single one (spec)', () => {
@@ -399,17 +447,19 @@ function setMeta(t, key, value) {
   input.dispatchEvent(new t.window.Event('input', { bubbles: true }));
 }
 
-test('an id that is not a plain slug disables Copy and Open in GitHub and says why', () => {
+test('an id that is not a plain slug disables Copy and both GitHub buttons and says why', () => {
   const t = setup();
   t.click(t.doc.querySelector('.post-card__excerpt'));
   setMeta(t, 'id', '../evil');
   assert.equal(t.button('copy').disabled, true);
   assert.equal(t.button('github').disabled, true);
+  assert.equal(t.button('github-edit').disabled, true);
   assert.match(t.picker.root.querySelector('.note').textContent, /id must be lowercase letters, digits and hyphens/);
 
   setMeta(t, 'id', 'evil-blog');
   assert.equal(t.button('copy').disabled, false);
   assert.equal(t.button('github').disabled, false);
+  assert.equal(t.button('github-edit').disabled, false);
   assert.doesNotMatch(t.picker.root.querySelector('.note').textContent, /id must be/);
 });
 
