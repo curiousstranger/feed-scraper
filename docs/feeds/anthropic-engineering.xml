@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
   <channel>
-    <title>Anthropic Engineering (unofficial)</title>
+    <title>Engineering \ Anthropic</title>
     <link>https://www.anthropic.com/engineering</link>
-    <description>Unofficial RSS feed scraped from anthropic.com/engineering — Anthropic does not publish an official feed.</description>
+    <description>Unofficial RSS feed scraped from https://www.anthropic.com/engineering</description>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
