@@ -52,14 +52,23 @@ def extract_items(html: str, config: dict) -> list[dict]:
     section (declared via featured_item_selector and friends) and merges it in.
     Some sites (e.g. anthropic.com/news) promote certain articles in a separate
     block that isn't part of the main chronological listing, so item_selector
-    alone misses them."""
-    soup = BeautifulSoup(html, "html.parser")
-    items = _extract_items(soup, config)
+    alone misses them.
 
-    if config.get("featured_item_selector"):
+    The featured section claims its elements: a main-list element that
+    featured_item_selector also matches is scraped once, as featured, so the
+    main selector may over-match into it (e.g. a hero sharing the list's link
+    class on anthropic.com/engineering)."""
+    soup = BeautifulSoup(html, "html.parser")
+    featured_selector = config.get("featured_item_selector")
+    # By id(): bs4 Tags with identical markup compare and hash equal.
+    claimed = {id(el) for el in soup.select(featured_selector)} if featured_selector else set()
+    items = _extract_items(soup, config, exclude_ids=claimed)
+
+    if featured_selector:
         featured_config = {
             "base_url": config["base_url"],
-            "item_selector": config["featured_item_selector"],
+            "item_selector": featured_selector,
+            "link_selector": config.get("featured_link_selector"),
             "title_selector": config.get("featured_title_selector"),
             "date_selector": config.get("featured_date_selector"),
             "date_format": config.get("featured_date_format"),
@@ -74,12 +83,14 @@ def extract_items(html: str, config: dict) -> list[dict]:
     return items
 
 
-def _extract_items(soup: BeautifulSoup, config: dict) -> list[dict]:
+def _extract_items(soup: BeautifulSoup, config: dict, exclude_ids: set[int] | frozenset = frozenset()) -> list[dict]:
     items = []
     # With link_selector, item_selector matches a container (e.g. an <article>
     # whose <a> wraps only the title) and the URL comes from a link inside it.
     link_selector = config.get("link_selector")
     for el in soup.select(config["item_selector"]):
+        if id(el) in exclude_ids:
+            continue
         link = el.select_one(link_selector) if link_selector else el
         href = link.get("href") if link else None
         if not href:
