@@ -243,7 +243,9 @@ export function createPicker(doc, options = {}) {
       date: null,
       category: null,
     };
-    if (name === 'main') levelMessage(lv);
+    // Recomputed from the main level even for the featured section, so a
+    // featured change clears stale messages but keeps the main list's warning.
+    if (level()) levelMessage(level());
     else state.message = '';
     state.rawCheck = null;
     state.armed = armedFor(name, 'title');

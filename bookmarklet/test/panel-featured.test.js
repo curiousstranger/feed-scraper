@@ -357,3 +357,17 @@ test('an empty featured section left for a main re-pick offers Pick and the over
   t.click(t.$('.card__headline'));
   assert.equal(t.picker.state.featured.itemSelector, 'article.card--featured a.card__link');
 });
+
+test('featured ↑/↓ keep the main list\'s level warning', () => {
+  const t = setup();
+  pickMainList(t);
+  pickFeatured(t);
+  t.button('up').click();
+  t.button('up').click(); // main box is now around the whole list
+  assert.equal(t.picker.state.blocked, true);
+  assert.match(t.status(), /Only 1 orange box — it's around the whole list/);
+  t.button('up:featured').click();
+  assert.equal(t.picker.state.featured.itemSelector, 'article.card--featured');
+  assert.match(t.status(), /Only 1 orange box — it's around the whole list/);
+  assert.equal(t.button('copy').disabled, true);
+});
