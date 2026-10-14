@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { generalize, featuredGeneralize, itemContaining } from '../src/generalize.js';
+import { generalize, featuredGeneralize, itemContaining, overlaps } from '../src/generalize.js';
 import { htmlDoc, loadFixture } from './helpers.js';
 
 test('clicking a field climbs to the nearest repeating level that has a link', () => {
@@ -102,4 +102,33 @@ test('featuredGeneralize: a two-item group keeps both items', () => {
 test('featuredGeneralize: no link at any level → -1', () => {
   const doc = htmlDoc('<main><div><p>No links here</p></div></main>');
   assert.equal(featuredGeneralize(doc.querySelector('p')).index, -1);
+});
+
+test('featuredGeneralize: a level overlapping `avoid` falls back to the nearest clean level below it', () => {
+  const doc = loadFixture('sections.html');
+  const clicked = doc.querySelector('.hero__title');
+  const main = [...doc.querySelectorAll('a.row')];
+  const plain = featuredGeneralize(clicked);
+  assert.equal(plain.levels[plain.index].el.className, 'page-section'); // the sections repeat
+  const { levels, index } = featuredGeneralize(clicked, main);
+  assert.equal(index, 1);
+  assert.equal(levels[index].el, doc.querySelector('a.hero__link'));
+});
+
+test('featuredGeneralize: every linked level overlapping `avoid` → -1', () => {
+  const doc = loadFixture('sections.html');
+  const main = [...doc.querySelectorAll('a.row')];
+  assert.equal(featuredGeneralize(doc.querySelector('a[href="/news/two"] .row__title'), main).index, -1);
+});
+
+test('overlaps: same element, or either contains the other', () => {
+  const doc = loadFixture('sections.html');
+  const row = doc.querySelector('a.row');
+  const li = row.parentElement;
+  const hero = doc.querySelector('a.hero__link');
+  assert.equal(overlaps([row], [row]), true);
+  assert.equal(overlaps([li], [row]), true);
+  assert.equal(overlaps([row.firstElementChild], [row]), true);
+  assert.equal(overlaps([hero], [row, li]), false);
+  assert.equal(overlaps([hero], []), false);
 });

@@ -284,3 +284,40 @@ test('engineering: over-match → Add as featured section → YAML matches the p
   }
   assert.doesNotMatch(t.status(), /also catches|Selector matches/);
 });
+
+const SECTIONS = readFileSync(new URL('./fixtures/sections.html', import.meta.url), 'utf8');
+
+test('a hero inside one of several repeating page sections can still be the featured section', () => {
+  const t = setup({}, SECTIONS, 'https://sections.example.com/news');
+  t.click(t.$('a[href="/news/two"] .row__title'));
+  t.click(t.$('a[href="/news/one"] .row__title'));
+  t.button('skip').click(); // date
+  t.button('skip').click(); // topic
+  assert.equal(t.picker.state.itemSelector, 'a.row');
+  t.button('add-featured').click();
+  t.click(t.$('.hero__title'));
+  assert.equal(t.picker.state.featured.itemSelector, 'a.hero__link');
+  assert.equal(t.picker.state.armed, 'featured:title');
+  assert.doesNotMatch(t.status(), /part of the main list/);
+});
+
+test('refuses a featured item whose only selector would also claim the main list', () => {
+  // The hero has a subset of the rows' classes in the same parent, so every
+  // selector for it (no :not()) also matches the rows.
+  const html = `<!doctype html><title>Subset</title><div class="posts">
+    <a class="card" href="/hero"><h2 class="card__title">Hero</h2></a>
+    <a class="card card--row" href="/1"><h3 class="card__title">One</h3></a>
+    <a class="card card--row" href="/2"><h3 class="card__title">Two</h3></a>
+    <a class="card card--row" href="/3"><h3 class="card__title">Three</h3></a></div>`;
+  const t = setup({}, html);
+  t.click(t.$('a[href="/2"] h3'));
+  t.click(t.$('a[href="/1"] h3'));
+  t.button('skip').click();
+  t.button('skip').click();
+  assert.equal(t.picker.state.itemSelector, 'a.card--row');
+  t.button('add-featured').click();
+  t.click(t.$('a[href="/hero"] h2'));
+  assert.equal(t.picker.state.featured.itemSelector, null);
+  assert.equal(t.picker.state.armed, 'featured:item');
+  assert.match(t.status(), /part of the main list/);
+});

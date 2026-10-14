@@ -1,6 +1,6 @@
 // The picker UI: a Shadow-DOM panel plus page-click interception.
 import { itemSelectorFor, relativeSelector } from './selectors.js';
-import { generalize, featuredGeneralize, itemContaining, MIN_ITEMS } from './generalize.js';
+import { generalize, featuredGeneralize, itemContaining, yieldsLink, MIN_ITEMS } from './generalize.js';
 import { extractSections, keptFeatured, selectorCounts, rawCheckVerdict } from './extract.js';
 import { toYaml, slugForUrl, githubNewFileUrl, isValidSiteId } from './yaml.js';
 
@@ -310,21 +310,17 @@ export function createPicker(doc, options = {}) {
     if (state.armed === null && state.rawCheck === null) runRawCheck();
   }
 
-  /** A featured-item click: refused if its items are in or around the main
-   *  list's boxes (it would claim the main list); otherwise the clicked hero
-   *  (or its repeating group) becomes the featured section. */
+  /** Everything a featured level's item selector would claim on the page. */
+  const featuredClaims = (lv) => [...doc.querySelectorAll(itemSelectorFor(lv.el, lv.items))];
+
+  /** A featured-item click: the clicked hero (or its repeating group) becomes
+   *  the featured section, at the nearest level whose selector claims nothing
+   *  in or around the main list's boxes; refused if there is none (it would
+   *  claim the main list). */
   function pickFeaturedItem(target) {
-    const { levels, index } = featuredGeneralize(target);
+    const { levels, index } = featuredGeneralize(target, level()?.items ?? [], featuredClaims);
     if (index === -1) {
-      state.message = NO_FEATURED_LINK;
-      return;
-    }
-    const mainItems = level()?.items ?? [];
-    const overlaps = levels[index].items.some((it) =>
-      mainItems.some((m) => m === it || m.contains(it) || it.contains(m)),
-    );
-    if (overlaps) {
-      state.message = FEATURED_IN_MAIN;
+      state.message = levels.some((l) => yieldsLink(l.el)) ? FEATURED_IN_MAIN : NO_FEATURED_LINK;
       return;
     }
     state.featured = { ...emptySection(), levels };
