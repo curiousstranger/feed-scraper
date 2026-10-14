@@ -270,7 +270,7 @@ test('each picked part shows the value it found on this page; skipped parts say 
 test('field rows use plain labels', () => {
   const { doc, picker, click } = setup();
   click(doc.querySelector('.post-card__excerpt'));
-  const labels = [...picker.root.querySelectorAll('.fields .row > span:first-child')].map((s) => s.textContent);
+  const labels = [...picker.root.querySelectorAll('.fields .row.field > span:first-child')].map((s) => s.textContent);
   assert.deepEqual(labels, ['article link', 'headline', 'date', 'topic/section']);
 });
 
