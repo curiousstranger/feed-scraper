@@ -1,5 +1,7 @@
-"""The scraper (extract_items, including any featured section) must extract the same items the bookmarklet previews, using the selectors the bookmarklet generates. Cases are shared with
-bookmarklet/test/parity.test.js via bookmarklet/test/cases.json."""
+"""The scraper (extract_items, including any featured section) must extract the
+same items the bookmarklet previews, using the selectors the bookmarklet
+generates. Cases are shared with bookmarklet/test/parity.test.js via
+bookmarklet/test/cases.json."""
 import json
 from pathlib import Path
 
