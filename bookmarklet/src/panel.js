@@ -428,7 +428,7 @@ export function createPicker(doc, options = {}) {
       parts.push(`<p class="hint">${escapeHtml(LEVEL_HINT)}</p>`);
       const extra = overMatches();
       const total = mainMatches().length;
-      if (extra.length && !state.featured) {
+      if (extra.length && !state.featured?.itemSelector) {
         parts.push(`<p class="warn overmatch">Your selector also catches ${extra.length} element(s) outside the list (purple) — e.g. a featured article.
           <button data-action="featured-from-overmatch">Add as featured section</button></p>`);
       } else if (total !== lv.items.length) {
@@ -485,7 +485,7 @@ export function createPicker(doc, options = {}) {
           ${f !== 'link' ? `<button data-action="clear:${p}${f}">Clear</button>` : ''}</div>`);
       }
     } else {
-      parts.push('<p>Click the featured article on the page.</p>');
+      parts.push('<p>Click the featured article on the page. <button data-action="arm:featured:item">Pick</button></p>');
     }
     if (featured) parts.push('<button data-action="remove-featured">Remove featured section</button>');
     parts.push('</div>');

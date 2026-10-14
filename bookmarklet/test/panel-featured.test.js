@@ -339,3 +339,21 @@ test('↑ on the featured section never widens it into the main list', () => {
   assert.equal(t.picker.state.featured.itemSelector, 'article.card--featured');
   assert.match(t.status(), /part of the main list/);
 });
+
+test('an empty featured section left for a main re-pick offers Pick and the over-match offer', () => {
+  const t = setup();
+  pickMainList(t);
+  t.button('add-featured').click();
+  t.button('arm:item').click(); // back to the main list before picking the hero
+  pickMainList(t);
+  assert.equal(t.picker.state.armed, null);
+  const group = t.picker.root.querySelector('[data-group="featured"]');
+  assert.match(group.textContent, /Click the featured article on the page\./);
+  const pickButton = group.querySelector('[data-action="arm:featured:item"]');
+  assert.equal(pickButton?.textContent, 'Pick');
+  assert.ok(t.button('featured-from-overmatch'));
+  pickButton.click();
+  assert.equal(t.picker.state.armed, 'featured:item');
+  t.click(t.$('.card__headline'));
+  assert.equal(t.picker.state.featured.itemSelector, 'article.card--featured a.card__link');
+});
