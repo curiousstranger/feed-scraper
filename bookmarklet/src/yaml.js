@@ -4,6 +4,12 @@ export const DEFAULT_USER_AGENT =
   'Mozilla/5.0 (compatible; PersonalSiteRSSBot/1.0; run by a single subscriber for personal use)';
 export const MAX_GITHUB_URL_LENGTH = 8000;
 const OPTIONAL_SELECTORS = ['link_selector', 'title_selector', 'date_selector', 'category_selector'];
+const FEATURED_SELECTORS = [
+  'featured_link_selector',
+  'featured_title_selector',
+  'featured_date_selector',
+  'featured_category_selector',
+];
 const YAML_KEYWORDS = new Set(['yes', 'no', 'true', 'false', 'on', 'off', 'null']);
 
 function doubleQuoted(s) {
@@ -33,7 +39,7 @@ function shouldQuoteId(id) {
   return !/^[a-z][a-z0-9-]*$/.test(id) || YAML_KEYWORDS.has(id);
 }
 
-/** YAML in sites/anthropic-news.yaml key order; unpicked optional selectors omitted. */
+/** YAML in sites/anthropic-news.yaml key order; unpicked optional selectors (and an absent featured section) omitted. */
 export function toYaml(cfg, { date }) {
   const id = shouldQuoteId(cfg.id) ? doubleQuoted(cfg.id) : cfg.id;
   const lines = [
@@ -50,6 +56,12 @@ export function toYaml(cfg, { date }) {
   ];
   for (const key of OPTIONAL_SELECTORS) {
     if (cfg[key]) lines.push(`${key}: ${singleQuoted(cfg[key])}`);
+  }
+  if (cfg.featured_item_selector) {
+    lines.push('', `featured_item_selector: ${singleQuoted(cfg.featured_item_selector)}`);
+    for (const key of FEATURED_SELECTORS) {
+      if (cfg[key]) lines.push(`${key}: ${singleQuoted(cfg[key])}`);
+    }
   }
   lines.push('', 'fetch_detail: true', 'max_items: 75', '', `user_agent: ${doubleQuoted(DEFAULT_USER_AGENT)}`, '');
   return lines.join('\n');

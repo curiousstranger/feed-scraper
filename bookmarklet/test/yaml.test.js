@@ -81,3 +81,29 @@ test('isValidSiteId: lowercase letters, digits and hyphens only, no leading hyph
     assert.equal(isValidSiteId(id), false, JSON.stringify(id));
   }
 });
+
+const FEATURED = {
+  featured_item_selector: 'article[class*="featured"] a',
+  featured_link_selector: null,
+  featured_title_selector: 'h2',
+  featured_date_selector: null,
+  featured_category_selector: "span[data-kind='tag']",
+};
+
+test('toYaml: a featured section follows the main selectors; unpicked featured fields omitted', () => {
+  const yaml = toYaml({ ...CFG, ...FEATURED }, { date: '2026-10-13' });
+  assert.match(
+    yaml,
+    /^category_selector: 'span\[data-kind=''tag''\]'\n\nfeatured_item_selector: 'article\[class\*="featured"\] a'\nfeatured_title_selector: 'h2'\nfeatured_category_selector: 'span\[data-kind=''tag''\]'\n\nfetch_detail: true$/m,
+  );
+});
+
+test('toYaml: featured_link_selector sits between the featured item and title', () => {
+  const yaml = toYaml({ ...CFG, ...FEATURED, featured_item_selector: 'section.hero', featured_link_selector: 'a' }, { date: '2026-10-13' });
+  assert.match(yaml, /^featured_item_selector: 'section\.hero'\nfeatured_link_selector: 'a'\nfeatured_title_selector: 'h2'$/m);
+});
+
+test('toYaml: no featured_item_selector → no featured keys at all', () => {
+  const yaml = toYaml({ ...CFG, ...FEATURED, featured_item_selector: null }, { date: '2026-10-13' });
+  assert.doesNotMatch(yaml, /featured_/);
+});
