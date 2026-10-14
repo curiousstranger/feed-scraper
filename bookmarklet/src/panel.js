@@ -48,6 +48,7 @@ const OUTLINES = {
   featured: '2px solid #7048e8',
   field: '2px solid #1c7ed6',
   hover: '2px dashed #e8590c',
+  overmatch: '2px dashed #7048e8',
 };
 const BLOCKED_EVENTS = ['mousedown', 'mouseup', 'pointerdown', 'pointerup'];
 const PREVIEW_ROWS = 5;
@@ -197,6 +198,26 @@ export function createPicker(doc, options = {}) {
   const levelOf = (sec) => sec?.levels[sec.index] ?? null;
   const level = () => levelOf(state);
 
+  /** Elements the featured section claims; the scraper skips them in the main list. */
+  function claimed() {
+    const sel = state.featured?.itemSelector;
+    return sel ? new Set(doc.querySelectorAll(sel)) : new Set();
+  }
+
+  /** Main-selector matches the scraper treats as main-list items. */
+  function mainMatches() {
+    const c = claimed();
+    return [...doc.querySelectorAll(state.itemSelector)].filter((el) => !c.has(el));
+  }
+
+  /** Main-selector matches outside the orange boxes and not claimed by the featured section. */
+  function overMatches() {
+    const lv = level();
+    if (!lv) return [];
+    const items = new Set(lv.items);
+    return mainMatches().filter((el) => !items.has(el));
+  }
+
   function config() {
     const lv = level();
     if (!lv) return null;
@@ -230,10 +251,12 @@ export function createPicker(doc, options = {}) {
     checkGeneration++;
   }
 
-  /** What to arm after `field` of `section` is picked or skipped. */
+  /** What to arm after `field` of `section` is picked or skipped. A finished
+   *  featured flow returns to the first unfinished main-list field, if any. */
   function nextArmed(section, field) {
     const next = field === 'link' ? nextUnfinishedField(sectionState(section)) : NEXT_ARMED[field];
-    return armedFor(section, next);
+    if (next) return armedFor(section, next);
+    return section === 'featured' ? armedFor('main', nextUnfinishedField(state)) : null;
   }
 
   /** Too few boxes: point at the level that repeats, or allow continuing if none does. */
@@ -371,7 +394,10 @@ export function createPicker(doc, options = {}) {
   function paint() {
     clearOutlines();
     const lv = level();
-    if (lv) for (const it of lv.items) outline(it, OUTLINES.item);
+    if (lv) {
+      for (const it of lv.items) outline(it, OUTLINES.item);
+      for (const el of overMatches()) outline(el, OUTLINES.overmatch);
+    }
     const flv = levelOf(state.featured);
     if (flv) for (const it of flv.items) outline(it, OUTLINES.featured);
     for (const sec of [state, state.featured]) {
@@ -399,8 +425,12 @@ export function createPicker(doc, options = {}) {
     ];
     if (lv) {
       parts.push(`<p class="hint">${escapeHtml(LEVEL_HINT)}</p>`);
-      const total = doc.querySelectorAll(state.itemSelector).length;
-      if (total !== lv.items.length) {
+      const extra = overMatches();
+      const total = mainMatches().length;
+      if (extra.length && !state.featured) {
+        parts.push(`<p class="warn overmatch">Your selector also catches ${extra.length} element(s) outside the list (purple) — e.g. a featured article.
+          <button data-action="featured-from-overmatch">Add as featured section</button></p>`);
+      } else if (total !== lv.items.length) {
         parts.push(`<p class="warn">Selector matches ${total} elements, not ${lv.items.length}.</p>`);
       }
     }
@@ -574,6 +604,14 @@ export function createPicker(doc, options = {}) {
       state.featured = emptySection();
       state.armed = 'featured:item';
       shrinkForPick();
+    }
+    if (verb === 'featured-from-overmatch') {
+      const el = overMatches()[0];
+      if (el) {
+        state.featured = emptySection();
+        state.armed = 'featured:item';
+        return pick(el);
+      }
     }
     if (verb === 'remove-featured') {
       state.featured = null;

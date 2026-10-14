@@ -136,7 +136,8 @@ test('Remove featured section mid-flow resets it and drops it from the YAML', ()
   assert.equal(t.picker.state.featured, null);
   assert.equal(t.picker.state.armed, null);
   assert.doesNotMatch(t.yaml(), /featured_/);
-  assert.equal(t.$('a[href="/posts/hero"]').style.outline, '');
+  // The main selector still catches the hero, so it reverts to the over-match offer (dashed), not the featured box.
+  assert.equal(t.$('a[href="/posts/hero"]').style.outline, '2px dashed #7048e8');
   assert.equal(t.picker.root.querySelector('[data-group="featured"]'), null);
   assert.ok(t.button('add-featured'));
 });
@@ -171,4 +172,55 @@ test('the fields area has a Main list group and a Featured section group', () =>
   const heads = [...t.picker.root.querySelectorAll('.fields .group h4')].map((h) => h.textContent);
   assert.deepEqual(heads, ['Main list', 'Featured section']);
   assert.ok(t.picker.root.querySelector('[data-group="featured"] [data-action="arm:featured:item"]'));
+});
+
+const DASHED = '2px dashed #7048e8';
+
+test('a main selector catching an element outside the list offers it as the featured section', () => {
+  const t = setup();
+  t.click(t.$('a[href="/posts/two"] h3'));
+  assert.match(t.status(), /Your selector also catches 1 element\(s\) outside the list \(purple\) — e\.g\. a featured article\./);
+  assert.ok(t.button('featured-from-overmatch'));
+  assert.equal(t.button('featured-from-overmatch').textContent.trim(), 'Add as featured section');
+  assert.doesNotMatch(t.status(), /Selector matches/);
+  assert.equal(t.$('a[href="/posts/hero"]').style.outline, DASHED);
+});
+
+test('Add as featured section starts the featured flow with that element picked; the warning clears', () => {
+  const t = setup();
+  t.click(t.$('a[href="/posts/two"] h3'));
+  t.button('featured-from-overmatch').click();
+  assert.equal(t.picker.state.featured.itemSelector, 'article.card--featured a.card__link');
+  assert.equal(t.picker.state.armed, 'featured:title');
+  assert.equal(t.$('a[href="/posts/hero"]').style.outline, PURPLE);
+  assert.doesNotMatch(t.status(), /also catches/);
+  assert.doesNotMatch(t.status(), /Selector matches/);
+});
+
+test('after the featured flow the panel returns to the unfinished main-list fields', () => {
+  const t = setup();
+  t.click(t.$('a[href="/posts/two"] h3'));
+  t.button('featured-from-overmatch').click();
+  t.click(t.$('.card__headline'));
+  t.button('skip').click(); // featured date
+  t.button('skip').click(); // featured topic
+  assert.equal(t.picker.state.armed, 'title');
+  assert.match(t.status(), /Step 2/);
+});
+
+test('removing the featured section brings the over-match offer back', () => {
+  const t = setup();
+  t.click(t.$('a[href="/posts/two"] h3'));
+  t.button('featured-from-overmatch').click();
+  t.button('remove-featured').click();
+  assert.match(t.status(), /also catches 1 element\(s\)/);
+  assert.equal(t.$('a[href="/posts/hero"]').style.outline, DASHED);
+});
+
+test('an exact main selector shows no over-match offer', () => {
+  const html = HERO.replace(/<article class="card card--featured">[\s\S]*?<\/article>/, '');
+  const t = setup({}, html);
+  t.click(t.$('a[href="/posts/two"] h3'));
+  assert.equal(t.button('featured-from-overmatch'), null);
+  assert.doesNotMatch(t.status(), /also catches|Selector matches/);
 });
