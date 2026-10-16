@@ -8,6 +8,14 @@
       "title": "Claude-shaped science",
       "url": "https://www.anthropic.com/research/claude-shaped-science"
     },
+    "https://www.anthropic.com/research/designing-efficient-quantum-circuits": {
+      "category": "Science",
+      "first_seen": "2026-10-16T19:34:39.394584+00:00",
+      "published": "2026-10-16T00:00:00+00:00",
+      "summary": "Working largely on its own, Claude designed quantum circuits that improve on the best published versions, in some cases by an order of magnitude or more.",
+      "title": "Designing more efficient quantum circuits with Claude",
+      "url": "https://www.anthropic.com/research/designing-efficient-quantum-circuits"
+    },
     "https://www.anthropic.com/research/distillation-defenses": {
       "category": "Policy",
       "first_seen": "2026-10-13T15:32:52.306070+00:00",
@@ -15,6 +23,14 @@
       "summary": "Illicit distillation allows model developers to copy frontier AI capabilities without creating proportionally robust safeguards. Here, we describe how we\u2019ve reduced the rate of distillation by more than 90%.",
       "title": "Strengthening our defenses against distillation attacks",
       "url": "https://www.anthropic.com/research/distillation-defenses"
+    },
+    "https://www.anthropic.com/research/ecdsa-curve-origins": {
+      "category": "Frontier Red Team",
+      "first_seen": "2026-10-16T19:34:39.394584+00:00",
+      "published": "2026-10-16T00:00:00+00:00",
+      "summary": "The decades-old mystery of the origins of one of the most popular cryptographic standards has been explained.",
+      "title": "Claude reveals ECDSA curve origins",
+      "url": "https://www.anthropic.com/research/ecdsa-curve-origins"
     },
     "https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities": {
       "category": "Frontier Red Team",
