@@ -105,14 +105,6 @@
       <pubDate>Fri, 16 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
-      <title>The AI expectations gap</title>
-      <link>https://www.anthropic.com/research/ai-expectations-gap</link>
-      <description>How will AI reshape the economy in the years ahead? What is the core source of disagreement about AI's future impact on the economy? This note presents new survey evidence on these questions.</description>
-      <guid isPermaLink="false">https://www.anthropic.com/research/ai-expectations-gap</guid>
-      <category>Economics</category>
-      <pubDate>Fri, 16 Oct 2026 00:00:00 +0000</pubDate>
-    </item>
-    <item>
       <title>Claude reveals ECDSA curve origins</title>
       <link>https://www.anthropic.com/research/ecdsa-curve-origins</link>
       <description>The decades-old mystery of the origins of one of the most popular cryptographic standards has been explained.</description>
@@ -126,6 +118,14 @@
       <description>Working largely on its own, Claude designed quantum circuits that improve on the best published versions, in some cases by an order of magnitude or more.</description>
       <guid isPermaLink="false">https://www.anthropic.com/research/designing-efficient-quantum-circuits</guid>
       <category>Science</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>The AI expectations gap</title>
+      <link>https://www.anthropic.com/research/ai-expectations-gap</link>
+      <description>How will AI reshape the economy in the years ahead? What is the core source of disagreement about AI's future impact on the economy? This note presents new survey evidence on these questions.</description>
+      <guid isPermaLink="false">https://www.anthropic.com/research/ai-expectations-gap</guid>
+      <category>Economics</category>
       <pubDate>Fri, 16 Oct 2026 00:00:00 +0000</pubDate>
     </item>
   </channel>
