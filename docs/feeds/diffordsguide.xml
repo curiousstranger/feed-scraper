@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
   <channel>
-    <title>Difford's Guide - the home of discerning drinkers</title>
+    <title>Difford’s Guide - the home of discerning drinkers</title>
     <link>https://www.diffordsguide.com/</link>
     <description>Unofficial RSS feed scraped from https://www.diffordsguide.com/</description>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 09 Oct 2026 06:15:11 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 18 Oct 2026 00:27:42 +0000</lastBuildDate>
     <item>
       <title>Cocktail of the Day18 September 2026</title>
       <link>https://www.diffordsguide.com/on-this-day/september/18</link>
@@ -448,6 +448,62 @@
       <description>On this day in 1967, Bolivian paramilitaries, working with the CIA, executed Che Guevara and spawned a thousand T-shirts.</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/09</guid>
       <pubDate>Fri, 09 Oct 2026 06:15:11 +0000</pubDate>
+    </item>
+    <item>
+      <title>It’s October 18th 2026 and today we are drinking a Black Tie.</title>
+      <link>https://www.diffordsguide.com/on-this-day/october/18</link>
+      <description>By order of the Croatian Parliament, no less, today is Cravat Day, a chance to celebrate the humble tie in all its forms and practice Croatian pride.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/18</guid>
+      <pubDate>Sun, 18 Oct 2026 00:27:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>Blush Spritz</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/42809/blush-spritz</link>
+      <description>Discover how to make a Blush Spritz using Vodka, Strawberry sugar syrup, Chamberyzette aperitif, Soda water (+ 1 more) in just 5 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42809/blush-spritz</guid>
+      <pubDate>Sun, 18 Oct 2026 00:27:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>Pineapple Mezcal Margarita</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/43002/pineapple-mezcal-margarita</link>
+      <description>Discover how to make a Pineapple Mezcal Margarita using Mezcal, Reposado tequila, Tropical curaçao liqueur (+ 3 more) in just 5 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/43002/pineapple-mezcal-margarita</guid>
+      <pubDate>Sun, 18 Oct 2026 00:27:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>Victoria (Bariana, 1896)</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/42869/victoria-bariana-1896</link>
+      <description>Discover how to make a Victoria (Bariana, 1896) using Cognac (brandy), Aged rum (6-10yr) and Green crème de menthe in just 5 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42869/victoria-bariana-1896</guid>
+      <pubDate>Sun, 18 Oct 2026 00:27:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>Calling Card</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/43000/calling-card</link>
+      <description>Discover how to make a Calling Card using Scotch whisky, Manzanilla sherry, Lemon juice (+ 2 more) in just 5 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/43000/calling-card</guid>
+      <pubDate>Sun, 18 Oct 2026 00:27:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>Mucho Grande</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/42996/mucho-grande</link>
+      <description>Discover how to make a Mucho Grande using Blanco tequila, Orange-red aperitivo, Amaro (e.g. Averna), Orange juice (+ 3 more) in 7 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42996/mucho-grande</guid>
+      <pubDate>Sun, 18 Oct 2026 00:27:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>20 best Coffee liqueur cocktails</title>
+      <link>https://www.diffordsguide.com/encyclopedia/3444/cocktails/20-best-coffee-liqueur-cocktails</link>
+      <description>Coffee liqueur cocktails made for after dinner and espresso lovers. Discover 20 top recipes, from Espresso Martini to Tiramisu.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/encyclopedia/3444/cocktails/20-best-coffee-liqueur-cocktails</guid>
+      <pubDate>Sun, 18 Oct 2026 00:27:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>20 best Triple Sec cocktails</title>
+      <link>https://www.diffordsguide.com/encyclopedia/3353/cocktails/20-best-triple-sec-cocktails</link>
+      <description>Triple sec cocktails: explore 20 top recipes featuring classics and modern favourites like the Margarita, Sidecar, Cosmopolitan and White Lady.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/encyclopedia/3353/cocktails/20-best-triple-sec-cocktails</guid>
+      <pubDate>Sun, 18 Oct 2026 00:27:42 +0000</pubDate>
     </item>
   </channel>
 </rss>
