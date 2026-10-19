@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 18 Oct 2026 00:27:42 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 19 Oct 2026 04:47:55 +0000</lastBuildDate>
     <item>
       <title>Cocktail of the Day18 September 2026</title>
       <link>https://www.diffordsguide.com/on-this-day/september/18</link>
@@ -504,6 +504,13 @@
       <description>Discover how to make a Blush Spritz using Vodka, Strawberry sugar syrup, Chamberyzette aperitif, Soda water (+ 1 more) in just 5 easy to follow steps</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42809/blush-spritz</guid>
       <pubDate>Sun, 18 Oct 2026 00:27:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>It’s October 19th 2026 and today we are drinking a Gin &amp; Tonic.</title>
+      <link>https://www.diffordsguide.com/on-this-day/october/19</link>
+      <description>Founded in 2010 and celebrated worldwide on the 19th of October, International Gin and Tonic Day is just as it sounds: an excuse to drink G&amp;Ts. If you need an excuse?</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/19</guid>
+      <pubDate>Mon, 19 Oct 2026 04:47:55 +0000</pubDate>
     </item>
   </channel>
 </rss>
