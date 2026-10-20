@@ -7,7 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 20 Oct 2026 20:01:25 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 20 Oct 2026 23:12:31 +0000</lastBuildDate>
     <item>
       <title>Cocktail of the Day18 September 2026</title>
       <link>https://www.diffordsguide.com/on-this-day/september/18</link>
@@ -525,6 +525,13 @@
       <description>Discover 20 mezcal cocktails, from Mezcal Margarita and Spicy Smoky Margarita to Last Word riffs. Expect smoky, sour, sweet and spicy drinks.</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/encyclopedia/2505/cocktails/20-best-mezcal-cocktails</guid>
       <pubDate>Tue, 20 Oct 2026 20:01:25 +0000</pubDate>
+    </item>
+    <item>
+      <title>It’s October 21st 2026 and today we are drinking a Mezcal Margarita.</title>
+      <link>https://www.diffordsguide.com/on-this-day/october/21</link>
+      <description>Perhaps this page should read 'International Mezcal Day,' because although this 'National Day' is an all-American creation, many of us around the world feel mezcal deserves a day of its own. A day when we devotees can show our appreciation for the artisanal Mexican producers who craft this delectable agave spirit and, well, for those of us who enjoy drinking mezcal.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/21</guid>
+      <pubDate>Tue, 20 Oct 2026 23:12:31 +0000</pubDate>
     </item>
   </channel>
 </rss>
