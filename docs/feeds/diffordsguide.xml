@@ -7,14 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 21 Oct 2026 23:24:48 +0000</lastBuildDate>
-    <item>
-      <title>Negroni Cocktail</title>
-      <link>https://www.diffordsguide.com/g/1078/negroni-cocktail</link>
-      <description>Discover Campari recipes built on a timeless classic base. Learn how this simple drink inspires contemporary variations, with easy ideas to try.</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/g/1078/negroni-cocktail</guid>
-      <pubDate>Fri, 18 Sep 2026 22:48:18 +0000</pubDate>
-    </item>
+    <lastBuildDate>Thu, 22 Oct 2026 23:26:11 +0000</lastBuildDate>
     <item>
       <title>Italicus Cocktail Competition</title>
       <link>https://www.diffordsguide.com/competition/1300/italicus-cocktail-competition</link>
@@ -532,6 +525,13 @@
       <description>Happy National Nut Day! Yes, that's right – October 22nd is the day we celebrate these little nuggets of goodness. With a reputation for being the healthier snack option, nuts have, in fact, been part of the human diet for at least 800,000 years, and for good reason.</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/22</guid>
       <pubDate>Wed, 21 Oct 2026 23:24:48 +0000</pubDate>
+    </item>
+    <item>
+      <title>It’s October 23rd 2026 and today we are drinking an Appletini (Sour Apple Martini).</title>
+      <link>https://www.diffordsguide.com/on-this-day/october/23</link>
+      <description>It all started in 1979 with Sony's Walkman. The portable cassette player then went digital with the invention of the first portable MP3 player in 1997. However, it was Apple's iPod, unveiled by Steve Jobs this day in 2001 that was truly game-changing, not just for how and where we enjoy music, but also for the music industry. Fortune called it Apple's 21st-Century Walkman.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/23</guid>
+      <pubDate>Thu, 22 Oct 2026 23:26:11 +0000</pubDate>
     </item>
   </channel>
 </rss>
