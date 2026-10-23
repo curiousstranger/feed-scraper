@@ -7,21 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 22 Oct 2026 23:26:11 +0000</lastBuildDate>
-    <item>
-      <title>Italicus Cocktail Competition</title>
-      <link>https://www.diffordsguide.com/competition/1300/italicus-cocktail-competition</link>
-      <description>Enter the Italicus cocktail competition and imagine a new way to spritz. Recipes must include at least 15ml Italicus Rosolio.</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/competition/1300/italicus-cocktail-competition</guid>
-      <pubDate>Fri, 18 Sep 2026 22:48:18 +0000</pubDate>
-    </item>
-    <item>
-      <title>Green Fizz</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/912/green-fizz</link>
-      <description>Discover how to make a Green Fizz using Gin, Green crème de menthe, Lemon juice, Sugar syrup rich (2:1) and Soda water in 6 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/912/green-fizz</guid>
-      <pubDate>Fri, 18 Sep 2026 22:48:18 +0000</pubDate>
-    </item>
+    <lastBuildDate>Fri, 23 Oct 2026 13:30:06 +0000</lastBuildDate>
     <item>
       <title>The Gentlemen</title>
       <link>https://www.diffordsguide.com/cocktails/recipe/42640/the-gentlemen</link>
@@ -532,6 +518,20 @@
       <description>It all started in 1979 with Sony's Walkman. The portable cassette player then went digital with the invention of the first portable MP3 player in 1997. However, it was Apple's iPod, unveiled by Steve Jobs this day in 2001 that was truly game-changing, not just for how and where we enjoy music, but also for the music industry. Fortune called it Apple's 21st-Century Walkman.</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/23</guid>
       <pubDate>Thu, 22 Oct 2026 23:26:11 +0000</pubDate>
+    </item>
+    <item>
+      <title>Dry Ice Martini</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/675/dry-ice-martini</link>
+      <description>Discover how to make a Dry Ice Martini using Vodka, Dry vermouth and Canadian icewine in just 5 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/675/dry-ice-martini</guid>
+      <pubDate>Fri, 23 Oct 2026 13:30:06 +0000</pubDate>
+    </item>
+    <item>
+      <title>20 best Halloween cocktails</title>
+      <link>https://www.diffordsguide.com/encyclopedia/2508/cocktails/20-best-halloween-cocktails</link>
+      <description>20 Halloween cocktails for All Hallows' Eve, with recipes for Black Daiquiri, Corpse Reviver, Pumpkin Daiquiri and more. Start your spooky set.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/encyclopedia/2508/cocktails/20-best-halloween-cocktails</guid>
+      <pubDate>Fri, 23 Oct 2026 13:30:06 +0000</pubDate>
     </item>
   </channel>
 </rss>
