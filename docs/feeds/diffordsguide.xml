@@ -7,77 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 23 Oct 2026 13:30:06 +0000</lastBuildDate>
-    <item>
-      <title>The Gentlemen</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/42640/the-gentlemen</link>
-      <description>Discover how to make a The Gentlemen using Blanco tequila, Apple juice, Ginger syrup and Tonic water in 6 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42640/the-gentlemen</guid>
-      <pubDate>Fri, 18 Sep 2026 22:48:18 +0000</pubDate>
-    </item>
-    <item>
-      <title>Borough</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/42607/borough</link>
-      <description>Discover how to make a Borough using Rye whiskey 50% abv, Red quinquina e.g. Dubonnet, Byrrh, Creole bitters and Orange bitters in 6 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42607/borough</guid>
-      <pubDate>Fri, 18 Sep 2026 22:48:18 +0000</pubDate>
-    </item>
-    <item>
-      <title>Bidi Bidi Bom Bom</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/42605/bidi-bidi-bom-bom</link>
-      <description>Discover how to make a Bidi Bidi Bom Bom using Blanco tequila, Orange-red aperitivo, Lime juice (+ 2 more) in 7 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42605/bidi-bidi-bom-bom</guid>
-      <pubDate>Fri, 18 Sep 2026 22:48:18 +0000</pubDate>
-    </item>
-    <item>
-      <title>Beach House</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/42604/beach-house</link>
-      <description>Discover how to make a Beach House using Blanco tequila, Mezcal, Orange-red aperitivo, Pineapple juice (+ 3 more) in just 5 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42604/beach-house</guid>
-      <pubDate>Fri, 18 Sep 2026 22:48:18 +0000</pubDate>
-    </item>
-    <item>
-      <title>Bait 'n' Switch</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/42603/bait-n-switch</link>
-      <description>Discover how to make a Bait n Switch using Mezcal, Chilli liqueur, Pineapple juice, Lime juice and Cinnamon syrup in just 5 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42603/bait-n-switch</guid>
-      <pubDate>Fri, 18 Sep 2026 22:48:18 +0000</pubDate>
-    </item>
-    <item>
-      <title>Bow and Arrow</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/42601/bow-and-arrow</link>
-      <description>Discover how to make a Bow and Arrow using Mezcal, Bourbon whiskey, Pineapple juice, Lime juice and Cinnamon syrup in just 5 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42601/bow-and-arrow</guid>
-      <pubDate>Fri, 18 Sep 2026 22:48:18 +0000</pubDate>
-    </item>
-    <item>
-      <title>Ponte Vecchio</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/42600/ponte-vecchio</link>
-      <description>Discover how to make a Ponte Vecchio using Aged grappa, Italian Brandy, Amaro (e.g. Nonino) (+ 2 more) in just 5 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42600/ponte-vecchio</guid>
-      <pubDate>Fri, 18 Sep 2026 22:48:18 +0000</pubDate>
-    </item>
-    <item>
-      <title>Pancho Villa (contemporary long version)</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/42474/pancho-villa-contemporary-long-version</link>
-      <description>Discover how to make a Pancho Villa (contemporary long version) using Aged rum (6-10yr), Gin, Apricot liqueur (+ 4 more) in 6 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42474/pancho-villa-contemporary-long-version</guid>
-      <pubDate>Fri, 18 Sep 2026 22:48:18 +0000</pubDate>
-    </item>
-    <item>
-      <title>Difford's House</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/42403/diffords-house</link>
-      <description>Discover how to make a Difford’s House using Old Tom gin, Maraschino liqueur, Bianco/blanco vermouth (+ 5 more) in just 5 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42403/diffords-house</guid>
-      <pubDate>Fri, 18 Sep 2026 22:48:18 +0000</pubDate>
-    </item>
-    <item>
-      <title>Lavender &amp; Honey Daiquiri</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/42325/lavender-and-honey-daiquiri</link>
-      <description>Discover how to make a Lavender and Honey Daiquiri using Light white rum, Lime juice, Lavender liqueur (+ 3 more) in just 5 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42325/lavender-and-honey-daiquiri</guid>
-      <pubDate>Fri, 18 Sep 2026 22:48:18 +0000</pubDate>
-    </item>
+    <lastBuildDate>Fri, 23 Oct 2026 19:58:05 +0000</lastBuildDate>
     <item>
       <title>Flyby</title>
       <link>https://www.diffordsguide.com/cocktails/recipe/42324/flyby</link>
@@ -513,11 +443,18 @@
       <pubDate>Wed, 21 Oct 2026 23:24:48 +0000</pubDate>
     </item>
     <item>
-      <title>It’s October 23rd 2026 and today we are drinking an Appletini (Sour Apple Martini).</title>
+      <title>iPod's birthday</title>
       <link>https://www.diffordsguide.com/on-this-day/october/23</link>
       <description>It all started in 1979 with Sony's Walkman. The portable cassette player then went digital with the invention of the first portable MP3 player in 1997. However, it was Apple's iPod, unveiled by Steve Jobs this day in 2001 that was truly game-changing, not just for how and where we enjoy music, but also for the music industry. Fortune called it Apple's 21st-Century Walkman.</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/23</guid>
       <pubDate>Thu, 22 Oct 2026 23:26:11 +0000</pubDate>
+    </item>
+    <item>
+      <title>20 best Halloween cocktails</title>
+      <link>https://www.diffordsguide.com/encyclopedia/2508/cocktails/20-best-halloween-cocktails</link>
+      <description>20 Halloween cocktails for All Hallows' Eve, with recipes for Black Daiquiri, Corpse Reviver, Pumpkin Daiquiri and more. Start your spooky set.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/encyclopedia/2508/cocktails/20-best-halloween-cocktails</guid>
+      <pubDate>Fri, 23 Oct 2026 13:30:06 +0000</pubDate>
     </item>
     <item>
       <title>Dry Ice Martini</title>
@@ -527,11 +464,74 @@
       <pubDate>Fri, 23 Oct 2026 13:30:06 +0000</pubDate>
     </item>
     <item>
-      <title>20 best Halloween cocktails</title>
-      <link>https://www.diffordsguide.com/encyclopedia/2508/cocktails/20-best-halloween-cocktails</link>
-      <description>20 Halloween cocktails for All Hallows' Eve, with recipes for Black Daiquiri, Corpse Reviver, Pumpkin Daiquiri and more. Start your spooky set.</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/encyclopedia/2508/cocktails/20-best-halloween-cocktails</guid>
-      <pubDate>Fri, 23 Oct 2026 13:30:06 +0000</pubDate>
+      <title>Amaretto Spritz</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/42105/amaretto-spritz</link>
+      <description>Discover how to make an Amaretto Spritz using Prosecco, Amaretto liqueur and Soda water in just 5 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42105/amaretto-spritz</guid>
+      <pubDate>Fri, 23 Oct 2026 19:58:05 +0000</pubDate>
+    </item>
+    <item>
+      <title>Coconut Espresso Martini</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/41858/coconut-espresso-martini</link>
+      <description>Discover how to make a Coconut Espresso Martini using Coconut flavoured rum, Coconut liqueur (+ 2 more) in just 5 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/41858/coconut-espresso-martini</guid>
+      <pubDate>Fri, 23 Oct 2026 19:58:05 +0000</pubDate>
+    </item>
+    <item>
+      <title>Virgin Redhead</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/42106/virgin-redhead</link>
+      <description>Discover how to make a Virgin Redhead using Gin, Raspberry liqueur, Crème de cassis, Sugar syrup rich (2:1) (+ 3 more) in 6 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42106/virgin-redhead</guid>
+      <pubDate>Fri, 23 Oct 2026 19:58:05 +0000</pubDate>
+    </item>
+    <item>
+      <title>Flaming Heart</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/42922/flaming-heart</link>
+      <description>Discover how to make a Flaming Heart using Blanco tequila, Licor 43, Pineapple juice, Sugar syrup rich (2:1) (+ 3 more) in just 5 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42922/flaming-heart</guid>
+      <pubDate>Fri, 23 Oct 2026 19:58:05 +0000</pubDate>
+    </item>
+    <item>
+      <title>Manhattan (Medium Dry)</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/42017/manhattan-medium-dry</link>
+      <description>Discover how to make a Manhattan (Medium Dry) using Rye whiskey 50% abv, Bourbon whiskey, Bianco/blanco vermouth (+ 1 more) in just 5 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42017/manhattan-medium-dry</guid>
+      <pubDate>Fri, 23 Oct 2026 19:58:05 +0000</pubDate>
+    </item>
+    <item>
+      <title>Halloween Martini</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/42802/halloween-martini</link>
+      <description>Discover how to make a Halloween Martini using Vodka, Blue curaçao liqueur, Dry vermouth, Fernet liqueur and Absinthe in 7 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42802/halloween-martini</guid>
+      <pubDate>Fri, 23 Oct 2026 19:58:05 +0000</pubDate>
+    </item>
+    <item>
+      <title>Farewell</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/42070/farewell</link>
+      <description>Discover how to make a Farewell using Sake, Rosso/sweet vermouth, Chartreuse Yellow and Orange bitters in just 5 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42070/farewell</guid>
+      <pubDate>Fri, 23 Oct 2026 19:58:05 +0000</pubDate>
+    </item>
+    <item>
+      <title>Long Saramago</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/42518/long-saramago</link>
+      <description>Discover how to make a Long Saramago using Blanco tequila, Bianco/blanco vermouth, Elderflower liqueur (+ 2 more) in just 5 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42518/long-saramago</guid>
+      <pubDate>Fri, 23 Oct 2026 19:58:05 +0000</pubDate>
+    </item>
+    <item>
+      <title>French Ruby</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/41518/french-ruby</link>
+      <description>Discover how to make a French Ruby using Cognac (brandy), Guignolet DAnjou and Chartreuse Green in just 5 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/41518/french-ruby</guid>
+      <pubDate>Fri, 23 Oct 2026 19:58:05 +0000</pubDate>
+    </item>
+    <item>
+      <title>Guava Lassi</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/43196/guava-lassi</link>
+      <description>Discover how to make a Guava Lassi using Vodka, Guava Liqueur and Yoghurt liqueur in just 5 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/43196/guava-lassi</guid>
+      <pubDate>Fri, 23 Oct 2026 19:58:05 +0000</pubDate>
     </item>
   </channel>
 </rss>
