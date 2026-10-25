@@ -7,14 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 25 Oct 2026 04:48:44 +0000</lastBuildDate>
-    <item>
-      <title>The Aftermath</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/42051/the-aftermath</link>
-      <description>Discover how to make a The Aftermath using Peated malt whisky, Vermouth alla vaniglia, Amaro (e.g. Averna) (+ 2 more) in just 5 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42051/the-aftermath</guid>
-      <pubDate>Fri, 18 Sep 2026 22:48:18 +0000</pubDate>
-    </item>
+    <lastBuildDate>Sun, 25 Oct 2026 19:05:17 +0000</lastBuildDate>
     <item>
       <title>Isle of Islay</title>
       <link>https://www.diffordsguide.com/cocktails/recipe/41792/isle-of-islay</link>
@@ -532,6 +525,13 @@
       <description>Today is the one and only official World Pasta Day. And no, that's not an internet invention. Today really IS World Pasta Day. And to commemorate it, the great and good of the pasta-making world will gather.</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/25</guid>
       <pubDate>Sun, 25 Oct 2026 04:48:44 +0000</pubDate>
+    </item>
+    <item>
+      <title>Nightwish</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/23038/nightwish</link>
+      <description>Discover how to make a Nightwish using Vodka, Fino sherry, Banana liqueur, Lemon juice, Sugar syrup rich (2:1) (+ 2 more) in just 5 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/23038/nightwish</guid>
+      <pubDate>Sun, 25 Oct 2026 19:05:17 +0000</pubDate>
     </item>
   </channel>
 </rss>
