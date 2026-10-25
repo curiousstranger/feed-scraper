@@ -7,14 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 23 Oct 2026 23:11:16 +0000</lastBuildDate>
-    <item>
-      <title>Tango (by Mattia Capezzuoli)</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/42107/tango-by-mattia-capezzuoli</link>
-      <description>Discover how to make a Tango (by Mattia Capezzuoli) using Blanco tequila, Rhubarb aperitivo (e.g. Santoni) (+ 3 more) in 6 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42107/tango-by-mattia-capezzuoli</guid>
-      <pubDate>Fri, 18 Sep 2026 22:48:18 +0000</pubDate>
-    </item>
+    <lastBuildDate>Sun, 25 Oct 2026 04:48:44 +0000</lastBuildDate>
     <item>
       <title>The Aftermath</title>
       <link>https://www.diffordsguide.com/cocktails/recipe/42051/the-aftermath</link>
@@ -532,6 +525,13 @@
       <description>On this day in 1945, as the world struggled to cope with the aftermath of World War II and the new world order that had emerged, the United Nations was established with the goal of preventing such a dreadful conflict from ever happening again. The world's largest international organization, 193 nations now belong to the United Nations.</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/24</guid>
       <pubDate>Fri, 23 Oct 2026 23:11:16 +0000</pubDate>
+    </item>
+    <item>
+      <title>World Pasta Day</title>
+      <link>https://www.diffordsguide.com/on-this-day/october/25</link>
+      <description>Today is the one and only official World Pasta Day. And no, that's not an internet invention. Today really IS World Pasta Day. And to commemorate it, the great and good of the pasta-making world will gather.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/25</guid>
+      <pubDate>Sun, 25 Oct 2026 04:48:44 +0000</pubDate>
     </item>
   </channel>
 </rss>
