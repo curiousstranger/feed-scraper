@@ -7,14 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 25 Oct 2026 19:05:17 +0000</lastBuildDate>
-    <item>
-      <title>Isle of Islay</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/41792/isle-of-islay</link>
-      <description>Discover how to make an Isle of Islay using Scotch whisky, Peated malt whisky, Lemon juice, Cinnamon syrup (+ 1 more) in just 5 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/41792/isle-of-islay</guid>
-      <pubDate>Fri, 18 Sep 2026 22:48:18 +0000</pubDate>
-    </item>
+    <lastBuildDate>Mon, 26 Oct 2026 04:53:53 +0000</lastBuildDate>
     <item>
       <title>Fizz Italiano</title>
       <link>https://www.diffordsguide.com/cocktails/recipe/41789/fizz-italiano</link>
@@ -532,6 +525,13 @@
       <description>Discover how to make a Nightwish using Vodka, Fino sherry, Banana liqueur, Lemon juice, Sugar syrup rich (2:1) (+ 2 more) in just 5 easy to follow steps</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/23038/nightwish</guid>
       <pubDate>Sun, 25 Oct 2026 19:05:17 +0000</pubDate>
+    </item>
+    <item>
+      <title>National Pumpkin Day</title>
+      <link>https://www.diffordsguide.com/on-this-day/october/26</link>
+      <description>Q: What are gourds afraid of?&#13;A: Things that go pumpkin the night.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/26</guid>
+      <pubDate>Mon, 26 Oct 2026 04:53:53 +0000</pubDate>
     </item>
   </channel>
 </rss>
