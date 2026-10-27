@@ -7,14 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 26 Oct 2026 04:53:53 +0000</lastBuildDate>
-    <item>
-      <title>Fizz Italiano</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/41789/fizz-italiano</link>
-      <description>Discover how to make a Fizz Italiano using Gin, Maraschino liqueur, Pink grapefruit juice, Lime juice (+ 3 more) in 6 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/41789/fizz-italiano</guid>
-      <pubDate>Fri, 18 Sep 2026 22:48:18 +0000</pubDate>
-    </item>
+    <lastBuildDate>Tue, 27 Oct 2026 05:11:35 +0000</lastBuildDate>
     <item>
       <title>Beverly Hills Hotel Cocktail</title>
       <link>https://www.diffordsguide.com/cocktails/recipe/2292/beverly-hills-hotel-cocktail</link>
@@ -532,6 +525,13 @@
       <description>Q: What are gourds afraid of?&#13;A: Things that go pumpkin the night.</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/26</guid>
       <pubDate>Mon, 26 Oct 2026 04:53:53 +0000</pubDate>
+    </item>
+    <item>
+      <title>National American Beer Day</title>
+      <link>https://www.diffordsguide.com/on-this-day/october/27</link>
+      <description>There's nothing quite like an ice-cold beer on a hot day. Or any day for that matter. So let 27th October, or National American Beer Day, be your perfect excuse to try a beer from one of over 7,000 breweries creating the definitive thirst-quencher in America.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/27</guid>
+      <pubDate>Tue, 27 Oct 2026 05:11:35 +0000</pubDate>
     </item>
   </channel>
 </rss>
