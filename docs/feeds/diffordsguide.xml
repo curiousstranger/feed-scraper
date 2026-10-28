@@ -7,14 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 27 Oct 2026 14:34:41 +0000</lastBuildDate>
-    <item>
-      <title>Roman Punch</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/1688/roman-punch</link>
-      <description>Discover how to make a Roman Punch using Aged Jamaican rum, Cognac (brandy), Orange Curaçao, Maraschino liqueur (+ 4 more) in 8 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/1688/roman-punch</guid>
-      <pubDate>Fri, 18 Sep 2026 22:48:18 +0000</pubDate>
-    </item>
+    <lastBuildDate>Wed, 28 Oct 2026 05:48:56 +0000</lastBuildDate>
     <item>
       <title>Macka</title>
       <link>https://www.diffordsguide.com/cocktails/recipe/1214/macka</link>
@@ -532,6 +525,13 @@
       <description>Discover how to make a Toasted Marshmallow Alexander using Cognac (brandy), Brown/dark cacao liqueur (+ 2 more) in just 5 easy to follow steps</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/43193/toasted-marshmallow-alexander</guid>
       <pubDate>Tue, 27 Oct 2026 14:34:41 +0000</pubDate>
+    </item>
+    <item>
+      <title>World Amaro Day</title>
+      <link>https://www.diffordsguide.com/on-this-day/october/28</link>
+      <description>Established by our friends at Amaro Lucano in 2024, World Amaro Day celebrates Italy's tradition of bittersweet liqueurs enjoyed as an aperivito, digestive and increasingly in cocktails.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/28</guid>
+      <pubDate>Wed, 28 Oct 2026 05:48:56 +0000</pubDate>
     </item>
   </channel>
 </rss>
