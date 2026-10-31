@@ -7,14 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 30 Oct 2026 20:50:42 +0000</lastBuildDate>
-    <item>
-      <title>Cocktail of the Day23 September 2026</title>
-      <link>https://www.diffordsguide.com/on-this-day/september/23</link>
-      <description>Today is Bi Visibility Day, also known as International Celebrate Bisexuality Day.</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/september/23</guid>
-      <pubDate>Wed, 23 Sep 2026 04:49:56 +0000</pubDate>
-    </item>
+    <lastBuildDate>Sat, 31 Oct 2026 05:51:24 +0000</lastBuildDate>
     <item>
       <title>Cocktail of the Day24 September 2026</title>
       <link>https://www.diffordsguide.com/on-this-day/september/24</link>
@@ -513,6 +506,13 @@
       <pubDate>Fri, 30 Oct 2026 15:04:55 +0000</pubDate>
     </item>
     <item>
+      <title>Password</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/43021/password</link>
+      <description>Discover how to make a Password using Oude genever, Gentian liqueur, Maraschino liqueur and Lime juice in just 5 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/43021/password</guid>
+      <pubDate>Fri, 30 Oct 2026 20:50:42 +0000</pubDate>
+    </item>
+    <item>
       <title>King Louie the 4th</title>
       <link>https://www.diffordsguide.com/cocktails/recipe/42675/king-louie-the-4th</link>
       <description>Discover how to make a King Louie the 4th using Scotch whisky, Ginger liqueur, Tawny port, Lillet Rouge (+ 2 more) in just 5 easy to follow steps</description>
@@ -527,11 +527,11 @@
       <pubDate>Fri, 30 Oct 2026 20:50:42 +0000</pubDate>
     </item>
     <item>
-      <title>Password</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/43021/password</link>
-      <description>Discover how to make a Password using Oude genever, Gentian liqueur, Maraschino liqueur and Lime juice in just 5 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/43021/password</guid>
-      <pubDate>Fri, 30 Oct 2026 20:50:42 +0000</pubDate>
+      <title>Halloween</title>
+      <link>https://www.diffordsguide.com/on-this-day/october/31</link>
+      <description>Ghosts and goblins, gargoyles and graves: it's that time of year again to cut up old sheets, paint on the fake blood, stock up on sweets and make a good effort to outdress the kids.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/31</guid>
+      <pubDate>Sat, 31 Oct 2026 05:51:24 +0000</pubDate>
     </item>
   </channel>
 </rss>
