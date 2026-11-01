@@ -7,14 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 31 Oct 2026 05:51:24 +0000</lastBuildDate>
-    <item>
-      <title>Cocktail of the Day24 September 2026</title>
-      <link>https://www.diffordsguide.com/on-this-day/september/24</link>
-      <description>America seems to have a 'national day' to celebrate pretty much everything and as we write what you read on this website, we thought it fitting that we recognise the importance of punctuation.</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/september/24</guid>
-      <pubDate>Thu, 24 Sep 2026 04:57:27 +0000</pubDate>
-    </item>
+    <lastBuildDate>Sun, 01 Nov 2026 06:14:28 +0000</lastBuildDate>
     <item>
       <title>Cocktail of the Day25 September 2026</title>
       <link>https://www.diffordsguide.com/on-this-day/september/25</link>
@@ -532,6 +525,13 @@
       <description>Ghosts and goblins, gargoyles and graves: it's that time of year again to cut up old sheets, paint on the fake blood, stock up on sweets and make a good effort to outdress the kids.</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/31</guid>
       <pubDate>Sat, 31 Oct 2026 05:51:24 +0000</pubDate>
+    </item>
+    <item>
+      <title>The Day Of The Dead</title>
+      <link>https://www.diffordsguide.com/on-this-day/november/01</link>
+      <description>Day of the Dead (Día de los Muertos) festivities are held on November 1st (All Saints' Day) and November 2nd (All Souls' Day), a celebration which (almost) seamlessly blends Christian beliefs with activities so firmly pre-Christian that the Aztecs would probably recognise them. Traditionally, today honours deceased children and tomorrow honours adults who have passed away.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/01</guid>
+      <pubDate>Sun, 01 Nov 2026 06:14:28 +0000</pubDate>
     </item>
   </channel>
 </rss>
