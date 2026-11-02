@@ -7,21 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 02 Nov 2026 06:15:30 +0000</lastBuildDate>
-    <item>
-      <title>Sangaree</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/42679/sangaree</link>
-      <description>Discover how to make a Sangaree using Verdelho madeira and Sugar syrup rich (2:1) in just 5 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42679/sangaree</guid>
-      <pubDate>Fri, 25 Sep 2026 13:52:25 +0000</pubDate>
-    </item>
-    <item>
-      <title>Desk Job</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/42643/desk-job</link>
-      <description>Discover how to make a Desk Job using Aged rum (6-10yr), OP high ester aged pot still rum, Cynar/carciofo amaro (+ 1 more) in just 5 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42643/desk-job</guid>
-      <pubDate>Fri, 25 Sep 2026 13:52:25 +0000</pubDate>
-    </item>
+    <lastBuildDate>Mon, 02 Nov 2026 18:26:44 +0000</lastBuildDate>
     <item>
       <title>Long Martini</title>
       <link>https://www.diffordsguide.com/cocktails/recipe/42641/long-martini</link>
@@ -532,6 +518,20 @@
       <description>The holidays and indeed party season will be upon us faster than you can say 'eat, drink and be merry,' and it just so happens that today we celebrate a tasty treat that any festive gathering or buffet would be remiss without - the devilled egg.</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/02</guid>
       <pubDate>Mon, 02 Nov 2026 06:15:30 +0000</pubDate>
+    </item>
+    <item>
+      <title>Sherry</title>
+      <link>https://www.diffordsguide.com/bws/1290/sherry</link>
+      <description>What is sherry? Learn how this fortified wine from Jerez is made, how it is aged, and why it is consistent year to year.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/bws/1290/sherry</guid>
+      <pubDate>Mon, 02 Nov 2026 18:26:44 +0000</pubDate>
+    </item>
+    <item>
+      <title>Sherry Cocktails</title>
+      <link>https://www.diffordsguide.com/g/1277/sherry-cocktails</link>
+      <description>Discover how sherry transforms cocktails with complexity, flavour, balance, and mouthfeel. Learn sherry styles and where they fit best.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/g/1277/sherry-cocktails</guid>
+      <pubDate>Mon, 02 Nov 2026 18:26:44 +0000</pubDate>
     </item>
   </channel>
 </rss>
