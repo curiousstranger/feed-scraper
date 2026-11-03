@@ -7,14 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 02 Nov 2026 18:26:44 +0000</lastBuildDate>
-    <item>
-      <title>Long Martini</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/42641/long-martini</link>
-      <description>Discover how to make a Long Martini using Gin, Dry vermouth and Lemonade in just 5 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42641/long-martini</guid>
-      <pubDate>Fri, 25 Sep 2026 13:52:25 +0000</pubDate>
-    </item>
+    <lastBuildDate>Tue, 03 Nov 2026 02:23:31 +0000</lastBuildDate>
     <item>
       <title>Geisha Martini</title>
       <link>https://www.diffordsguide.com/cocktails/recipe/3948/geisha-martini</link>
@@ -520,6 +513,13 @@
       <pubDate>Mon, 02 Nov 2026 06:15:30 +0000</pubDate>
     </item>
     <item>
+      <title>Sherry Cocktails</title>
+      <link>https://www.diffordsguide.com/g/1277/sherry-cocktails</link>
+      <description>Discover how sherry transforms cocktails with complexity, flavour, balance, and mouthfeel. Learn sherry styles and where they fit best.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/g/1277/sherry-cocktails</guid>
+      <pubDate>Mon, 02 Nov 2026 18:26:44 +0000</pubDate>
+    </item>
+    <item>
       <title>Sherry</title>
       <link>https://www.diffordsguide.com/bws/1290/sherry</link>
       <description>What is sherry? Learn how this fortified wine from Jerez is made, how it is aged, and why it is consistent year to year.</description>
@@ -527,11 +527,11 @@
       <pubDate>Mon, 02 Nov 2026 18:26:44 +0000</pubDate>
     </item>
     <item>
-      <title>Sherry Cocktails</title>
-      <link>https://www.diffordsguide.com/g/1277/sherry-cocktails</link>
-      <description>Discover how sherry transforms cocktails with complexity, flavour, balance, and mouthfeel. Learn sherry styles and where they fit best.</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/g/1277/sherry-cocktails</guid>
-      <pubDate>Mon, 02 Nov 2026 18:26:44 +0000</pubDate>
+      <title>David Embury's birthday</title>
+      <link>https://www.diffordsguide.com/on-this-day/november/03</link>
+      <description>The author of that seminal work, The Fine Art of Mixing Drinks, David Augustus Embury was born on this day in 1886 in Pine Woods, upstate New York.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/03</guid>
+      <pubDate>Tue, 03 Nov 2026 02:23:31 +0000</pubDate>
     </item>
   </channel>
 </rss>
