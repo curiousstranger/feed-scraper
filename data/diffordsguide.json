@@ -8,6 +8,14 @@
       "title": "Sherry",
       "url": "https://www.diffordsguide.com/bws/1290/sherry"
     },
+    "https://www.diffordsguide.com/cocktails/recipe/1069/john-collins": {
+      "category": null,
+      "first_seen": "2026-11-06T15:57:31.944450+00:00",
+      "published": null,
+      "summary": "Discover how to make a John Collins using Gin, Lemon juice, Sugar syrup rich (2:1) and Soda water in 6 easy to follow steps",
+      "title": "John Collins",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/1069/john-collins"
+    },
     "https://www.diffordsguide.com/cocktails/recipe/1144/lemon-drop-martini": {
       "category": null,
       "first_seen": "2026-10-02T14:46:02.228419+00:00",
@@ -15,14 +23,6 @@
       "summary": "Discover how to make a Lemon Drop Martini using Citrus vodka, Triple sec, Lemon juice, Sugar syrup rich (2:1) (+ 1 more) in just 5 easy to follow steps",
       "title": "Lemon Drop Martini",
       "url": "https://www.diffordsguide.com/cocktails/recipe/1144/lemon-drop-martini"
-    },
-    "https://www.diffordsguide.com/cocktails/recipe/1584/pompanski-martini": {
-      "category": null,
-      "first_seen": "2026-09-25T13:52:25.538254+00:00",
-      "published": null,
-      "summary": "Discover how to make a Pompanski Martini using Vodka, Triple sec, Pink grapefruit juice, Dry vermouth (+ 2 more) in just 5 easy to follow steps",
-      "title": "Pompanski Martini",
-      "url": "https://www.diffordsguide.com/cocktails/recipe/1584/pompanski-martini"
     },
     "https://www.diffordsguide.com/cocktails/recipe/195/bees-knees-with-rum-and-cream": {
       "category": null,
@@ -128,14 +128,6 @@
       "title": "Spicy Elderflower Margarita",
       "url": "https://www.diffordsguide.com/cocktails/recipe/42718/spicy-elderflower-margarita"
     },
-    "https://www.diffordsguide.com/cocktails/recipe/42755/tailspin": {
-      "category": null,
-      "first_seen": "2026-10-02T14:46:02.228419+00:00",
-      "published": null,
-      "summary": "Discover how to make a Tailspin using Red bitter liqueur, Gin, Chartreuse Green, Vermouth alla vaniglia and Orange bitters in 6 easy to follow steps",
-      "title": "Tailspin",
-      "url": "https://www.diffordsguide.com/cocktails/recipe/42755/tailspin"
-    },
     "https://www.diffordsguide.com/cocktails/recipe/42802/halloween-martini": {
       "category": null,
       "first_seen": "2026-10-23T19:58:05.184952+00:00",
@@ -143,30 +135,6 @@
       "summary": "Discover how to make a Halloween Martini using Vodka, Blue cura\u00e7ao liqueur, Dry vermouth, Fernet liqueur and Absinthe in 7 easy to follow steps",
       "title": "Halloween Martini",
       "url": "https://www.diffordsguide.com/cocktails/recipe/42802/halloween-martini"
-    },
-    "https://www.diffordsguide.com/cocktails/recipe/42803/up-to-date": {
-      "category": null,
-      "first_seen": "2026-10-02T14:46:02.228419+00:00",
-      "published": null,
-      "summary": "Discover how to make an Up To Date using Rye whiskey 50% abv, Oloroso sherry, Grand Marnier and Aromatic bitters in just 5 easy to follow steps",
-      "title": "Up To Date",
-      "url": "https://www.diffordsguide.com/cocktails/recipe/42803/up-to-date"
-    },
-    "https://www.diffordsguide.com/cocktails/recipe/42805/pecan-pie-tai": {
-      "category": null,
-      "first_seen": "2026-10-02T14:46:02.228419+00:00",
-      "published": null,
-      "summary": "Discover how to make a Pecan Pie Tai using Aged rum (6-10yr), Tropical cura\u00e7ao liqueur, Pecan pie syrup (+ 2 more) in just 5 easy to follow steps",
-      "title": "Pecan Pie Tai",
-      "url": "https://www.diffordsguide.com/cocktails/recipe/42805/pecan-pie-tai"
-    },
-    "https://www.diffordsguide.com/cocktails/recipe/42806/creamy-pecan-pie": {
-      "category": null,
-      "first_seen": "2026-10-02T14:46:02.228419+00:00",
-      "published": null,
-      "summary": "Discover how to make a Creamy Pecan Pie using Vanilla vodka, Irish cream liqueur, Scotch whisky, Pecan pie syrup (+ 1 more) in 6 easy to follow steps",
-      "title": "Creamy Pecan Pie",
-      "url": "https://www.diffordsguide.com/cocktails/recipe/42806/creamy-pecan-pie"
     },
     "https://www.diffordsguide.com/cocktails/recipe/42809/blush-spritz": {
       "category": null,
@@ -240,6 +208,110 @@
       "title": "Guava Lassi",
       "url": "https://www.diffordsguide.com/cocktails/recipe/43196/guava-lassi"
     },
+    "https://www.diffordsguide.com/cocktails/recipe/43243/gimlet": {
+      "category": null,
+      "first_seen": "2026-11-06T15:57:31.944450+00:00",
+      "published": null,
+      "summary": "Discover how to make a Gimlet using Gin, Lime cordial and Chilled water in just 5 easy to follow steps",
+      "title": "Gimlet",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/43243/gimlet"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/43244/mustang-margarita": {
+      "category": null,
+      "first_seen": "2026-11-06T15:57:31.944450+00:00",
+      "published": null,
+      "summary": "Discover how to make a Mustang Margarita using Blanco tequila, Rosolio Bergamotto, Apricot liqueur and Lemon juice in just 5 easy to follow steps",
+      "title": "Mustang Margarita",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/43244/mustang-margarita"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/43245/koji-san": {
+      "category": null,
+      "first_seen": "2026-11-06T15:57:31.944450+00:00",
+      "published": null,
+      "summary": "Discover how to make a Koji-San using Shochu/soju, Mezcal, Lime juice, Sugar syrup rich (2:1), Saline solution 4:1 (+ 1 more) in 6 easy to follow steps",
+      "title": "Koji-San",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/43245/koji-san"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/43302/negroni-lageriato": {
+      "category": null,
+      "first_seen": "2026-11-06T15:57:31.944450+00:00",
+      "published": null,
+      "summary": "Discover how to make a Negroni Lageriato using Rosso/sweet vermouth, Red bitter liqueur and Lager beer in just 5 easy to follow steps",
+      "title": "Negroni Lageriato",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/43302/negroni-lageriato"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/43303/lagerita": {
+      "category": null,
+      "first_seen": "2026-11-06T15:57:31.944450+00:00",
+      "published": null,
+      "summary": "Discover how to make a Lagerita using Reposado tequila, Triple sec, Lime juice and Lager beer in 6 easy to follow steps",
+      "title": "Lagerita",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/43303/lagerita"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/43304/leone-martini": {
+      "category": null,
+      "first_seen": "2026-11-06T15:57:31.944450+00:00",
+      "published": null,
+      "summary": "Discover how to make a Leone Martini using Gin, Dry vermouth, Marsala Secco (dry) and Orange flower water in just 5 easy to follow steps",
+      "title": "Leone Martini",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/43304/leone-martini"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/43305/allies": {
+      "category": null,
+      "first_seen": "2026-11-06T15:57:31.944450+00:00",
+      "published": null,
+      "summary": "Discover how to make an Allies using Amontillado sherry, White cr\u00e8me de cacao, Rosso/sweet vermouth (+ 2 more) in just 5 easy to follow steps",
+      "title": "Allies",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/43305/allies"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/43306/ardsley": {
+      "category": null,
+      "first_seen": "2026-11-06T15:57:31.944450+00:00",
+      "published": null,
+      "summary": "Discover how to make an Ardsley using Amontillado sherry, Rosso/sweet vermouth and Chartreuse Yellow in just 5 easy to follow steps",
+      "title": "Ardsley",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/43306/ardsley"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/43307/andalusian-pasofino-style": {
+      "category": null,
+      "first_seen": "2026-11-06T15:57:31.944450+00:00",
+      "published": null,
+      "summary": "Discover how to make an Andalusian \u2013 Pasofino-style using Blanco tequila, Fino sherry, Americano bianco (+ 1 more) in just 5 easy to follow steps",
+      "title": "Andalusian \u2013 Pasofino-style",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/43307/andalusian-pasofino-style"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/43308/andalusian-palomino-style": {
+      "category": null,
+      "first_seen": "2026-11-06T15:57:31.944450+00:00",
+      "published": null,
+      "summary": "Discover how to make an Andalusian \u2013 Palomino-style using Reposado tequila, Amontillado sherry (+ 2 more) in just 5 easy to follow steps",
+      "title": "Andalusian \u2013 Palomino-style",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/43308/andalusian-palomino-style"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/43313/brazilian-guava-sour": {
+      "category": null,
+      "first_seen": "2026-11-06T15:57:31.944450+00:00",
+      "published": null,
+      "summary": "Discover how to make a Brazilian Guava Sour using Cacha\u00e7a (unaged), Guava Liqueur, Lime juice, Agave syrup (+ 2 more) in 6 easy to follow steps",
+      "title": "Brazilian Guava Sour",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/43313/brazilian-guava-sour"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/43314/guava-mezcal-margarita": {
+      "category": null,
+      "first_seen": "2026-11-06T15:57:31.944450+00:00",
+      "published": null,
+      "summary": "Discover how to make a Guava Mezcal Margarita using Mezcal, Blanco tequila, Guava Liqueur, Lime juice (+ 2 more) in just 5 easy to follow steps",
+      "title": "Guava Mezcal Margarita",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/43314/guava-mezcal-margarita"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/579/chatham-hotel-special": {
+      "category": null,
+      "first_seen": "2026-11-06T15:57:31.944450+00:00",
+      "published": null,
+      "summary": "Discover how to make a Chatham Hotel Special using Cognac (brandy), Tawny port, Brown/dark cacao liqueur and Whipping cream in just 5 easy to follow steps",
+      "title": "Chatham Hotel Special",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/579/chatham-hotel-special"
+    },
     "https://www.diffordsguide.com/cocktails/recipe/675/dry-ice-martini": {
       "category": null,
       "first_seen": "2026-10-23T13:30:06.871597+00:00",
@@ -295,14 +367,6 @@
       "summary": "Coffee liqueur cocktails made for after dinner and espresso lovers. Discover 20 top recipes, from Espresso Martini to Tiramisu.",
       "title": "20 best Coffee liqueur cocktails",
       "url": "https://www.diffordsguide.com/encyclopedia/3444/cocktails/20-best-coffee-liqueur-cocktails"
-    },
-    "https://www.diffordsguide.com/encyclopedia/4485/bars/ketel-one-martini-cocktail-route": {
-      "category": null,
-      "first_seen": "2026-10-01T15:29:11.824715+00:00",
-      "published": null,
-      "summary": "Discover the Ketel One Martini Cocktail Route in cities around the world. Visit partner cocktail bars showcasing their signature Ketel One Martinis.",
-      "title": "Ketel One Martini Cocktail Route",
-      "url": "https://www.diffordsguide.com/encyclopedia/4485/bars/ketel-one-martini-cocktail-route"
     },
     "https://www.diffordsguide.com/encyclopedia/4519/bws/light-gold-rums-1-3-year-old-from-molasses-and-column": {
       "category": null,
@@ -367,22 +431,6 @@
       "summary": "Not a fan of nachos? Then today is nacho lucky day! Yes, today is National Nacho Day, a day dedicated to those delicious fried tortilla chips that we love to smother in chilli, salsa, guacamole, sour cream and heaps of cheese. You'd be mad not to love them.",
       "title": "National Nacho Day",
       "url": "https://www.diffordsguide.com/on-this-day/november/06"
-    },
-    "https://www.diffordsguide.com/on-this-day/october/01": {
-      "category": null,
-      "first_seen": "2026-10-01T06:02:22.713740+00:00",
-      "published": null,
-      "summary": "Today, World Sake Day, marks the beginning of the annual rice harvest, when sake production begins in Japan, running all the way through to April.",
-      "title": "Cocktail of the Day1 October 2026",
-      "url": "https://www.diffordsguide.com/on-this-day/october/01"
-    },
-    "https://www.diffordsguide.com/on-this-day/october/02": {
-      "category": null,
-      "first_seen": "2026-10-02T05:45:20.601533+00:00",
-      "published": null,
-      "summary": "As national days go, this one is fairly off-the-wall but it's all just a bit of fun so join us today in celebrating National Name Your Car Day.",
-      "title": "Cocktail of the Day2 October 2026",
-      "url": "https://www.diffordsguide.com/on-this-day/october/02"
     },
     "https://www.diffordsguide.com/on-this-day/october/03": {
       "category": null,
@@ -551,54 +599,6 @@
       "summary": "Ghosts and goblins, gargoyles and graves: it's that time of year again to cut up old sheets, paint on the fake blood, stock up on sweets and make a good effort to outdress the kids.",
       "title": "Halloween",
       "url": "https://www.diffordsguide.com/on-this-day/october/31"
-    },
-    "https://www.diffordsguide.com/on-this-day/september/26": {
-      "category": null,
-      "first_seen": "2026-09-26T05:05:19.310286+00:00",
-      "published": null,
-      "summary": "Oh Concorde! How we miss you. On this day in 1973, Concorde slashed the transatlantic air-crossing record, making the journey between Washington and Paris in just over three and a half hours and averaging an impressive 1,535 kph (954 mph).",
-      "title": "Cocktail of the Day26 September 2026",
-      "url": "https://www.diffordsguide.com/on-this-day/september/26"
-    },
-    "https://www.diffordsguide.com/on-this-day/september/27": {
-      "category": null,
-      "first_seen": "2026-09-27T05:23:09.199159+00:00",
-      "published": null,
-      "summary": "Although we have yet to turn our clocks back, here in the Northern Hemisphere, we are a few days past the autumn equinox, and summer is, astronomically speaking, firmly over. We don't know where you went on your summer holiday, but we're betting it already feels long ago. So, thank you to the UN for celebrating World Tourism Day.",
-      "title": "Cocktail of the Day27 September 2026",
-      "url": "https://www.diffordsguide.com/on-this-day/september/27"
-    },
-    "https://www.diffordsguide.com/on-this-day/september/28": {
-      "category": null,
-      "first_seen": "2026-09-28T05:29:48.454226+00:00",
-      "published": null,
-      "summary": "Marked annually On September 28th, National Drink Beer Day is undoubtedly a celebratory Day that will find broad appeal \u2013 beer is the world's No. 1 alcoholic beverage and even non-drinkers are able to participate due to the availability of so many increasingly good non-alcoholic beers.",
-      "title": "Cocktail of the Day28 September 2026",
-      "url": "https://www.diffordsguide.com/on-this-day/september/28"
-    },
-    "https://www.diffordsguide.com/on-this-day/september/29": {
-      "category": null,
-      "first_seen": "2026-09-29T00:23:48.615875+00:00",
-      "published": null,
-      "summary": "If Zsa Zsa Gabor didn't exist, you'd have to invent her. Creator of such peerless lines as I never hated a man enough to give him his diamonds back and I am a marvellous housekeeper \u2013 every time I leave a man, I keep his house, the Hungarian\u2013American icon was jailed this day in 1989.",
-      "title": "Cocktail of the Day29 September 2026",
-      "url": "https://www.diffordsguide.com/on-this-day/september/29"
-    },
-    "https://www.diffordsguide.com/on-this-day/september/30": {
-      "category": null,
-      "first_seen": "2026-09-30T05:38:04.483145+00:00",
-      "published": null,
-      "summary": "An icon of the 1950s, whose roles were the very embodiment of teenage disillusionment, James Dean died on this day at the age of just 24.",
-      "title": "Cocktail of the Day30 September 2026",
-      "url": "https://www.diffordsguide.com/on-this-day/september/30"
-    },
-    "https://www.diffordsguide.com/producer/1302/crossfire-hurricane-rum": {
-      "category": null,
-      "first_seen": "2026-10-02T14:46:02.228419+00:00",
-      "published": null,
-      "summary": "Discover how Crossfire Hurricane Rum draws on Jamaican roots and The Rolling Stones links from the early 1970s, spanning music and recording.",
-      "title": "Crossfire Hurricane Rum",
-      "url": "https://www.diffordsguide.com/producer/1302/crossfire-hurricane-rum"
     }
   }
 }
