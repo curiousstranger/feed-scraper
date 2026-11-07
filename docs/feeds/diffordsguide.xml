@@ -7,14 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 06 Nov 2026 15:57:31 +0000</lastBuildDate>
-    <item>
-      <title>Spicy Elderflower Margarita</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/42718/spicy-elderflower-margarita</link>
-      <description>Discover how to make a Spicy Elderflower Margarita using Reposado tequila, Elderflower liqueur, Chilli liqueur (+ 2 more) in just 5 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42718/spicy-elderflower-margarita</guid>
-      <pubDate>Fri, 02 Oct 2026 14:46:02 +0000</pubDate>
-    </item>
+    <lastBuildDate>Sat, 07 Nov 2026 06:05:36 +0000</lastBuildDate>
     <item>
       <title>El Guapo</title>
       <link>https://www.diffordsguide.com/cocktails/recipe/41647/el-guapo</link>
@@ -532,6 +525,13 @@
       <description>Discover how to make a John Collins using Gin, Lemon juice, Sugar syrup rich (2:1) and Soda water in 6 easy to follow steps</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/1069/john-collins</guid>
       <pubDate>Fri, 06 Nov 2026 15:57:31 +0000</pubDate>
+    </item>
+    <item>
+      <title>Museum of Modern Art's birthday</title>
+      <link>https://www.diffordsguide.com/on-this-day/november/07</link>
+      <description>New York City's The Museum of Modern Art opened to the public on this day in 1929. Affectionately known as MoMA, with 300,000 books and exhibition catalogues, 1,000 periodical titles, and tens of thousands of works of architecture, design, drawing, painting, sculpture, photography, prints, films, and electronic media, it's among the world's largest and most influential contemporary art museums.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/07</guid>
+      <pubDate>Sat, 07 Nov 2026 06:05:36 +0000</pubDate>
     </item>
   </channel>
 </rss>
