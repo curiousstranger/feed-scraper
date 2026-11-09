@@ -7,14 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 08 Nov 2026 06:09:42 +0000</lastBuildDate>
-    <item>
-      <title>Bee's Knees (with rum &amp; cream)</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/195/bees-knees-with-rum-and-cream</link>
-      <description>Discover how to make a Bees Knees (with rum and cream) using Navy rum (ideally circa 55% alc./vol.) (+ 4 more) in 6 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/195/bees-knees-with-rum-and-cream</guid>
-      <pubDate>Fri, 02 Oct 2026 14:46:02 +0000</pubDate>
-    </item>
+    <lastBuildDate>Mon, 09 Nov 2026 06:43:40 +0000</lastBuildDate>
     <item>
       <title>Lemon Drop Martini</title>
       <link>https://www.diffordsguide.com/cocktails/recipe/1144/lemon-drop-martini</link>
@@ -532,6 +525,13 @@
       <description>Of all the cocktails to have its very own day, the Harvey Wallbanger is probably the most surprising. But, yes, Harvey Wallbanger Day is a thing in American. And Harvey Wallbanger Cake is a thing, too.</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/08</guid>
       <pubDate>Sun, 08 Nov 2026 06:09:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>The Berlin Wall toppled this day</title>
+      <link>https://www.diffordsguide.com/on-this-day/november/09</link>
+      <description>On this day in 1989, protestors tore down the Berlin Wall, which had divided communist East Germany from capitalist West Germany since 1961.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/09</guid>
+      <pubDate>Mon, 09 Nov 2026 06:43:40 +0000</pubDate>
     </item>
   </channel>
 </rss>
