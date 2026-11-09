@@ -1,5 +1,29 @@
 {
   "items": {
+    "https://www.anthropic.com/institute/econ-scenarios": {
+      "category": "Economics",
+      "first_seen": "2026-11-09T22:20:19.380549+00:00",
+      "published": "2026-09-09T00:00:00+00:00",
+      "summary": "The Anthropic Economics Team models the effects of AI on the economy of 2030.",
+      "title": "Scenarios for our economic future",
+      "url": "https://www.anthropic.com/institute/econ-scenarios"
+    },
+    "https://www.anthropic.com/institute/measuring-pace-of-ai-development": {
+      "category": "Alignment",
+      "first_seen": "2026-11-09T22:20:19.380549+00:00",
+      "published": "2026-09-17T00:00:00+00:00",
+      "summary": "Today, the world can\u2019t see what\u2019s going on inside AI labs. Anthropic is proposing new metrics that would give the public visibility into frontier AI development.",
+      "title": "Illuminating the frontier",
+      "url": "https://www.anthropic.com/institute/measuring-pace-of-ai-development"
+    },
+    "https://www.anthropic.com/research/agents-judgment-calls": {
+      "category": "Alignment",
+      "first_seen": "2026-11-09T22:20:19.380549+00:00",
+      "published": "2026-10-27T00:00:00+00:00",
+      "summary": "In a randomized trial, professional analysts working with an AI coding agent went with the option the agent was randomly assigned to favor 86% of the time. We look at what this means for human oversight of AI-assisted work.",
+      "title": "How AI agents shape experts\u2019 judgment calls",
+      "url": "https://www.anthropic.com/research/agents-judgment-calls"
+    },
     "https://www.anthropic.com/research/ai-expectations-gap": {
       "category": "Economics",
       "first_seen": "2026-10-16T22:52:50.937138+00:00",
@@ -8,6 +32,38 @@
       "title": "The AI expectations gap",
       "url": "https://www.anthropic.com/research/ai-expectations-gap"
     },
+    "https://www.anthropic.com/research/alignment-assessment-ukaisi": {
+      "category": "Alignment",
+      "first_seen": "2026-11-09T22:20:19.380549+00:00",
+      "published": "2026-10-23T00:00:00+00:00",
+      "summary": "In a UK AISI evaluation, Mythos 5 took unsanctioned actions that impacted real people and organizations. In this post, we investigate these behaviors from Claude Mythos 5 further, to understand what they reveal about the model\u2019s alignment.",
+      "title": "An alignment assessment of the UK AISI cybertesting incident",
+      "url": "https://www.anthropic.com/research/alignment-assessment-ukaisi"
+    },
+    "https://www.anthropic.com/research/claude-discovers-novel-enzyme-system": {
+      "category": null,
+      "first_seen": "2026-11-09T22:20:19.380549+00:00",
+      "published": "2026-09-23T00:00:00+00:00",
+      "summary": "In early results from our new life sciences research lab, Claude agents found an enzyme system whose function is still unknown.",
+      "title": "Claude discovers a novel enzyme system with CRISPR-like repeats",
+      "url": "https://www.anthropic.com/research/claude-discovers-novel-enzyme-system"
+    },
+    "https://www.anthropic.com/research/claude-electronics-design": {
+      "category": "Science",
+      "first_seen": "2026-11-09T22:20:19.380549+00:00",
+      "published": "2026-11-09T00:00:00+00:00",
+      "summary": "We asked Claude to design three electronic devices: a speakerphone, a voice-assistant hub, and a handheld virtual pet. The prototypes worked without any fixes to their circuitry.",
+      "title": "Testing Claude on real-world electronics design",
+      "url": "https://www.anthropic.com/research/claude-electronics-design"
+    },
+    "https://www.anthropic.com/research/claude-scorpion-toxin-binder-design": {
+      "category": "Science",
+      "first_seen": "2026-11-09T22:20:19.380549+00:00",
+      "published": "2026-10-20T00:00:00+00:00",
+      "summary": "We asked an internal research Claude model to design minibinders (small proteins that attach tightly to a target) against scorpion neurotoxins.",
+      "title": "How Claude designed protein binders against scorpion neurotoxins",
+      "url": "https://www.anthropic.com/research/claude-scorpion-toxin-binder-design"
+    },
     "https://www.anthropic.com/research/claude-shaped-science": {
       "category": "Science",
       "first_seen": "2026-10-13T15:32:52.306070+00:00",
@@ -15,6 +71,22 @@
       "summary": "Matthew Schwartz describes what happened when he stopped fighting Claude and allowed Claude to find \u201cClaude-shaped\u201d problems. This led him to build BootLoops, a toolkit for exact calculations in quantitative science, which he has been applying across scientific fields alongside experts.",
       "title": "Claude-shaped science",
       "url": "https://www.anthropic.com/research/claude-shaped-science"
+    },
+    "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling": {
+      "category": "Science",
+      "first_seen": "2026-11-09T22:20:19.380549+00:00",
+      "published": "2026-09-17T00:00:00+00:00",
+      "summary": "Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems.",
+      "title": "How Claude is uplifting biomolecular modeling",
+      "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling"
+    },
+    "https://www.anthropic.com/research/components-of-agent-memory": {
+      "category": "Engineering",
+      "first_seen": "2026-11-09T22:20:19.380549+00:00",
+      "published": "2026-11-06T00:00:00+00:00",
+      "summary": "For Claude to learn from experience, it has to decide what\u2019s worth remembering before it knows what\u2019s next. Here\u2019s how \u201cdreaming\u201d helps it organize memory and correct mistakes.",
+      "title": "The components of agent memory",
+      "url": "https://www.anthropic.com/research/components-of-agent-memory"
     },
     "https://www.anthropic.com/research/designing-efficient-quantum-circuits": {
       "category": "Science",
@@ -31,6 +103,14 @@
       "summary": "Illicit distillation allows model developers to copy frontier AI capabilities without creating proportionally robust safeguards. Here, we describe how we\u2019ve reduced the rate of distillation by more than 90%.",
       "title": "Strengthening our defenses against distillation attacks",
       "url": "https://www.anthropic.com/research/distillation-defenses"
+    },
+    "https://www.anthropic.com/research/early-progress-drug-development": {
+      "category": "Science",
+      "first_seen": "2026-11-09T22:20:19.380549+00:00",
+      "published": "2026-10-27T00:00:00+00:00",
+      "summary": "Over the past several months, we\u2019ve partnered with six organizations to accelerate curing disease. We\u2019ve also started drug discovery efforts of our own, including programs for rare childhood forms of muscular dystrophy. In this post, we provide an update on our progress.",
+      "title": "Early progress on accelerating drug development with Claude",
+      "url": "https://www.anthropic.com/research/early-progress-drug-development"
     },
     "https://www.anthropic.com/research/ecdsa-curve-origins": {
       "category": "Frontier Red Team",
@@ -64,6 +144,14 @@
       "title": "GLM-5.3 and the spread of advanced cyber capabilities",
       "url": "https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities"
     },
+    "https://www.anthropic.com/research/how-researchers-use-claude": {
+      "category": "Economics",
+      "first_seen": "2026-11-09T22:20:19.380549+00:00",
+      "published": "2026-11-05T00:00:00+00:00",
+      "summary": "We analyzed 207,000 research sessions to learn how Claude is used in science, why some tasks get more use than others, and how AI could speed up discovery.",
+      "title": "AI for scientific discovery: How researchers use Claude",
+      "url": "https://www.anthropic.com/research/how-researchers-use-claude"
+    },
     "https://www.anthropic.com/research/investigating-unintended-model-actions": {
       "category": "Alignment",
       "first_seen": "2026-10-13T15:32:52.306070+00:00",
@@ -71,6 +159,14 @@
       "summary": "Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems.",
       "title": "Investigating unintended model actions in our evaluations and internal use",
       "url": "https://www.anthropic.com/research/investigating-unintended-model-actions"
+    },
+    "https://www.anthropic.com/research/investigating-vault-particles-with-claude": {
+      "category": "Science",
+      "first_seen": "2026-11-09T22:20:19.380549+00:00",
+      "published": "2026-11-04T00:00:00+00:00",
+      "summary": "We\u2019re sharing another finding from Anthropic\u2019s biology research lab: the first 3D structure of a vault particle found in prokaryotic cells.",
+      "title": "Investigating vault particles with Claude",
+      "url": "https://www.anthropic.com/research/investigating-vault-particles-with-claude"
     },
     "https://www.anthropic.com/research/launching-opt-in-vuln-finding-service-for-open-source": {
       "category": "Frontier Red Team",
@@ -80,6 +176,30 @@
       "title": "Launching an opt-in vulnerability-finding service for open-source software",
       "url": "https://www.anthropic.com/research/launching-opt-in-vuln-finding-service-for-open-source"
     },
+    "https://www.anthropic.com/research/project-swap": {
+      "category": "Economics",
+      "first_seen": "2026-11-09T22:20:19.380549+00:00",
+      "published": "2026-09-24T00:00:00+00:00",
+      "summary": "To see what works and what breaks when agents are sent into a market, we made a miniature market of Claudes.",
+      "title": "Project Swap: What happens when agents trade for us?",
+      "url": "https://www.anthropic.com/research/project-swap"
+    },
+    "https://www.anthropic.com/research/provable-inference": {
+      "category": "Frontier Red Team",
+      "first_seen": "2026-11-09T22:20:19.380549+00:00",
+      "published": "2026-11-02T00:00:00+00:00",
+      "summary": "Sharing progress on a powerful type of cryptographic proof known as a zkSNARK, which is uniquely fit for provable inference.",
+      "title": "Progress on provable inference for large language models",
+      "url": "https://www.anthropic.com/research/provable-inference"
+    },
+    "https://www.anthropic.com/research/redesigning-source-control": {
+      "category": "Engineering",
+      "first_seen": "2026-11-09T22:20:19.380549+00:00",
+      "published": "2026-10-13T00:00:00+00:00",
+      "summary": "As our merges per day grew more than tenfold, source control became our biggest development bottleneck. Here, we share how we migrated to an in-house version control system in five months.",
+      "title": "Redesigning source control at Anthropic",
+      "url": "https://www.anthropic.com/research/redesigning-source-control"
+    },
     "https://www.anthropic.com/research/self-replicating-ai": {
       "category": "Frontier Red Team",
       "first_seen": "2026-10-13T15:32:52.306070+00:00",
@@ -87,6 +207,14 @@
       "summary": "Small AI models may be only months away from being able to self-replicate across cheap IoT devices like Android TV boxes, with no datacenter needed.",
       "title": "AI models may be capable of self-replicating without access to a datacenter",
       "url": "https://www.anthropic.com/research/self-replicating-ai"
+    },
+    "https://www.anthropic.com/research/teaching-ai-to-build-scientific-models": {
+      "category": "Science",
+      "first_seen": "2026-11-09T22:20:19.380549+00:00",
+      "published": "2026-11-06T00:00:00+00:00",
+      "summary": "AI for Science grantees Jakob Macke, Daniel Gedon, and Stefan Wahl on how AI is starting to change how scientific models are built and interpreted.",
+      "title": "Teaching AI to build scientific models",
+      "url": "https://www.anthropic.com/research/teaching-ai-to-build-scientific-models"
     },
     "https://www.anthropic.com/research/the-missing-map-of-the-sky": {
       "category": "Science",
