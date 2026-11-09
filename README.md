@@ -72,7 +72,12 @@ updated feeds back to the repo.
    category. It generates hash-proof selectors, previews the extracted items,
    checks that the list is present in the raw HTML (not rendered by
    JavaScript), and gives you the finished YAML to copy into
-   `sites/<id>.yaml`.
+   `sites/<id>.yaml`. **New file in GitHub** opens GitHub with the file
+   pre-filled. **Update existing in GitHub…** can't pre-fill an existing
+   file, so it copies the YAML and shows the steps in the panel: click
+   **Open GitHub editor**, select all in GitHub's editor, paste over the
+   whole file, then commit. Committing without pasting leaves the old
+   config in place.
 
    If the page also has one "featured" article marked up differently from
    the list (a hero at the top, say), the picker can capture it as a
