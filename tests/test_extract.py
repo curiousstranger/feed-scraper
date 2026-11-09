@@ -124,52 +124,125 @@ def test_without_link_selector_the_item_itself_must_carry_the_href():
     assert extract.extract_listing(CONTAINER_HTML, config) == []
 
 
-# Trimmed from the live anthropic.com/news FeaturedGrid block (2026-10-04).
-ANTHROPIC_FEATURED_HTML = """
+# Trimmed from the live anthropic.com/news (2026-11-09), after the redesign
+# that dropped the PublicationList/FeaturedGrid markup. The top of the page
+# holds a hero <article> plus tiles (same header/tileLink structure), and a
+# carousel below it; each can carry a story the row listing lacks.
+ANTHROPIC_NEWS_HTML = """
 <html><body>
-<div class="FeaturedGrid-module-scss-module__W1FydW__root">
-  <div class="FeaturedGrid-module-scss-module__W1FydW__featuredItem">
-    <a class="FeaturedGrid-module-scss-module__W1FydW__content" href="/claude-sonnet-5-5">
-      <h2 class="headline-4 FeaturedGrid-module-scss-module__W1FydW__featuredTitle">Introducing Claude Sonnet 5.5</h2>
-      <div class="FeaturedGrid-module-scss-module__W1FydW__featuredItemContent">
-        <div class="FeaturedGrid-module-scss-module__W1FydW__meta">
-          <span class="caption bold">Announcements</span>
-          <time class="FeaturedGrid-module-scss-module__W1FydW__date caption bold">Sep 28, 2026</time>
-        </div>
-      </div>
+<div class="W1FydW_root">
+  <article class="W1FydW_featured">
+    <header class="nUeDbq_header W1FydW_header">
+      <div class="nUeDbq_headerButton"><button aria-label="Related to Introducing Claude Fable 5.2">…</button></div>
+      <p><a class="wN10Da_link" href="/news/announcements">Announcements</a></p>
+      <time>Nov 9, 2026</time>
+    </header>
+    <a class="W1FydW_tileLink" href="https://www.anthropic.com/claude-fable-and-mythos-5-2">
+      <h2 class="tOQyXa_headline-3 W1FydW_featuredTitle" data-component="Headline">Introducing Claude Fable 5.2 and Claude Mythos 5.2</h2>
+      <p class="tOQyXa_body-3 W1FydW_featuredSummary" data-component="Body">Our most capable models.</p>
     </a>
-  </div>
-  <div class="FeaturedGrid-module-scss-module__W1FydW__sideItems">
-    <a class="FeaturedGrid-module-scss-module__W1FydW__sideLink FeaturedGrid-module-scss-module__W1FydW__gridItem" href="/claude-opus-5-5">
-      <div class="FeaturedGrid-module-scss-module__W1FydW__meta">
-        <span class="caption bold">Announcements</span>
-        <time class="FeaturedGrid-module-scss-module__W1FydW__date caption bold">Sep 22, 2026</time>
-      </div>
-      <h4 class="headline-6 FeaturedGrid-module-scss-module__W1FydW__title">Introducing Claude Opus 5.5</h4>
+  </article>
+  <article class="W1FydW_tile">
+    <header class="nUeDbq_header W1FydW_header">
+      <p><a class="wN10Da_link" href="/science">Science</a></p>
+      <time>Oct 27, 2026</time>
+    </header>
+    <a class="W1FydW_tileLink" href="/research/early-progress-drug-development">
+      <h3 class="tOQyXa_headline-5 W1FydW_tileTitle" data-component="Headline">Early progress on accelerating drug development with Claude</h3>
+      <p class="tOQyXa_body-4 W1FydW_summary" data-component="Body">We're at the start of a major effort.</p>
     </a>
-  </div>
+  </article>
 </div>
+<div class="_5NNTzG_carousel-info"><div class="_5NNTzG_carousel-info-slides">
+  <div aria-hidden="true" class="_5NNTzG_carousel-info-body" data-inactive="true" inert="">
+    <header class="nUeDbq_header _5NNTzG_carousel-info-meta">
+      <p><a class="wN10Da_link" href="/news/features">Features</a></p>
+      <time class="_5NNTzG_carousel-info-date">Feb 23, 2026</time>
+    </header>
+    <a class="_5NNTzG_carousel-info-link" href="/features/making-of-claude-code"><h2 class="tOQyXa_headline-5 _5NNTzG_carousel-info-title" data-component="Headline">The making of Claude Code</h2></a>
+    <p class="_5NNTzG_carousel-info-description">Some description.</p>
+  </div>
+</div></div>
+<ul>
+<li class="bxgyUW_row" data-listing-row="91aeb467">
+  <div class="_2Zn0cq_container bxgyUW_expander" data-expanded="false">
+    <div class="bxgyUW_summary" data-peek="true">
+      <div class="bxgyUW_title"><a class="bxgyUW_title-link" href="https://www.anthropic.com/claude-fable-and-mythos-5-2"><span class="mpFHfW_panningText"><span class="mpFHfW_nowrapText"><h3 class="font-medium">Introducing Claude Fable 5.2 and Claude Mythos 5.2</h3></span></span></a></div>
+      <div class="bxgyUW_description"><a class="bxgyUW_above-link" href="https://www.anthropic.com/claude-fable-and-mythos-5-2" tabindex="-1"><p>Our most capable models.</p></a></div>
+      <div class="bxgyUW_category"><a class="wN10Da_link bxgyUW_above-link bxgyUW_category-link" href="/news/announcements">Announcements</a></div>
+      <div class="bxgyUW_date"><time>Nov 9, 2026</time></div>
+    </div>
+  </div>
+</li>
+<li class="bxgyUW_row" data-listing-row="article-8ca07213">
+  <div class="_2Zn0cq_container bxgyUW_expander" data-expanded="false">
+    <div class="bxgyUW_summary" data-peek="true">
+      <div class="bxgyUW_title"><a class="bxgyUW_title-link" href="/news/s1-sec"><span class="mpFHfW_panningText"><span class="mpFHfW_nowrapText"><h3 class="font-medium">Anthropic files S-1 with the SEC</h3></span></span></a></div>
+      <div class="bxgyUW_description"><a class="bxgyUW_above-link" href="/news/s1-sec" tabindex="-1"><p>A description.</p></a></div>
+      <div class="bxgyUW_category"><a class="wN10Da_link bxgyUW_above-link bxgyUW_category-link" href="/news/announcements">Announcements</a></div>
+      <div class="bxgyUW_date"><time>Oct 26, 2026</time></div>
+    </div>
+    <div aria-hidden="true" class="bxgyUW_details" inert="" role="region">
+      <div class="bxgyUW_details-meta"><div>Oct 26, 2026</div><div><a class="wN10Da_link" href="/news/announcements">Announcements</a></div></div>
+      <a class="bxgyUW_details-title" href="/news/s1-sec" tabindex="-1"><h3>Anthropic files S-1 with the SEC</h3></a>
+    </div>
+  </div>
+</li>
+</ul>
 </body></html>
 """
 
 
-def test_anthropic_config_scrapes_featured_hero_and_side_links():
-    """The big hero at the top of anthropic.com/news is where the newest
-    announcement goes, often before (or instead of) it reaching the
-    chronological PublicationList. Missing it leaves the feed stale."""
+def _news_config():
     config_path = pathlib.Path(__file__).parent.parent / "sites" / "anthropic-news.yaml"
-    config = yaml.safe_load(config_path.read_text())
+    return yaml.safe_load(config_path.read_text())
 
-    items = {i["url"]: i for i in extract.extract_items(ANTHROPIC_FEATURED_HTML, config)}
 
-    hero = items["https://www.anthropic.com/claude-sonnet-5-5"]
-    assert hero["title"] == "Introducing Claude Sonnet 5.5"
-    assert hero["category"] == "Announcements"
-    assert hero["published"] == "2026-09-28T00:00:00+00:00"
+def test_anthropic_news_config_scrapes_redesigned_listing_and_featured_blocks():
+    """Rows, plus the hero, tiles and carousel at the top of anthropic.com/news:
+    the newest announcement (and some stories, e.g. a /research tile or a
+    carousel feature) appear there before or instead of reaching the rows."""
+    items = extract.extract_items(ANTHROPIC_NEWS_HTML, _news_config())
 
-    side = items["https://www.anthropic.com/claude-opus-5-5"]
-    assert side["title"] == "Introducing Claude Opus 5.5"
-    assert side["published"] == "2026-09-22T00:00:00+00:00"
+    assert items == [
+        {
+            "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+            "title": "Introducing Claude Fable 5.2 and Claude Mythos 5.2",
+            "category": "Announcements",
+            "published": "2026-11-09T00:00:00+00:00",
+        },
+        {
+            "url": "https://www.anthropic.com/news/s1-sec",
+            "title": "Anthropic files S-1 with the SEC",
+            "category": "Announcements",
+            "published": "2026-10-26T00:00:00+00:00",
+        },
+        {
+            "url": "https://www.anthropic.com/research/early-progress-drug-development",
+            "title": "Early progress on accelerating drug development with Claude",
+            "category": "Science",
+            "published": "2026-10-27T00:00:00+00:00",
+        },
+        {
+            "url": "https://www.anthropic.com/features/making-of-claude-code",
+            "title": "The making of Claude Code",
+            "category": "Features",
+            "published": "2026-02-23T00:00:00+00:00",
+        },
+    ]
+
+
+def test_anthropic_news_main_selector_never_matches_a_featured_element():
+    """On anthropic.com/news the main and featured selectors match disjoint
+    elements, so no row is claimed (and re-scraped) as featured."""
+    config = _news_config()
+    soup = BeautifulSoup(ANTHROPIC_NEWS_HTML, "html.parser")
+
+    main = {id(el) for el in soup.select(config["item_selector"])}
+    featured = {id(el) for el in soup.select(config["featured_item_selector"])}
+
+    assert len(main) == 2 and len(featured) == 3 and not (main & featured)
+
 
 
 HERO_HTML = """
@@ -281,37 +354,6 @@ def test_claiming_is_by_element_identity_not_equal_markup():
 
     assert extract.extract_items(html, config) == [
         {"url": "https://example.com/posts/same", "title": "Same K", "category": None, "published": None}
-    ]
-
-
-ANTHROPIC_NEWS_HTML = ANTHROPIC_FEATURED_HTML.replace(
-    "</body>",
-    """<ul class="PublicationList-module-scss-module__KxYrHG__list"><li>
-  <a class="PublicationList-module-scss-module__KxYrHG__listItem" href="/news/policy-brief">
-    <time class="PublicationList-module-scss-module__KxYrHG__date body-3" datetime="2026-09-01T00:00:00Z">Sep 1, 2026</time>
-    <span class="PublicationList-module-scss-module__KxYrHG__subject body-3">Policy</span>
-    <span class="PublicationList-module-scss-module__KxYrHG__title body-3">A policy brief</span>
-  </a>
-</li></ul>
-</body>""",
-)
-
-
-def test_anthropic_news_main_selector_never_matches_a_featured_element():
-    """Claiming must not change existing configs: on anthropic.com/news the
-    main and featured selectors match disjoint elements."""
-    config_path = pathlib.Path(__file__).parent.parent / "sites" / "anthropic-news.yaml"
-    config = yaml.safe_load(config_path.read_text())
-    soup = BeautifulSoup(ANTHROPIC_NEWS_HTML, "html.parser")
-
-    main = {id(el) for el in soup.select(config["item_selector"])}
-    featured = {id(el) for el in soup.select(config["featured_item_selector"])}
-
-    assert main and featured and not (main & featured)
-    assert [i["url"] for i in extract.extract_items(ANTHROPIC_NEWS_HTML, config)] == [
-        "https://www.anthropic.com/news/policy-brief",
-        "https://www.anthropic.com/claude-sonnet-5-5",
-        "https://www.anthropic.com/claude-opus-5-5",
     ]
 
 

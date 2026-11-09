@@ -1,8 +1,9 @@
 # Unofficial feed config for Anthropic's newsroom (anthropic.com has no RSS feed).
 #
 # The site is a Next.js app whose CSS class names carry a build-specific hash,
-# e.g. "PublicationList-module-scss-module__KxYrHG__listItem". The hash
-# (KxYrHG) can change whenever Anthropic redeploys the site, so selectors
+# e.g. "bxgyUW_title-link" (earlier builds used the longer
+# "PublicationList-module-scss-module__KxYrHG__listItem" form). The hash
+# (bxgyUW) can change whenever Anthropic redeploys the site, so selectors
 # below use CSS "contains" matching ([class*="..."]) on the stable parts of
 # the class name instead of matching the full hashed string. If Anthropic
 # reworks the page layout entirely, these selectors will need to be
@@ -15,28 +16,35 @@ description: "Unofficial RSS feed scraped from anthropic.com/news — Anthropic 
 listing_url: "https://www.anthropic.com/news"
 base_url: "https://www.anthropic.com"
 
-# Each matched element must itself be the <a href="..."> for one article.
-item_selector: 'a[class*="PublicationList"][class*="listItem"]'
+# Selectors re-derived by hand on 2026-11-09 after the site redesign that
+# dropped the PublicationList/FeaturedGrid markup. Each row is now an <li>
+# carrying data-listing-row; its <a class="...title-link"> wraps only the
+# headline, hence link_selector. (The row also holds a hidden "details"
+# copy of the title/date/category, which the scoped selectors below skip.)
+item_selector: 'li[class*="_row"][data-listing-row]'
+link_selector: 'a[class*="title-link"]'
 
 # Selectors below are evaluated *inside* each matched item element.
-title_selector: 'span[class*="title"]'
-date_selector: 'time'
-category_selector: 'span[class*="subject"]'
+title_selector: 'a[class*="title-link"]'
+date_selector: 'div[class*="_date"] time'
+category_selector: 'a[class*="category-link"]'
 
-# The page also has a separate "FeaturedGrid" promo block (top of the page)
-# that highlights a handful of articles independent of the chronological
-# PublicationList below it: one big hero item plus a column of "side" links.
-# The hero is where the newest announcement lands, often before (or instead
-# of) it reaching PublicationList, and some announcements (e.g. threat-intel
-# reports) only ever appear as side links — so both are scraped here, or the
-# feed silently goes stale. The hero's <a> is the "__content" element (the
-# "__" anchors it so "featuredItemContent" doesn't match) with an <h2>
-# title; side links are "sideLink" with an <h4> title. Category and date
-# markup is shared.
-featured_item_selector: 'a[class*="FeaturedGrid"][class*="__content"], a[class*="FeaturedGrid"][class*="sideLink"]'
-featured_title_selector: 'h2[class*="featuredTitle"], h4[class*="title"]'
-featured_date_selector: 'time'
-featured_category_selector: 'span[class*="caption"]'
+# Above the rows sit three promo blocks that can carry stories the rows
+# never show (e.g. a /research story as a tile, an older feature in the
+# carousel), and the newest announcement lands in the hero first, so all
+# three are scraped as the featured section:
+#   - hero:     <article class="..._featured">
+#   - tiles:    <article class="..._tile">
+#   - carousel: <div class="...carousel-info-body"> (inactive slides are
+#               still in the HTML)
+# All share a <header> with the category link and <time>. The hero/tile
+# link also wraps a summary paragraph, so the title comes from the
+# headline element, not the link text.
+featured_item_selector: 'article[class*="_featured"], article[class*="_tile"], div[class*="carousel-info-body"]'
+featured_link_selector: 'a[class*="tileLink"], a[class*="carousel-info-link"]'
+featured_title_selector: '[data-component="Headline"]'
+featured_date_selector: 'header time'
+featured_category_selector: 'header a'
 
 # Fetch each new article's own page once (via OpenGraph meta tags) to get a
 # description for the feed. Only runs for items not already in data/*.json.
