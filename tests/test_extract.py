@@ -313,3 +313,76 @@ def test_anthropic_news_main_selector_never_matches_a_featured_element():
         "https://www.anthropic.com/claude-sonnet-5-5",
         "https://www.anthropic.com/claude-opus-5-5",
     ]
+
+
+# Trimmed from the live anthropic.com/research listing (2026-11-09), after the
+# redesign that dropped the PublicationList/listItem markup.
+ANTHROPIC_RESEARCH_HTML = """
+<html><body>
+<article class="nUeDbq_article" data-listing-row="b951c42c">
+  <header class="nUeDbq_header">
+    <p><a class="wN10Da_link" href="/science">Science</a></p>
+    <time>Nov 9, 2026</time>
+  </header>
+  <figure class="nUeDbq_imageWrapper nUeDbq_bordered"><img alt="" src="x.jpg"/></figure>
+  <div class="nUeDbq_meta">
+    <h3 class="tOQyXa_headline-6 nUeDbq_metaTitle" data-component="Headline">
+      <a class="nUeDbq_metaTitleLink" href="/research/claude-electronics-design">Testing Claude on real-world electronics design</a>
+    </h3>
+    <p class="nUeDbq_metaDescription">We asked Claude to design three electronic devices.</p>
+  </div>
+</article>
+<a href="/research/team/alignment"><h2 class="kMamaW_item-title">Alignment</h2></a>
+</body></html>
+"""
+
+
+def test_anthropic_research_config_scrapes_redesigned_listing():
+    config_path = pathlib.Path(__file__).parent.parent / "sites" / "anthropic-research.yaml"
+    config = yaml.safe_load(config_path.read_text())
+
+    items = extract.extract_items(ANTHROPIC_RESEARCH_HTML, config)
+
+    assert items == [
+        {
+            "url": "https://www.anthropic.com/research/claude-electronics-design",
+            "title": "Testing Claude on real-world electronics design",
+            "category": "Science",
+            "published": "2026-11-09T00:00:00+00:00",
+        }
+    ]
+
+
+# The /research hero carousel can hold stories that never reach the
+# row listing (e.g. /institute/econ-scenarios on 2026-11-09).
+ANTHROPIC_RESEARCH_CAROUSEL_HTML = """
+<html><body>
+<div class="_5NNTzG_carousel-info"><div class="_5NNTzG_carousel-info-slides">
+  <div aria-hidden="true" class="_5NNTzG_carousel-info-body" data-inactive="true" inert="">
+    <header class="nUeDbq_header _5NNTzG_carousel-info-meta">
+      <div class="nUeDbq_headerButton"><button aria-label="Related to Economic scenarios">…</button></div>
+      <p><a class="wN10Da_link" href="/economics">Economics</a></p>
+      <time class="_5NNTzG_carousel-info-date">Nov 3, 2026</time>
+    </header>
+    <a class="_5NNTzG_carousel-info-link" href="/institute/econ-scenarios"><h2 class="_5NNTzG_carousel-info-title">Economic scenarios</h2></a>
+    <p class="_5NNTzG_carousel-info-description">Some description.</p>
+  </div>
+</div></div>
+</body></html>
+"""
+
+
+def test_anthropic_research_config_scrapes_carousel_only_stories():
+    config_path = pathlib.Path(__file__).parent.parent / "sites" / "anthropic-research.yaml"
+    config = yaml.safe_load(config_path.read_text())
+
+    items = extract.extract_items(ANTHROPIC_RESEARCH_CAROUSEL_HTML, config)
+
+    assert items == [
+        {
+            "url": "https://www.anthropic.com/institute/econ-scenarios",
+            "title": "Economic scenarios",
+            "category": "Economics",
+            "published": "2026-11-03T00:00:00+00:00",
+        }
+    ]
