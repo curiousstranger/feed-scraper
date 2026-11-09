@@ -4,7 +4,7 @@
 id: anthropic-research
 name: "Research \\ Anthropic"
 description: "Unofficial RSS feed scraped from https://www.anthropic.com/research"
-listing_url: "https://www.anthropic.com/research"
+listing_url: "https://www.anthropic.com/research?view=table"
 base_url: "https://www.anthropic.com"
 
 item_selector: 'a[class*="PublicationList"][class*="listItem"]'
