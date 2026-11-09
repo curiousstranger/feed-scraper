@@ -82,6 +82,9 @@ const CSS = `
   header .tools { display: flex; gap: 2px; }
   .collapsed section:not(.status) { display: none; }
   .collapsed .status > :not(.prompt):not(.message) { display: none; }
+  .edit-steps { border: 2px solid #1971c2; background: #e7f5ff; border-radius: 6px; padding: 6px 8px; margin: 6px 0; }
+  .edit-steps ol { margin: 4px 0; padding-left: 20px; }
+  .edit-steps button { font-weight: bold; }
   .prompt.featured { border-left: 4px solid #7048e8; background: #f3f0ff; padding: 4px 6px; }
   .prompt .badge { background: #7048e8; color: #fff; border-radius: 3px; padding: 0 4px; }
 `;
@@ -150,6 +153,7 @@ export function createPicker(doc, options = {}) {
     blocked: false, // too few boxes while a repeating level exists: no output
     rawCheck: null,
     note: '',
+    editCopy: null, // {text, blocked}: YAML copied for "Update existing", awaiting paste
     skipped: new Set(),
     featured: null,
   };
@@ -189,8 +193,18 @@ export function createPicker(doc, options = {}) {
         <pre class="yaml"></pre>
         <button data-action="copy">Copy YAML</button>
         <button data-action="github">New file in GitHub</button>
-        <button data-action="github-edit">Update existing in GitHub</button>
+        <button data-action="github-edit">Update existing in GitHub…</button>
         <p class="note"></p>
+        <div class="edit-steps" hidden>
+          <strong>Your YAML is not in GitHub yet.</strong>
+          <ol>
+            <li class="edit-copy"></li>
+            <li>Click <em>Open GitHub editor</em> below.</li>
+            <li>In GitHub's editor, select all (⌘A / Ctrl+A) and paste (⌘V / Ctrl+V) over the whole file.</li>
+            <li>Then commit the change.</li>
+          </ol>
+          <button data-action="github-edit-open">Open GitHub editor</button>
+        </div>
         <textarea hidden readonly></textarea>
       </section>
     </div>`;
@@ -372,11 +386,13 @@ export function createPicker(doc, options = {}) {
       await clipboard.writeText(text);
       textarea.hidden = true;
       state.note = copiedNote;
+      return true;
     } catch {
       textarea.hidden = false;
       textarea.value = text;
       textarea.select();
       state.note = 'Clipboard blocked — press ⌘C / Ctrl+C to copy the selected text.';
+      return false;
     }
   }
 
@@ -390,11 +406,18 @@ export function createPicker(doc, options = {}) {
     if (ok) win.open(url, '_blank', 'noopener');
   }
 
-  // Copy before opening: the new tab takes focus, and the clipboard needs it.
+  // Two steps: /edit/ can't be pre-filled, so the YAML only lands if the user
+  // pastes it. Copy first (the clipboard needs this tab focused), then show the
+  // paste steps here, where they'll be read, and open GitHub from a second button.
   async function editOnGithub() {
-    await copyText(yamlText(), "Copied. In GitHub's editor, select all and paste.");
-    win.open(githubEditFileUrl(repo, state.meta.id), '_blank', 'noopener');
+    const text = yamlText();
+    const copied = await copyText(text, '');
+    state.editCopy = { text, blocked: !copied };
     render();
+  }
+
+  function openGithubEditor() {
+    win.open(githubEditFileUrl(repo, state.meta.id), '_blank', 'noopener');
   }
 
   // --- rendering -----------------------------------------------------------
@@ -572,7 +595,16 @@ export function createPicker(doc, options = {}) {
     github.title = !repo ? 'Repository unknown' : ok ? '' : 'Too long for a URL — use Copy instead';
     const edit = $('[data-action="github-edit"]');
     edit.disabled = !repo || blocked;
-    edit.title = repo ? 'Copies the YAML and opens the existing file in GitHub\'s editor' : 'Repository unknown';
+    edit.title = repo ? 'Copies the YAML, then shows how to paste it into the existing file in GitHub' : 'Repository unknown';
+    // Stale once the YAML changes: the clipboard holds the old text.
+    if (state.editCopy && (state.editCopy.text !== text || blocked)) state.editCopy = null;
+    const steps = $('.edit-steps');
+    steps.hidden = !state.editCopy;
+    if (state.editCopy) {
+      $('.edit-copy').textContent = state.editCopy.blocked
+        ? 'Clipboard blocked: press ⌘C / Ctrl+C now to copy the selected YAML below.'
+        : 'The YAML has been copied to your clipboard.';
+    }
     $('.note').textContent = !validId
       ? ID_MESSAGE
       : state.note || (repo && !ok ? 'Too long for GitHub — use Copy instead.' : '');
@@ -668,6 +700,7 @@ export function createPicker(doc, options = {}) {
     if (verb === 'copy') return copyYaml();
     if (verb === 'github') return openGithub();
     if (verb === 'github-edit') return editOnGithub();
+    if (verb === 'github-edit-open') return openGithubEditor();
     render();
     if ((verb === 'skip' || verb === 'remove-featured') && state.armed === null && state.rawCheck === null) {
       runRawCheck();

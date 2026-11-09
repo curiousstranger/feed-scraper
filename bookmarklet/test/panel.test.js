@@ -148,23 +148,37 @@ test('Open in GitHub is disabled when the URL would be too long', () => {
   assert.match(picker.root.querySelector('.note').textContent, /use Copy instead/);
 });
 
-test('Update existing in GitHub copies the YAML, then opens the existing file in the editor', async () => {
+test('Update existing in GitHub copies the YAML and shows paste steps before opening anything', async () => {
   const events = [];
   const t = setup({ clipboard: { writeText: async (text) => events.push(['copy', text]) } });
   t.window.open = (url, target) => events.push(['open', url, target]);
   t.click(t.doc.querySelector('.post-card__excerpt'));
+  const steps = t.picker.root.querySelector('.edit-steps');
+  assert.equal(steps.hidden, true);
   t.button('github-edit').click();
   await settle();
   assert.deepEqual(
     events.map(([kind]) => kind),
-    ['copy', 'open'],
+    ['copy'],
   );
   assert.match(events[0][1], /^item_selector: 'div\.post-card'$/m);
-  assert.deepEqual(events[1].slice(1), ['https://github.com/o/r/edit/main/sites/blog-example-posts.yaml', '_blank']);
-  assert.match(t.picker.root.querySelector('.note').textContent, /select all.*paste/i);
+  assert.equal(steps.hidden, false);
+  assert.match(steps.textContent, /select all.*paste.*commit/is);
+  assert.ok(steps.contains(t.button('github-edit-open')));
 });
 
-test('Update existing in GitHub still opens the editor when the clipboard is blocked, with the YAML selected', async () => {
+test('Open GitHub editor in the paste steps opens the existing file', async () => {
+  const opened = [];
+  const t = setup({ clipboard: { writeText: async () => {} } });
+  t.window.open = (url, target) => opened.push([url, target]);
+  t.click(t.doc.querySelector('.post-card__excerpt'));
+  t.button('github-edit').click();
+  await settle();
+  t.button('github-edit-open').click();
+  assert.deepEqual(opened, [['https://github.com/o/r/edit/main/sites/blog-example-posts.yaml', '_blank']]);
+});
+
+test('Update existing in GitHub with the clipboard blocked shows the YAML selected and still offers the editor', async () => {
   const opened = [];
   const t = setup({ clipboard: { writeText: async () => Promise.reject(new Error('denied')) } });
   t.window.open = (url) => opened.push(url);
@@ -174,8 +188,25 @@ test('Update existing in GitHub still opens the editor when the clipboard is blo
   const textarea = t.picker.root.querySelector('textarea');
   assert.equal(textarea.hidden, false);
   assert.match(textarea.value, /^item_selector: /m);
-  assert.deepEqual(opened, ['https://github.com/o/r/edit/main/sites/blog-example-posts.yaml']);
   assert.match(t.picker.root.querySelector('.note').textContent, /Clipboard blocked/);
+  const steps = t.picker.root.querySelector('.edit-steps');
+  assert.equal(steps.hidden, false);
+  assert.match(steps.textContent, /⌘C/);
+  t.button('github-edit-open').click();
+  assert.deepEqual(opened, ['https://github.com/o/r/edit/main/sites/blog-example-posts.yaml']);
+});
+
+test('paste steps disappear when the YAML changes after copying', async () => {
+  const t = setup({ clipboard: { writeText: async () => {} } });
+  t.click(t.doc.querySelector('.post-card__excerpt'));
+  t.button('github-edit').click();
+  await settle();
+  const steps = t.picker.root.querySelector('.edit-steps');
+  assert.equal(steps.hidden, false);
+  const input = t.picker.root.querySelector('[data-meta="name"]');
+  input.value = 'Renamed';
+  input.dispatchEvent(new t.window.Event('input', { bubbles: true }));
+  assert.equal(steps.hidden, true);
 });
 
 test('Update existing in GitHub stays enabled when the YAML is too long for a new-file URL', () => {
