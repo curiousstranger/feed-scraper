@@ -7,7 +7,31 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 18 Oct 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Nov 2026 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>The first AI-planned drive on Mars</title>
+      <link>https://www.anthropic.com/features/claude-on-mars</link>
+      <description>The first AI-assisted drive on another planet. Claude by Anthropic helped NASA's Perseverance rover travel four hundred meters on Mars.</description>
+      <guid isPermaLink="false">https://www.anthropic.com/features/claude-on-mars</guid>
+      <category>Features</category>
+      <pubDate>Sat, 24 Jan 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>The making of Claude Code</title>
+      <link>https://www.anthropic.com/features/making-of-claude-code</link>
+      <description>The inside story of how Claude Code went from an internal CLI to Anthropic's coding agent, told by researchers, engineers and early users who built it.</description>
+      <guid isPermaLink="false">https://www.anthropic.com/features/making-of-claude-code</guid>
+      <category>Features</category>
+      <pubDate>Mon, 23 Feb 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Project Deal: our Claude-run marketplace experiment</title>
+      <link>https://www.anthropic.com/features/project-deal</link>
+      <description>We created a marketplace for employees in our San Francisco office, with one big twist. We tasked Claude with buying, selling and negotiating on our colleagues’ behalf.</description>
+      <guid isPermaLink="false">https://www.anthropic.com/features/project-deal</guid>
+      <category>Agents</category>
+      <pubDate>Tue, 21 Apr 2026 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Introducing Claude Opus 5</title>
       <link>https://www.anthropic.com/news/claude-opus-5</link>
@@ -105,6 +129,14 @@
       <pubDate>Tue, 01 Sep 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
+      <title>Scenarios for our economic future</title>
+      <link>https://www.anthropic.com/institute/econ-scenarios</link>
+      <description>The Anthropic Economics Team models the effects of AI on the economy of 2030.</description>
+      <guid isPermaLink="false">https://www.anthropic.com/institute/econ-scenarios</guid>
+      <category>Economics</category>
+      <pubDate>Wed, 09 Sep 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
       <title>Detecting and countering misuse of AI: September 2026</title>
       <link>https://www.anthropic.com/threat-intelligence-report-september-2026</link>
       <description>Case studies from threat actors disrupted between December 2025 and August 2026 across seven areas of harm, from cyber operations to biological misuse.</description>
@@ -132,7 +164,7 @@
       <link>https://www.anthropic.com/news/accenture-embedded-evaluation</link>
       <description>We’re partnering with Accenture on independent evaluation of frontier AI—part of our recent commitment to embed evaluators at Anthropic. Both we and Accenture expect to invest at least $1 billion to build capacity in this area over the next five years.</description>
       <guid isPermaLink="false">https://www.anthropic.com/news/accenture-embedded-evaluation</guid>
-      <category>Announcements</category>
+      <category>Partnerships</category>
       <pubDate>Fri, 18 Sep 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
@@ -141,7 +173,7 @@
       <description>A rare strain of Ebola in the DRC, and no confirmed vaccine. Global health organizations are using Claude to move as fast as possible to combat it.</description>
       <guid isPermaLink="false">https://www.anthropic.com/features/ebola-response</guid>
       <category>Features</category>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 21 Sep 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Introducing Claude Opus 5.5</title>
@@ -204,7 +236,7 @@
       <link>https://www.anthropic.com/news/genesis-mission-commitment</link>
       <description>Anthropic is committing $150 million over three years to the Genesis Mission, a federal initiative to accelerate scientific and technological discovery through AI.</description>
       <guid isPermaLink="false">https://www.anthropic.com/news/genesis-mission-commitment</guid>
-      <category>Announcements</category>
+      <category>Partnerships</category>
       <pubDate>Thu, 08 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
@@ -212,7 +244,7 @@
       <link>https://www.anthropic.com/news/anthropic-cyber-mission</link>
       <description>Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems.</description>
       <guid isPermaLink="false">https://www.anthropic.com/news/anthropic-cyber-mission</guid>
-      <category>Announcements</category>
+      <category>Security</category>
       <pubDate>Thu, 08 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
@@ -220,8 +252,16 @@
       <link>https://www.anthropic.com/news/2026-usage-policy-update</link>
       <description>We’re publishing a new version of our Usage Policy. In this post, we summarize the changes we’ve made.</description>
       <guid isPermaLink="false">https://www.anthropic.com/news/2026-usage-policy-update</guid>
-      <category>Announcements</category>
+      <category>Policy</category>
       <pubDate>Thu, 08 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Strengthening our defenses against distillation attacks</title>
+      <link>https://www.anthropic.com/news/distillation-defenses</link>
+      <description>Illicit distillation allows model developers to copy frontier AI capabilities without creating proportionally robust safeguards. Here, we describe how we’ve reduced the rate of distillation by more than 90%.</description>
+      <guid isPermaLink="false">https://www.anthropic.com/news/distillation-defenses</guid>
+      <category>Safeguards</category>
+      <pubDate>Mon, 12 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Anthropic opens Singapore office and signs MOU with the Government of Singapore</title>
@@ -236,7 +276,7 @@
       <link>https://www.anthropic.com/news/2026-us-midterms</link>
       <description>Earlier this year, we shared an update on our election safeguards. Here, we outline how we’ve continued to strengthen these safeguards ahead of this year’s US midterms.</description>
       <guid isPermaLink="false">https://www.anthropic.com/news/2026-us-midterms</guid>
-      <category>Policy</category>
+      <category>Safeguards</category>
       <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
@@ -244,7 +284,7 @@
       <link>https://www.anthropic.com/news/an-update-on-independent-evaluators</link>
       <description>Anthropic announces updates to embedding independent evaluators</description>
       <guid isPermaLink="false">https://www.anthropic.com/news/an-update-on-independent-evaluators</guid>
-      <category>Announcements</category>
+      <category>Policy</category>
       <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
@@ -254,6 +294,70 @@
       <guid isPermaLink="false">https://www.anthropic.com/news/public-benefit-fund</guid>
       <category>Announcements</category>
       <pubDate>Sun, 18 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Physicist Christopher Stubbs joins Anthropic's Long-Term Benefit Trust</title>
+      <link>https://www.anthropic.com/news/christopher-stubbs-joins-long-term-benefit-trust</link>
+      <description>Dr. Christopher Stubbs, an experimental physicist and former Dean of Science at Harvard University, has joined Anthropic’s Long-Term Benefit Trust. He brings to the Trust decades of scientific expertise across observational cosmology and precision measurement. He has also advised the US government on national security and arms control.  “I am honored to join Anthropic’s Long-Term Benefit Trust and to help the company deliver on its public benefit mission,” said Stubbs. “I use AI tools in my research every day and see what they make possible, and as an educator I have confronted some of the hard questions they raise. As a grandfather, I want to help ensure that AI is developed and deployed for the long-term benefit of humanity.” Stubbs is the Samuel C. Moncher Professor of Physics and of Astronomy at Harvard, where he served as Dean of Science from 2018 to 2024. In 1998, as a member of the High-Z Supernova Search Team, he helped discover the accelerating expansion of the universe, work that later earned the team the Breakthrough Prize in Fundamental Physics. He was also the inaugural project scientist for what is now the Vera C. Rubin Observatory, which started a 10-year survey of the southern sky in June. One of its aims is to study the accelerating expansion he helped discover. More recently, he’s written about how to keep AI-assisted research reproducible when models can give different answers to the same question. He’s a member of JASON, an independent group of scientists who have advised the US government on defense and technology since 1960. "When Chris found evidence that the universe was expanding at a rate no one expected, he and his team followed the data even when it went against the prevailing wisdom of the field. As AI starts to transform how science itself is done, Chris’s intellectual honesty, rigor, and commitment to the truth are the values we want shaping the future of this technology, and I’m grateful he’s bringing his deep expertise to the Trust," said Daniela Amodei, Co-founder and President of Anthropic. Anthropic is a Public Benefit Corporation, which means we’re structured to balance commercial growth with our public benefit purpose. The Trust exists to help us hold that balance over the long term. It has the authority to appoint a majority of Anthropic’s board, and Trustees advise the board and our leadership on critical decisions, particularly those involving risks and societal impacts of AI.  This week we published our first Public Benefit Report [link], a public account of how we’re working toward our mission and where we’re falling short. The Trustees helped define the five mission pillars it measures us against, and the report closes with their assessment of our progress to date. Subject to stockholder approval, we’ve also committed to setting aside a portion of Anthropic’s shares to Anthropic Public Benefit Fund, a new entity with a structure that increases the stake as the company grows.  “Anthropic's Public Benefit Report sets out what we’re all working toward: helping the world build powerful AI safely, and making sure the technology drives advances that meaningfully improve people’s lives and society as a whole,” added Neil Buddy Shah, Chair of the Long-Term Benefit Trust. “Both goals depend on a deep understanding of frontier science and leading with integrity. Not only has Chris worked on some of the hardest problems in science, but he has consistently been a high-integrity leader of large, complex, collaborative scientific endeavors across academia, government, and the national laboratories. That will be of great value to the Trust as we support Anthropic in developing AI for the long-term benefit of humanity.” Stubbs, the Trust’s first physicist, joins Shah, national security expert Richard Fontaine, and former Federal Reserve Chair Ben Bernanke. Trustees are independent of the company’s management and investors.</description>
+      <guid isPermaLink="false">https://www.anthropic.com/news/christopher-stubbs-joins-long-term-benefit-trust</guid>
+      <category>Announcements</category>
+      <pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Open call for guest investigators in the life sciences</title>
+      <link>https://www.anthropic.com/news/open-call-guest-investigators-life-sciences</link>
+      <description>Today, we’re inviting members of the life sciences community to apply to work with us on special projects.</description>
+      <guid isPermaLink="false">https://www.anthropic.com/news/open-call-guest-investigators-life-sciences</guid>
+      <category>Announcements</category>
+      <pubDate>Thu, 22 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Donating Agent Skills to the Agentic AI Foundation</title>
+      <link>https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation</link>
+      <description>Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems.</description>
+      <guid isPermaLink="false">https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation</guid>
+      <category>Product</category>
+      <pubDate>Thu, 22 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Anthropic files S-1 with the SEC for proposed initial public offering</title>
+      <link>https://www.anthropic.com/news/s1-sec</link>
+      <description>Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems.</description>
+      <guid isPermaLink="false">https://www.anthropic.com/news/s1-sec</guid>
+      <category>Announcements</category>
+      <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Early progress on accelerating drug development with Claude</title>
+      <link>https://www.anthropic.com/research/early-progress-drug-development</link>
+      <description>Over the past several months, we’ve partnered with six organizations to accelerate curing disease. We’ve also started drug discovery efforts of our own, including programs for rare childhood forms of muscular dystrophy. In this post, we provide an update on our progress.</description>
+      <guid isPermaLink="false">https://www.anthropic.com/research/early-progress-drug-development</guid>
+      <category>Science</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Expanding our partnership with GSA to bring Claude to all levels of government</title>
+      <link>https://www.anthropic.com/news/expanding-partnership-gsa</link>
+      <description>Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems.</description>
+      <guid isPermaLink="false">https://www.anthropic.com/news/expanding-partnership-gsa</guid>
+      <category>Partnerships</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>AI for Science expands to foundations and research institutions</title>
+      <link>https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions</link>
+      <description>We’re highlighting 20 scientific foundations, institutions, and research groups from around the world that we’ve partnered with in an expansion of our AI for Science program.</description>
+      <guid isPermaLink="false">https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions</guid>
+      <category>Announcements</category>
+      <pubDate>Wed, 28 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Introducing Claude Fable 5.2 and Claude Mythos 5.2</title>
+      <link>https://www.anthropic.com/claude-fable-and-mythos-5-2</link>
+      <description>Claude Fable 5.2 and Claude Mythos 5.2, our new models for the hardest technical challenges. Fable 5.2 sets a new bar in coding, finance, and the sciences.</description>
+      <guid isPermaLink="false">https://www.anthropic.com/claude-fable-and-mythos-5-2</guid>
+      <category>Announcements</category>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 +0000</pubDate>
     </item>
   </channel>
 </rss>
