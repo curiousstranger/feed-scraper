@@ -7,14 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 09 Nov 2026 06:43:40 +0000</lastBuildDate>
-    <item>
-      <title>Lemon Drop Martini</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/1144/lemon-drop-martini</link>
-      <description>Discover how to make a Lemon Drop Martini using Citrus vodka, Triple sec, Lemon juice, Sugar syrup rich (2:1) (+ 1 more) in just 5 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/1144/lemon-drop-martini</guid>
-      <pubDate>Fri, 02 Oct 2026 14:46:02 +0000</pubDate>
-    </item>
+    <lastBuildDate>Tue, 10 Nov 2026 02:45:46 +0000</lastBuildDate>
     <item>
       <title>Cocktail of the Day3 October 2026</title>
       <link>https://www.diffordsguide.com/on-this-day/october/03</link>
@@ -532,6 +525,13 @@
       <description>On this day in 1989, protestors tore down the Berlin Wall, which had divided communist East Germany from capitalist West Germany since 1961.</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/09</guid>
       <pubDate>Mon, 09 Nov 2026 06:43:40 +0000</pubDate>
+    </item>
+    <item>
+      <title>Irish Coffee arrived in America this day</title>
+      <link>https://www.diffordsguide.com/on-this-day/november/10</link>
+      <description>The splendidly named Stanton Delaplane, a columnist for the San Francisco Chronicle, may have won a Pulitzer Prize for Reporting, but his legacy remains that icon of 1960s sophistication, the Irish Coffee.</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/10</guid>
+      <pubDate>Tue, 10 Nov 2026 02:45:46 +0000</pubDate>
     </item>
   </channel>
 </rss>
