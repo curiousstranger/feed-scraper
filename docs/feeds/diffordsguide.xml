@@ -7,14 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 12 Nov 2026 07:17:52 +0000</lastBuildDate>
-    <item>
-      <title>Cocktail of the Day5 October 2026</title>
-      <link>https://www.diffordsguide.com/on-this-day/october/05</link>
-      <description>Quiet at the back! No sniggering. Today is World Teachers Day, a chance to celebrate the role this often-maligned profession plays in all our lives.</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/05</guid>
-      <pubDate>Mon, 05 Oct 2026 05:47:47 +0000</pubDate>
-    </item>
+    <lastBuildDate>Fri, 13 Nov 2026 01:08:25 +0000</lastBuildDate>
     <item>
       <title>Cocktail of the Day6 October 2026</title>
       <link>https://www.diffordsguide.com/on-this-day/october/06</link>
@@ -532,6 +525,13 @@
       <description>Tomatini Day, which celebrates the La Petite Maison Restaurant and Bar chain's signature cocktail, is held annually on November 12. The day marks the start of a week of events celebrating the savoury cocktail across their global locations.</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/12</guid>
       <pubDate>Thu, 12 Nov 2026 07:17:52 +0000</pubDate>
+    </item>
+    <item>
+      <title>World Kindness Day</title>
+      <link>https://www.diffordsguide.com/on-this-day/november/13</link>
+      <description>Amelia Earheart once said that A single act of kindness throws out roots in all directions, and were keeping that at the forefront this 13th…</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/13</guid>
+      <pubDate>Fri, 13 Nov 2026 01:08:25 +0000</pubDate>
     </item>
   </channel>
 </rss>
