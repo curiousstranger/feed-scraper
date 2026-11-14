@@ -7,14 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 13 Nov 2026 19:52:51 +0000</lastBuildDate>
-    <item>
-      <title>Pineapple Mezcal Margarita</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/43002/pineapple-mezcal-margarita</link>
-      <description>Discover how to make a Pineapple Mezcal Margarita using Mezcal, Reposado tequila, Tropical curaçao liqueur (+ 3 more) in just 5 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/43002/pineapple-mezcal-margarita</guid>
-      <pubDate>Sun, 18 Oct 2026 00:27:42 +0000</pubDate>
-    </item>
+    <lastBuildDate>Sat, 14 Nov 2026 00:54:41 +0000</lastBuildDate>
     <item>
       <title>Calling Card</title>
       <link>https://www.diffordsguide.com/cocktails/recipe/43000/calling-card</link>
@@ -485,6 +478,20 @@
       <pubDate>Fri, 13 Nov 2026 01:08:25 +0000</pubDate>
     </item>
     <item>
+      <title>Negra Negroni</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/43188/negra-negroni</link>
+      <description>Discover how to make a Negra Negroni using Mezcal, Ferro China and Rosso/sweet vermouth in just 5 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/43188/negra-negroni</guid>
+      <pubDate>Fri, 13 Nov 2026 19:52:51 +0000</pubDate>
+    </item>
+    <item>
+      <title>Pineau Fizz</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/43187/pineau-fizz</link>
+      <description>Discover how to make a Pineau Fizz using Pineau des Charentes, Lemon juice, Sugar syrup rich (2:1) and Soda water in 6 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/43187/pineau-fizz</guid>
+      <pubDate>Fri, 13 Nov 2026 19:52:51 +0000</pubDate>
+    </item>
+    <item>
       <title>Ferrari Shakerato</title>
       <link>https://www.diffordsguide.com/cocktails/recipe/43186/ferrari-shakerato</link>
       <description>Discover how to make a Ferrari Shakerato using Red bitter liqueur and Fernet liqueur in just 5 easy to follow steps</description>
@@ -506,13 +513,6 @@
       <pubDate>Fri, 13 Nov 2026 19:52:51 +0000</pubDate>
     </item>
     <item>
-      <title>The Hummingbird</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/42923/the-hummingbird</link>
-      <description>Discover how to make a The Hummingbird using Blanco tequila, Cherry brandy, Lemon juice, Sugar syrup rich (2:1) (+ 2 more) in 6 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42923/the-hummingbird</guid>
-      <pubDate>Fri, 13 Nov 2026 19:52:51 +0000</pubDate>
-    </item>
-    <item>
       <title>Summer Rain</title>
       <link>https://www.diffordsguide.com/cocktails/recipe/42997/summer-rain</link>
       <description>Discover how to make a Summer Rain using Cucumber (fresh), Gin, Amaro (e.g. Montenegro), Lime juice, Ginger syrup (+ 2 more) in 6 easy to follow steps</description>
@@ -520,18 +520,18 @@
       <pubDate>Fri, 13 Nov 2026 19:52:51 +0000</pubDate>
     </item>
     <item>
-      <title>Pineau Fizz</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/43187/pineau-fizz</link>
-      <description>Discover how to make a Pineau Fizz using Pineau des Charentes, Lemon juice, Sugar syrup rich (2:1) and Soda water in 6 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/43187/pineau-fizz</guid>
+      <title>The Hummingbird</title>
+      <link>https://www.diffordsguide.com/cocktails/recipe/42923/the-hummingbird</link>
+      <description>Discover how to make a The Hummingbird using Blanco tequila, Cherry brandy, Lemon juice, Sugar syrup rich (2:1) (+ 2 more) in 6 easy to follow steps</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42923/the-hummingbird</guid>
       <pubDate>Fri, 13 Nov 2026 19:52:51 +0000</pubDate>
     </item>
     <item>
-      <title>Negra Negroni</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/43188/negra-negroni</link>
-      <description>Discover how to make a Negra Negroni using Mezcal, Ferro China and Rosso/sweet vermouth in just 5 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/43188/negra-negroni</guid>
-      <pubDate>Fri, 13 Nov 2026 19:52:51 +0000</pubDate>
+      <title>National Pickle Day</title>
+      <link>https://www.diffordsguide.com/on-this-day/november/14</link>
+      <description>In a bit of a pickle? Perfect, because today is National Pickle Day. Celebrated annually on 14th November, this is yet another calendar day that…</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/14</guid>
+      <pubDate>Sat, 14 Nov 2026 00:54:41 +0000</pubDate>
     </item>
   </channel>
 </rss>
