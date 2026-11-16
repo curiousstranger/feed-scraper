@@ -96,6 +96,14 @@
       "title": "The components of agent memory",
       "url": "https://www.anthropic.com/research/components-of-agent-memory"
     },
+    "https://www.anthropic.com/research/coordinated-vulnerability-disclosure-timelines": {
+      "category": "Frontier Red Team",
+      "first_seen": "2026-11-16T18:37:20.061370+00:00",
+      "published": "2026-11-16T00:00:00+00:00",
+      "summary": "We\u2019re shortening our vulnerability disclosure window from 90 days to 30 days for high- and critical-severity issues, and to 45 days for all other issues.",
+      "title": "Updating our coordinated vulnerability disclosure policy timelines",
+      "url": "https://www.anthropic.com/research/coordinated-vulnerability-disclosure-timelines"
+    },
     "https://www.anthropic.com/research/designing-efficient-quantum-circuits": {
       "category": "Science",
       "first_seen": "2026-10-16T19:34:39.394584+00:00",
