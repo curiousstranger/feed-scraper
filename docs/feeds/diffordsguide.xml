@@ -7,14 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 15 Nov 2026 06:41:04 +0000</lastBuildDate>
-    <item>
-      <title>Mucho Grande</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/42996/mucho-grande</link>
-      <description>Discover how to make a Mucho Grande using Blanco tequila, Orange-red aperitivo, Amaro (e.g. Averna), Orange juice (+ 3 more) in 7 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42996/mucho-grande</guid>
-      <pubDate>Sun, 18 Oct 2026 00:27:42 +0000</pubDate>
-    </item>
+    <lastBuildDate>Mon, 16 Nov 2026 06:38:53 +0000</lastBuildDate>
     <item>
       <title>Victoria (Bariana, 1896)</title>
       <link>https://www.diffordsguide.com/cocktails/recipe/42869/victoria-bariana-1896</link>
@@ -532,6 +525,13 @@
       <description>On this day in 1492, the famous Explorer of the New World, Christopher Columbus, made the first recorded reference to tobacco</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/15</guid>
       <pubDate>Sun, 15 Nov 2026 06:41:04 +0000</pubDate>
+    </item>
+    <item>
+      <title>Zinfandel Day</title>
+      <link>https://www.diffordsguide.com/on-this-day/november/16</link>
+      <description>Season of mists and mellow fruitfulness, Close bosom-friend of the maturing sun; Conspiring with him how to load and bless, With fruit the vines…</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/16</guid>
+      <pubDate>Mon, 16 Nov 2026 06:38:53 +0000</pubDate>
     </item>
   </channel>
 </rss>
