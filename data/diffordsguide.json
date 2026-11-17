@@ -104,14 +104,6 @@
       "title": "Halloween Martini",
       "url": "https://www.diffordsguide.com/cocktails/recipe/42802/halloween-martini"
     },
-    "https://www.diffordsguide.com/cocktails/recipe/42809/blush-spritz": {
-      "category": null,
-      "first_seen": "2026-10-18T00:27:42.684664+00:00",
-      "published": null,
-      "summary": "Discover how to make a Blush Spritz using Vodka, Strawberry sugar syrup, Chamberyzette aperitif, Soda water (+ 1 more) in just 5 easy to follow steps",
-      "title": "Blush Spritz",
-      "url": "https://www.diffordsguide.com/cocktails/recipe/42809/blush-spritz"
-    },
     "https://www.diffordsguide.com/cocktails/recipe/42922/flaming-heart": {
       "category": null,
       "first_seen": "2026-10-23T19:58:05.184952+00:00",
@@ -183,6 +175,14 @@
       "summary": "Discover how to make a Negra Negroni using Mezcal, Ferro China and Rosso/sweet vermouth in just 5 easy to follow steps",
       "title": "Negra Negroni",
       "url": "https://www.diffordsguide.com/cocktails/recipe/43188/negra-negroni"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/43188/nero-negroni": {
+      "category": null,
+      "first_seen": "2026-11-17T23:31:47.294370+00:00",
+      "published": null,
+      "summary": "Discover how to make a Nero Negroni using Mezcal, Ferro China and Rosso/sweet vermouth in just 5 easy to follow steps",
+      "title": "Nero Negroni",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/43188/nero-negroni"
     },
     "https://www.diffordsguide.com/cocktails/recipe/43193/toasted-marshmallow-alexander": {
       "category": null,
