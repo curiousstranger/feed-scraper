@@ -7,14 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 16 Nov 2026 06:38:53 +0000</lastBuildDate>
-    <item>
-      <title>Victoria (Bariana, 1896)</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/42869/victoria-bariana-1896</link>
-      <description>Discover how to make a Victoria (Bariana, 1896) using Cognac (brandy), Aged rum (6-10yr) and Green crème de menthe in just 5 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/42869/victoria-bariana-1896</guid>
-      <pubDate>Sun, 18 Oct 2026 00:27:42 +0000</pubDate>
-    </item>
+    <lastBuildDate>Tue, 17 Nov 2026 02:57:21 +0000</lastBuildDate>
     <item>
       <title>Blush Spritz</title>
       <link>https://www.diffordsguide.com/cocktails/recipe/42809/blush-spritz</link>
@@ -532,6 +525,13 @@
       <description>Season of mists and mellow fruitfulness, Close bosom-friend of the maturing sun; Conspiring with him how to load and bless, With fruit the vines…</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/16</guid>
       <pubDate>Mon, 16 Nov 2026 06:38:53 +0000</pubDate>
+    </item>
+    <item>
+      <title>National Hiking Day</title>
+      <link>https://www.diffordsguide.com/on-this-day/november/17</link>
+      <description>Also known as Take a Hike Day, this American national day celebrates getting out in the wild and experiencing nature first-hand, and if youre not…</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/17</guid>
+      <pubDate>Tue, 17 Nov 2026 02:57:21 +0000</pubDate>
     </item>
   </channel>
 </rss>
