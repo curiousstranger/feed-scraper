@@ -48,6 +48,14 @@
       "title": "Building strong safety evaluations",
       "url": "https://www.anthropic.com/research/building-strong-safety-evaluations"
     },
+    "https://www.anthropic.com/research/claude-black-hole-physics": {
+      "category": "Science",
+      "first_seen": "2026-11-19T01:53:25.058988+00:00",
+      "published": "2026-11-17T00:00:00+00:00",
+      "summary": "Claude Fable 5.2 has solved two open problems in theoretical physics. Both concern black holes and the search for a theory of quantum gravity.",
+      "title": "Claude solves two open problems in the physics of black holes",
+      "url": "https://www.anthropic.com/research/claude-black-hole-physics"
+    },
     "https://www.anthropic.com/research/claude-discovers-novel-enzyme-system": {
       "category": null,
       "first_seen": "2026-11-09T22:20:19.380549+00:00",
