@@ -272,6 +272,14 @@
       "title": "Investigating three real-world incidents in our cybersecurity evaluations",
       "url": "https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals"
     },
+    "https://www.anthropic.com/news/ipo-close": {
+      "category": "Announcements",
+      "first_seen": "2026-11-20T16:59:29.866374+00:00",
+      "published": "2026-11-20T00:00:00+00:00",
+      "summary": "Today Anthropic, PBC announced the closing of its initial public offering of an aggregate of 1,127,000,000 shares of its Class A common stock at a public offering price of $83.00 per share, including the full exercise by the underwriters of their option to purchase an additional 147,000,000 shares of Class A common stock from Anthropic at the initial public offering price.",
+      "title": "Anthropic announces closing of initial public offering, including full exercise of underwriters\u2019 option to purchase additional shares, and closing of concurrent private placement",
+      "url": "https://www.anthropic.com/news/ipo-close"
+    },
     "https://www.anthropic.com/news/life-sciences-verification-program": {
       "category": "Announcements",
       "first_seen": "2026-09-17T19:44:36.767988+00:00",
