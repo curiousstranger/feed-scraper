@@ -7,14 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 21 Nov 2026 01:33:45 +0000</lastBuildDate>
-    <item>
-      <title>French Ruby</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/41518/french-ruby</link>
-      <description>Discover how to make a French Ruby using Cognac (brandy), Guignolet DAnjou and Chartreuse Green in just 5 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/41518/french-ruby</guid>
-      <pubDate>Fri, 23 Oct 2026 19:58:05 +0000</pubDate>
-    </item>
+    <lastBuildDate>Sun, 22 Nov 2026 06:57:18 +0000</lastBuildDate>
     <item>
       <title>United Nations Day</title>
       <link>https://www.diffordsguide.com/on-this-day/october/24</link>
@@ -532,6 +525,13 @@
       <description>With a hint of warming spice, gingerbread cookies are the perfect autumn treat. So cosy up and indulge in a gingerbread cookie on its celebratory day</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/21</guid>
       <pubDate>Sat, 21 Nov 2026 01:33:45 +0000</pubDate>
+    </item>
+    <item>
+      <title>National Cranberry Relish Day</title>
+      <link>https://www.diffordsguide.com/on-this-day/november/22</link>
+      <description>Just in time for Thanksgiving , National Cranberry Relish Day has arrived, and boy, are we thankful for it</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/22</guid>
+      <pubDate>Sun, 22 Nov 2026 06:57:18 +0000</pubDate>
     </item>
   </channel>
 </rss>
