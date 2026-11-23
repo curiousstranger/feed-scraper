@@ -7,14 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 22 Nov 2026 06:57:18 +0000</lastBuildDate>
-    <item>
-      <title>United Nations Day</title>
-      <link>https://www.diffordsguide.com/on-this-day/october/24</link>
-      <description>On this day in 1945, as the world struggled to cope with the aftermath of World War II and the new world order that had emerged, the United Nations was established with the goal of preventing such a dreadful conflict from ever happening again. The world's largest international organization, 193 nations now belong to the United Nations.</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/24</guid>
-      <pubDate>Fri, 23 Oct 2026 23:11:16 +0000</pubDate>
-    </item>
+    <lastBuildDate>Mon, 23 Nov 2026 00:55:31 +0000</lastBuildDate>
     <item>
       <title>World Pasta Day</title>
       <link>https://www.diffordsguide.com/on-this-day/october/25</link>
@@ -532,6 +525,13 @@
       <description>Just in time for Thanksgiving , National Cranberry Relish Day has arrived, and boy, are we thankful for it</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/22</guid>
       <pubDate>Sun, 22 Nov 2026 06:57:18 +0000</pubDate>
+    </item>
+    <item>
+      <title>National Espresso Day</title>
+      <link>https://www.diffordsguide.com/on-this-day/november/23</link>
+      <description>Essentially a shot of get up and go, the espresso is a firm favourite amongst coffee drinkers and goes incredibly well in a cocktail</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/23</guid>
+      <pubDate>Mon, 23 Nov 2026 00:55:31 +0000</pubDate>
     </item>
   </channel>
 </rss>
