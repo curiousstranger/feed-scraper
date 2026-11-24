@@ -256,6 +256,14 @@
       "title": "What work can robots do?",
       "url": "https://www.anthropic.com/research/what-work-can-robots-do"
     },
+    "https://www.anthropic.com/research/working-with-ai": {
+      "category": "Economics",
+      "first_seen": "2026-11-24T02:55:23.533568+00:00",
+      "published": "2026-11-23T00:00:00+00:00",
+      "summary": "We interviewed people at 58 companies that use Claude about how AI is changing their work. They described few layoffs but reduced hiring, and said the most valuable uses of AI often involved reorganizing roles and workplaces around it.",
+      "title": "Working with AI",
+      "url": "https://www.anthropic.com/research/working-with-ai"
+    },
     "https://www.anthropic.com/research/yes-claude-can-do-nine-loops": {
       "category": "Science",
       "first_seen": "2026-10-13T15:32:52.306070+00:00",
