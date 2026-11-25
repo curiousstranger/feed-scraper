@@ -7,35 +7,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 24 Nov 2026 02:55:24 +0000</lastBuildDate>
-    <item>
-      <title>Nightwish</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/23038/nightwish</link>
-      <description>Discover how to make a Nightwish using Vodka, Fino sherry, Banana liqueur, Lemon juice, Sugar syrup rich (2:1) (+ 2 more) in just 5 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/23038/nightwish</guid>
-      <pubDate>Sun, 25 Oct 2026 19:05:17 +0000</pubDate>
-    </item>
-    <item>
-      <title>National Pumpkin Day</title>
-      <link>https://www.diffordsguide.com/on-this-day/october/26</link>
-      <description>Q: What are gourds afraid of?&#13;A: Things that go pumpkin the night.</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/26</guid>
-      <pubDate>Mon, 26 Oct 2026 04:53:53 +0000</pubDate>
-    </item>
-    <item>
-      <title>National American Beer Day</title>
-      <link>https://www.diffordsguide.com/on-this-day/october/27</link>
-      <description>There's nothing quite like an ice-cold beer on a hot day. Or any day for that matter. So let 27th October, or National American Beer Day, be your perfect excuse to try a beer from one of over 7,000 breweries creating the definitive thirst-quencher in America.</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/october/27</guid>
-      <pubDate>Tue, 27 Oct 2026 05:11:35 +0000</pubDate>
-    </item>
-    <item>
-      <title>Toasted Marshmallow Alexander</title>
-      <link>https://www.diffordsguide.com/cocktails/recipe/43193/toasted-marshmallow-alexander</link>
-      <description>Discover how to make a Toasted Marshmallow Alexander using Cognac (brandy), Brown/dark cacao liqueur (+ 2 more) in just 5 easy to follow steps</description>
-      <guid isPermaLink="false">https://www.diffordsguide.com/cocktails/recipe/43193/toasted-marshmallow-alexander</guid>
-      <pubDate>Tue, 27 Oct 2026 14:34:41 +0000</pubDate>
-    </item>
+    <lastBuildDate>Wed, 25 Nov 2026 00:49:06 +0000</lastBuildDate>
     <item>
       <title>World Amaro Day</title>
       <link>https://www.diffordsguide.com/on-this-day/october/28</link>
@@ -532,6 +504,34 @@
       <description>Theyre small, smelly, and generally found tinned or canned, but National Sardines Day is here to change your opinions on these surprisingly…</description>
       <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/24</guid>
       <pubDate>Tue, 24 Nov 2026 02:55:24 +0000</pubDate>
+    </item>
+    <item>
+      <title>Maize Day</title>
+      <link>https://www.diffordsguide.com/on-this-day/november/25</link>
+      <description>Maize, or corn, is a cereal grain that was first domesticated by the indigenous peoples of southern Mexico about ten thousand years ago. Enjoyed…</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/on-this-day/november/25</guid>
+      <pubDate>Wed, 25 Nov 2026 00:49:06 +0000</pubDate>
+    </item>
+    <item>
+      <title>Densing</title>
+      <link>https://www.diffordsguide.com/encyclopedia/4538/cocktails/densing</link>
+      <description>Developed by Iain McPherson of Edinburghs Panda and Sons and unveiled in April 2026, densing is a technique to incorporate fats and oils into spirits, liqueurs...</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/encyclopedia/4538/cocktails/densing</guid>
+      <pubDate>Wed, 25 Nov 2026 00:49:06 +0000</pubDate>
+    </item>
+    <item>
+      <title>Lime juice and how to juice limes</title>
+      <link>https://www.diffordsguide.com/encyclopedia/4539/cocktails/lime-juice-and-how-to-juice-limes</link>
+      <description>Freshly squeezed lime juice is a key cocktail ingredient, adding lively acidity, delicate citrus aromatics, and distinctive tartness. Its ability to balance sweetness...</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/encyclopedia/4539/cocktails/lime-juice-and-how-to-juice-limes</guid>
+      <pubDate>Wed, 25 Nov 2026 00:49:06 +0000</pubDate>
+    </item>
+    <item>
+      <title>Lemon juice and how to squeeze lemons</title>
+      <link>https://www.diffordsguide.com/encyclopedia/4540/cocktails/lemon-juice-and-how-to-squeeze-lemons</link>
+      <description>Freshly squeezed lemon juice is one of the most-used cocktail ingredients, imparting bright, refreshing acidity and a distinctive citrus fragrance with sourness...</description>
+      <guid isPermaLink="false">https://www.diffordsguide.com/encyclopedia/4540/cocktails/lemon-juice-and-how-to-squeeze-lemons</guid>
+      <pubDate>Wed, 25 Nov 2026 00:49:06 +0000</pubDate>
     </item>
   </channel>
 </rss>
