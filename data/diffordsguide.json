@@ -32,14 +32,6 @@
       "title": "Cuban Liberal",
       "url": "https://www.diffordsguide.com/cocktails/recipe/2793/cuban-liberal"
     },
-    "https://www.diffordsguide.com/cocktails/recipe/29307/the-zapatero-old-fashioned": {
-      "category": null,
-      "first_seen": "2026-10-30T20:50:42.997759+00:00",
-      "published": null,
-      "summary": "Discover how to make a The Zapatero Old Fashioned using Mezcal, Bourbon bonded-strength, Orgeat syrup (+ 2 more) in 6 easy to follow steps",
-      "title": "The Zapatero Old Fashioned",
-      "url": "https://www.diffordsguide.com/cocktails/recipe/29307/the-zapatero-old-fashioned"
-    },
     "https://www.diffordsguide.com/cocktails/recipe/29989/gingerbread-old-fashioned-no-2": {
       "category": null,
       "first_seen": "2026-11-20T16:59:30.870722+00:00",
@@ -56,13 +48,29 @@
       "title": "Greenpoint",
       "url": "https://www.diffordsguide.com/cocktails/recipe/3635/greenpoint"
     },
-    "https://www.diffordsguide.com/cocktails/recipe/42675/king-louie-the-4th": {
+    "https://www.diffordsguide.com/cocktails/recipe/42742/grape-daiquiri": {
       "category": null,
-      "first_seen": "2026-10-30T20:50:42.997759+00:00",
+      "first_seen": "2026-11-28T00:04:13.239594+00:00",
       "published": null,
-      "summary": "Discover how to make a King Louie the 4th using Scotch whisky, Ginger liqueur, Tawny port, Lillet Rouge (+ 2 more) in just 5 easy to follow steps",
-      "title": "King Louie the 4th",
-      "url": "https://www.diffordsguide.com/cocktails/recipe/42675/king-louie-the-4th"
+      "summary": "Discover how to make a Grape Daiquiri using Light white rum, Verjuice/Verjus, Sugar syrup rich (2:1) (+ 2 more) in just 5 easy to follow steps",
+      "title": "Grape Daiquiri",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/42742/grape-daiquiri"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/42743/golden-grape-daiquiri": {
+      "category": null,
+      "first_seen": "2026-11-28T00:04:13.239594+00:00",
+      "published": null,
+      "summary": "Discover how to make a Golden Grape Daiquiri using Light gold rum 1-3yo, Verjuice/Verjus (+ 2 more) in just 5 easy to follow steps",
+      "title": "Golden Grape Daiquiri",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/42743/golden-grape-daiquiri"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/42754/el-rey-daiquiri": {
+      "category": null,
+      "first_seen": "2026-11-28T00:04:13.239594+00:00",
+      "published": null,
+      "summary": "Discover how to make an El Rey Daiquiri using Light gold rum 1-3yo, Verjuice/Verjus and Sugar syrup rich (2:1) in just 5 easy to follow steps",
+      "title": "El Rey Daiquiri",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/42754/el-rey-daiquiri"
     },
     "https://www.diffordsguide.com/cocktails/recipe/42923/the-hummingbird": {
       "category": null,
@@ -80,13 +88,21 @@
       "title": "Summer Rain",
       "url": "https://www.diffordsguide.com/cocktails/recipe/42997/summer-rain"
     },
-    "https://www.diffordsguide.com/cocktails/recipe/43021/password": {
+    "https://www.diffordsguide.com/cocktails/recipe/42998/suburban-gimlet": {
       "category": null,
-      "first_seen": "2026-10-30T20:50:42.997759+00:00",
+      "first_seen": "2026-11-28T00:04:13.239594+00:00",
       "published": null,
-      "summary": "Discover how to make a Password using Oude genever, Gentian liqueur, Maraschino liqueur and Lime juice in just 5 easy to follow steps",
-      "title": "Password",
-      "url": "https://www.diffordsguide.com/cocktails/recipe/43021/password"
+      "summary": "Discover how to make a Suburban Gimlet using Gin, Lime juice, Verjuice/Verjus, Powdered sugar and Saline solution 4:1 in 6 easy to follow steps",
+      "title": "Suburban Gimlet",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/42998/suburban-gimlet"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/43079/zone-amarillo": {
+      "category": null,
+      "first_seen": "2026-11-28T00:04:13.239594+00:00",
+      "published": null,
+      "summary": "Discover how to make a Zone Amarillo using Mezcal, Reposado tequila, Vermouth amaro (Pun.), Chartreuse Yellow (+ 2 more) in 6 easy to follow steps",
+      "title": "Zone Amarillo",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/43079/zone-amarillo"
     },
     "https://www.diffordsguide.com/cocktails/recipe/43117/mango-lassi": {
       "category": null,
@@ -136,6 +152,30 @@
       "title": "Nero Negroni",
       "url": "https://www.diffordsguide.com/cocktails/recipe/43188/nero-negroni"
     },
+    "https://www.diffordsguide.com/cocktails/recipe/43189/moitie-moitie": {
+      "category": null,
+      "first_seen": "2026-11-28T00:04:13.239594+00:00",
+      "published": null,
+      "summary": "Discover how to make a Moiti\u00e9-Moiti\u00e9 using Gin, Blanc quinquina/kina and Saline solution 4:1 in just 5 easy to follow steps",
+      "title": "Moiti\u00e9-Moiti\u00e9",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/43189/moitie-moitie"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/43191/professor-montserrat": {
+      "category": null,
+      "first_seen": "2026-11-28T00:04:13.239594+00:00",
+      "published": null,
+      "summary": "Discover how to make a Professor / Montserrat using Gin, Lime juice, Grenadine syrup, Gomme syrup, Chilled water (+ 2 more) in just 5 easy to follow steps",
+      "title": "Professor / Montserrat",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/43191/professor-montserrat"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/43194/red-pocket": {
+      "category": null,
+      "first_seen": "2026-11-28T00:04:13.239594+00:00",
+      "published": null,
+      "summary": "Discover how to make a Red Pocket using Gin, Orange Cura\u00e7ao, Americano rosa, Lime juice and Sugar syrup rich (2:1) in 6 easy to follow steps",
+      "title": "Red Pocket",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/43194/red-pocket"
+    },
     "https://www.diffordsguide.com/cocktails/recipe/43243/gimlet": {
       "category": null,
       "first_seen": "2026-11-06T15:57:31.944450+00:00",
@@ -167,6 +207,14 @@
       "summary": "Discover how to make an Espresso NOtini using Espresso coffee (hot) and Vanilla sugar syrup in just 5 easy to follow steps",
       "title": "Espresso NOtini",
       "url": "https://www.diffordsguide.com/cocktails/recipe/43280/espresso-notini"
+    },
+    "https://www.diffordsguide.com/cocktails/recipe/43291/dorothy-gish": {
+      "category": null,
+      "first_seen": "2026-11-28T00:04:13.239594+00:00",
+      "published": null,
+      "summary": "Discover how to make a Dorothy Gish using Light gold rum 1-3yo, Apricot liqueur, Pineapple juice and Orange juice in just 5 easy to follow steps",
+      "title": "Dorothy Gish",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/43291/dorothy-gish"
     },
     "https://www.diffordsguide.com/cocktails/recipe/43302/negroni-lageriato": {
       "category": null,
@@ -240,6 +288,14 @@
       "title": "Guava Mezcal Margarita",
       "url": "https://www.diffordsguide.com/cocktails/recipe/43314/guava-mezcal-margarita"
     },
+    "https://www.diffordsguide.com/cocktails/recipe/43384/espresso-diablo": {
+      "category": null,
+      "first_seen": "2026-11-28T00:04:13.239594+00:00",
+      "published": null,
+      "summary": "Discover how to make an Espresso Diablo using Blanco tequila, Mezcal, Coffee liqueur, Chilli liqueur (+ 2 more) in just 5 easy to follow steps",
+      "title": "Espresso Diablo",
+      "url": "https://www.diffordsguide.com/cocktails/recipe/43384/espresso-diablo"
+    },
     "https://www.diffordsguide.com/cocktails/recipe/43608/thanksgiving-margarita": {
       "category": null,
       "first_seen": "2026-11-20T16:59:30.870722+00:00",
@@ -304,22 +360,6 @@
       "title": "Fizz",
       "url": "https://www.diffordsguide.com/cocktails/recipe/754/fizz"
     },
-    "https://www.diffordsguide.com/competition/1285/lustau-sherry-cocktail-competition": {
-      "category": null,
-      "first_seen": "2026-10-30T15:04:55.724448+00:00",
-      "published": null,
-      "summary": "Create a new sherry cocktail for the Lustau Sherry Cocktail Competition 2026. Submit your recipe, photo, and inspiration to win prizes.",
-      "title": "Lustau Sherry Cocktail Competition",
-      "url": "https://www.diffordsguide.com/competition/1285/lustau-sherry-cocktail-competition"
-    },
-    "https://www.diffordsguide.com/competition/1300/italicus-cocktail-competition": {
-      "category": null,
-      "first_seen": "2026-10-30T15:04:55.724448+00:00",
-      "published": null,
-      "summary": "Enter the Italicus cocktail competition and imagine a new way to spritz. Recipes must include at least 15ml Italicus Rosolio.",
-      "title": "Italicus Cocktail Competition",
-      "url": "https://www.diffordsguide.com/competition/1300/italicus-cocktail-competition"
-    },
     "https://www.diffordsguide.com/encyclopedia/1062/cocktails/20-best-cocktails-for-thanksgiving-and-the-holidays": {
       "category": null,
       "first_seen": "2026-11-20T16:59:30.870722+00:00",
@@ -327,14 +367,6 @@
       "summary": "Thanksgiving cocktails for a turkey dinner, from Appletini Sour Apple Martini to Egg Nog. Explore 20 festive cocktail recipes",
       "title": "20 best cocktails for Thanksgiving and the holidays",
       "url": "https://www.diffordsguide.com/encyclopedia/1062/cocktails/20-best-cocktails-for-thanksgiving-and-the-holidays"
-    },
-    "https://www.diffordsguide.com/encyclopedia/4519/bws/light-gold-rums-1-3-year-old-from-molasses-and-column": {
-      "category": null,
-      "first_seen": "2026-11-01T15:14:54.422678+00:00",
-      "published": null,
-      "summary": "Light gold rum is a light-bodied style of rum produced from molasses and distilled primarily in column stills. Typically aged for one to three years in oak casks, these rums develop a pale golden hue and",
-      "title": "Light Gold Rums (1-3 year old, from molasses & column)",
-      "url": "https://www.diffordsguide.com/encyclopedia/4519/bws/light-gold-rums-1-3-year-old-from-molasses-and-column"
     },
     "https://www.diffordsguide.com/encyclopedia/4538/cocktails/densing": {
       "category": null,
@@ -359,30 +391,6 @@
       "summary": "Freshly squeezed lemon juice is one of the most-used cocktail ingredients, imparting bright, refreshing acidity and a distinctive citrus fragrance with sourness...",
       "title": "Lemon juice and how to squeeze lemons",
       "url": "https://www.diffordsguide.com/encyclopedia/4540/cocktails/lemon-juice-and-how-to-squeeze-lemons"
-    },
-    "https://www.diffordsguide.com/g/1277/sherry-cocktails": {
-      "category": null,
-      "first_seen": "2026-11-02T18:26:44.931520+00:00",
-      "published": null,
-      "summary": "Discover how sherry transforms cocktails with complexity, flavour, balance, and mouthfeel. Learn sherry styles and where they fit best.",
-      "title": "Sherry Cocktails",
-      "url": "https://www.diffordsguide.com/g/1277/sherry-cocktails"
-    },
-    "https://www.diffordsguide.com/on-this-day/november/01": {
-      "category": null,
-      "first_seen": "2026-11-01T06:14:28.237958+00:00",
-      "published": null,
-      "summary": "Day of the Dead (D\u00eda de los Muertos) festivities are held on November 1st (All Saints' Day) and November 2nd (All Souls' Day), a celebration which (almost) seamlessly blends Christian beliefs with activities so firmly pre-Christian that the Aztecs would probably recognise them. Traditionally, today honours deceased children and tomorrow honours adults who have passed away.",
-      "title": "The Day Of The Dead",
-      "url": "https://www.diffordsguide.com/on-this-day/november/01"
-    },
-    "https://www.diffordsguide.com/on-this-day/november/02": {
-      "category": null,
-      "first_seen": "2026-11-02T06:15:30.076131+00:00",
-      "published": null,
-      "summary": "The holidays and indeed party season will be upon us faster than you can say 'eat, drink and be merry,' and it just so happens that today we celebrate a tasty treat that any festive gathering or buffet would be remiss without - the devilled egg.",
-      "title": "National Deviled Egg Day",
-      "url": "https://www.diffordsguide.com/on-this-day/november/02"
     },
     "https://www.diffordsguide.com/on-this-day/november/03": {
       "category": null,
@@ -584,21 +592,13 @@
       "title": "National Craft Jerky Day",
       "url": "https://www.diffordsguide.com/on-this-day/november/27"
     },
-    "https://www.diffordsguide.com/on-this-day/october/30": {
+    "https://www.diffordsguide.com/on-this-day/november/28": {
       "category": null,
-      "first_seen": "2026-10-30T05:54:59.037618+00:00",
+      "first_seen": "2026-11-28T00:04:13.239594+00:00",
       "published": null,
-      "summary": "Candy corn, the sweet treat favoured by Americans in the autumn, has its own national day! Typically eaten around Halloween, candy corn was created in the 1800s by a gentleman named George Renninger, who worked at the Wunderlee Candy Company. He set out to create a bright sweet that reflected the red, yellow and orange colours of autumn and celebrated the humble corn on the cob.",
-      "title": "National Candy Corn Day",
-      "url": "https://www.diffordsguide.com/on-this-day/october/30"
-    },
-    "https://www.diffordsguide.com/on-this-day/october/31": {
-      "category": null,
-      "first_seen": "2026-10-31T05:51:24.250835+00:00",
-      "published": null,
-      "summary": "Ghosts and goblins, gargoyles and graves: it's that time of year again to cut up old sheets, paint on the fake blood, stock up on sweets and make a good effort to outdress the kids.",
-      "title": "Halloween",
-      "url": "https://www.diffordsguide.com/on-this-day/october/31"
+      "summary": "Even Saudi Arabia finally saw women vote for the first time in 2015, so now equal voting rights for men and women are the norm, its hard to imagine\u2026",
+      "title": "The aniversary of womens' first right to vote",
+      "url": "https://www.diffordsguide.com/on-this-day/november/28"
     }
   }
 }
