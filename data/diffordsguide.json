@@ -1,13 +1,5 @@
 {
   "items": {
-    "https://www.diffordsguide.com/bws/1290/sherry": {
-      "category": null,
-      "first_seen": "2026-11-02T18:26:44.931520+00:00",
-      "published": null,
-      "summary": "What is sherry? Learn how this fortified wine from Jerez is made, how it is aged, and why it is consistent year to year.",
-      "title": "Sherry",
-      "url": "https://www.diffordsguide.com/bws/1290/sherry"
-    },
     "https://www.diffordsguide.com/cocktails/recipe/1069/john-collins": {
       "category": null,
       "first_seen": "2026-11-06T15:57:31.944450+00:00",
@@ -359,6 +351,14 @@
       "summary": "Discover how to make a Fizz using Spirit, Citrus juice, Sugar syrup rich (2:1) and Soda water in 6 easy to follow steps",
       "title": "Fizz",
       "url": "https://www.diffordsguide.com/cocktails/recipe/754/fizz"
+    },
+    "https://www.diffordsguide.com/competition/1285/lustau-sherry-cocktail-competition": {
+      "category": null,
+      "first_seen": "2026-11-28T07:55:47.747572+00:00",
+      "published": null,
+      "summary": "Create a new sherry cocktail for the Lustau Sherry Cocktail Competition 2026. Submit your recipe, photo, and inspiration to win prizes",
+      "title": "Lustau Sherry Cocktail Competition",
+      "url": "https://www.diffordsguide.com/competition/1285/lustau-sherry-cocktail-competition"
     },
     "https://www.diffordsguide.com/encyclopedia/1062/cocktails/20-best-cocktails-for-thanksgiving-and-the-holidays": {
       "category": null,
